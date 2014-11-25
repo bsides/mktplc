@@ -1,0 +1,178 @@
+[
+{
+  "newspappers": [
+  {
+    "name": "O Estado de SP",
+    "shortname": "Estadão",
+    "description": "My sensations were strange. Let me try to explain them. When I was a child, I well remember a somewhat similar circumstance that befell me; whether it was a reality or a dream, I never could entirely settle.",
+    "sections": [
+    {
+      "name": "Poder",
+      "columnsMax": 5,
+      "heightMax": 35.00,
+      "width": 4.09,
+      "priceCentimeterPerColumn": 350.00,
+      "isPB": true,
+      "isColor": true,
+      "circulation": "Nacional",
+      "categories": [
+        "Esportes", "Negócios", "Rural", "Tecnologia", "Saúde", "Educação"
+      ],
+      "ageGroup": [
+        "Jovens", "Adultos", "Adultos 35+"
+      ],
+      "weekdays": [
+      {
+        "name": "seg",
+        "fullName": "Segunda-feira",
+        "reservation": {
+          "name": "sex",
+          "fullName": "Sexta-feira",
+          "hour": "23:59"
+        },
+        "expire": {
+          "name": "sex",
+          "fullName": "Sexta-feira",
+          "hour": "23:59"
+        },
+        "sending": {
+          "name": "sex",
+          "fullName": "Sexta-feira",
+          "hour": "23:59"
+        }
+      },
+      {
+        "name": "qua",
+        "fullName": "Quarta-feira",
+        "reservation": {
+          "name": "seg",
+          "fullName": "Segunda-feira",
+          "hour": "23:59"
+        },
+        "expire": {
+          "name": "seg",
+          "fullName": "Segunda-feira",
+          "hour": "23:59"
+        },
+        "sending": {
+          "name": "seg",
+          "fullName": "Segunda-feira",
+          "hour": "23:59"
+        }
+      }
+      ],
+      "formats": [
+      {
+        "name": "Meia Página Vertical",
+        "colorAndPrice": [
+        {
+          "name": "Preto e Branco",
+          "determination": "Valor Padrão",
+          "weekdays": [
+          {
+            "name": "seg",
+            "price": "20,000.00"
+          },
+          {
+            "name": "qua",
+            "price": "15,000.00"
+          }
+          ]
+        },
+        {
+          "name": "Cor",
+          "determination": "Valor Padrão",
+          "weekdays": [
+          {
+            "name": "seg",
+            "price": "20,000.00"
+          },
+          {
+            "name": "qua",
+            "price": "15,000.00"
+          }
+          ]
+        }
+        ]
+      },
+      {
+        "name": "Anúncio 2 x 12,7",
+        "colorAndPrice": [
+        {
+          "name": "Preto e Branco",
+          "determination": "Valor Padrão",
+          "weekdays": [
+          {
+            "name": "seg",
+            "price": "5,000.00"
+          },
+          {
+            "name": "qua",
+            "price": "2,000.00"
+          }
+          ]
+        }
+        ]
+      }
+      ]
+    }
+    ],
+    "formats": [
+    {
+      "name": "Meia Página",
+      "height": 17.5,
+      "columns": 5,
+      "columnsHeight": 87.5,
+      "technicalInfo": "Roaring horribly it came toward us at a ponderous, shuffling trot. I turned to Perry to suggest that it might be wise to seek other surroundings—the idea had evidently occurred to Perry previously, for he was already a hundred paces away, and with each second his prodigious bounds increased the distance.",
+      "description": "Meia página de um caderno aproximadamente",
+      "images": [
+      {
+        "full": "images/halfpage/1.png",
+        "thumbnail": "images/halfpage/1-thumb.png"
+      }
+      ],
+      "sections": [
+        "Poder", "Esportes", "Ilustrada"
+      ]
+    },
+    {
+      "name": "Meia Página Vertical",
+      "height": 35,
+      "columns": 5,
+      "columnsHeight": 105,
+      "technicalInfo": "Roaring horribly it came toward us at a ponderous, shuffling trot. I turned to Perry to suggest that it might be wise to seek other surroundings—the idea had evidently occurred to Perry previously, for he was already a hundred paces away, and with each second his prodigious bounds increased the distance.",
+      "description": "Meia página de um caderno aproximadamente",
+      "images": [
+      {
+        "full": "images/halfpage/1.png",
+        "thumbnail": "images/halfpage/1-thumb.png"
+      }
+      ],
+      "sections": [
+        "Poder", "Esportes", "Ilustrada"
+      ]
+    }
+    ]
+  },
+  {
+    "name": "Folha de São Paulo",
+    "shortName": "Folha",
+    "description": "On the 13th they passed the edge of the Banks of Newfoundland, a dangerous locality; during the winter, especially, there are frequent fogs and heavy gales of wind. Ever since the evening before the barometer, suddenly falling, had indicated an approaching change in the atmosphere; and during the night the temperature varied, the cold became sharper, and the wind veered to the south-east."
+  },
+  {
+    "name": "O Globo",
+    "shortName": "O Globo",
+    "description": "I felt dreadfully. But there was no help for it, so up stairs I went to my little room in the third floor, undressed myself as slowly as possible so as to kill time, and with a bitter sigh got between the sheets."
+  }
+  ],
+  "categories": [
+    "Esportes", "Negócios", "Rural", "Tecnologia", "Saúde", "Educação"
+  ],
+  "ageGroup": [
+   "Crianças", "Adolescentes", "Adultos"
+  ],
+  "weekdays": [
+    "Segunda-feira", "Terça-feira", "Domingo"
+  ]
+}
+]

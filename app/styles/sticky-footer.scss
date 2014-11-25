@@ -1,0 +1,32 @@
+/* Sticky footer styles
+-------------------------------------------------- */
+@import 'compass';
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  background-color: #3D477C;
+  color: rgba(255, 255, 255, 0.6);
+}
+body > header {
+  // needs latest Compass, add '@import "compass"' to your scss
+  background-color: rgb(61, 71, 124); // Old browsers
+  @include filter-gradient(#3D477C, #546299, vertical); // IE6-9
+  @include background-image(linear-gradient(top,  rgba(61, 71, 124, 1) 0%, rgba(84, 98, 153, 1) 100%));
+}
+body > header > .container {
+  padding: 0 15px 0;
+  min-height: 60px;
+  height: 120px;
+}
