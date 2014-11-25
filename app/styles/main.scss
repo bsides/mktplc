@@ -1,4 +1,6 @@
 $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
+@import url(http://fonts.googleapis.com/css?family=Droid+Sans:400,700);
+@import "variables";
 // bower:scss
 @import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
 // endbower
@@ -23,4 +25,19 @@ header h3 {
 nav > .container {
   padding-left: 0;
   padding-right: 0;
+}
+
+// TODO: Overrides, colocar no _variables
+.navbar-default,
+.navbar-default .navbar-collapse {
+  background: #0078b8;
+  border: 0;
+}
+
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+  color: #fff;
+  background: #292929;
+}
+.navbar-default .navbar-nav > li > a {
+  color: #fff;
 }
