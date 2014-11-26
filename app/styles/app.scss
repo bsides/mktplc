@@ -1,0 +1,22 @@
+$icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
+@import url(http://fonts.googleapis.com/css?family=Droid+Sans:400,700);
+// Need to make some magic
+@import "compass";
+
+// Base Bootstrap variables
+@import "variables";
+
+// bower:scss
+@import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
+// endbower
+
+// Our icons
+@import "direct-icons.css";
+
+// Mais parts
+@import "header";
+@import "footer";
+
+// Other parts
+@import "utils";
+@import "search";

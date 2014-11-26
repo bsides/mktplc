@@ -1,0 +1,41 @@
+// Stupid replace
+.btn {
+  line-height: 1.42857143;
+}
+
+nav > .container {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+// TODO: Overrides, colocar no _variables
+.navbar-default,
+.navbar-default .navbar-collapse {
+  background: #0078b8;
+  border: 0;
+}
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+  color: #fff;
+  background: #292929;
+}
+.navbar-default .navbar-nav > li > a {
+  color: #fff;
+}
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+  color: #fff;
+  background: #595959;
+}
+
+
+#accordion {
+  .panel-body { padding:0px; }
+  .panel-body table tr td { padding-left: 15px }
+  .panel-body .table {margin-bottom: 0px; }
+}
+
+.btn {
+  text-transform: lowercase;
+}

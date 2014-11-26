@@ -1,0 +1,29 @@
+.section {
+  margin-bottom: 20px;
+}
+.search-results {
+  .label {
+    text-transform: uppercase;
+    padding: .2em .5em .2em;
+    font-size: 60%;
+  }
+  .label-default {
+    background-color: #aaa;
+  }
+  .panel-body {
+    padding: 10px;
+  }
+  .panel-footer {
+    position: relative;
+
+    .btn {
+      position: absolute;
+      right: 0.35em;
+      bottom: 0.35em;
+      text-transform: lowercase;
+    }
+    .price {
+      font-weight: bold;
+    }
+  }
+}
