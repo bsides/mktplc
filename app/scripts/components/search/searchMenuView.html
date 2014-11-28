@@ -1,3 +1,42 @@
+<div ng-controller="SearchMenuCtrl">
+
+  <accordion close-others="false">
+    <accordion-group is-open="status.open">
+      <accordion-heading ng-click="status.open = !status.open">
+          Jornais <i class="pull-right ficon" ng-class="{'ficon-down-open': status.open, 'ficon-right-open': !status.open}"></i>
+      </accordion-heading>
+      <div class="list-group">
+        <a class="list-group-item" ng-repeat="item in items">{{item.name}} <span class="badge pull-right">{{item.count}}</span></a>
+      </div>
+    </accordion-group>
+  </accordion>
+
+  <accordion close-others="false">
+    <accordion-group is-open="status.open">
+      <accordion-heading ng-click="status.open = !status.open">
+          Área de Atuação <i class="pull-right ficon" ng-class="{'ficon-down-open': status.open, 'ficon-right-open': !status.open}"></i>
+      </accordion-heading>
+      <div class="list-group">
+        <a class="list-group-item" ng-repeat="item in items">{{item.name}} <span class="badge pull-right">{{item.count}}</span></a>
+      </div>
+    </accordion-group>
+  </accordion>
+
+  <accordion close-others="false">
+    <accordion-group is-open="status.open">
+      <accordion-heading ng-click="status.open = !status.open">
+          Jornais <i class="pull-right ficon" ng-class="{'ficon-down-open': status.open, 'ficon-right-open': !status.open}"></i>
+      </accordion-heading>
+      <div class="list-group">
+        <a class="list-group-item" ng-repeat="item in items">{{item.name}} <span class="badge pull-right">{{item.count}}</span></a>
+      </div>
+    </accordion-group>
+  </accordion>
+
+</div>
+
+
+
 <div class="panel-group" id="accordion">
   <div class="panel panel-default">
     <div class="panel-heading">
@@ -16,43 +55,4 @@
       </div>
     </div>
   </div>
-
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapseRegions">
-          <span>Área de Atuação</span>
-        </a>
-      </h4>
-    </div>
-    <div id="collapseRegions" class="panel-collapse collapse in">
-      <div class="list-group">
-        <a href="#" class="list-group-item">São Paulo <span class="badge pull-right">103</span></a>
-        <a href="#" class="list-group-item">Rio de Janeiro <span class="badge pull-right">53</span></a>
-        <a href="#" class="list-group-item">Ceará <span class="badge pull-right">14</span></a>
-      </div>
-    </div>
-  </div>
-
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapseWeekdays">
-          <span>Dia da Semana</span>
-        </a>
-      </h4>
-    </div>
-    <div id="collapseWeekdays" class="panel-collapse collapse in">
-      <div class="list-group">
-        <a href="#" class="list-group-item">Segunda <span class="badge pull-right">2</span></a>
-        <a href="#" class="list-group-item">Terça <span class="badge pull-right">1</span></a>
-        <a href="#" class="list-group-item">Quarta <span class="badge pull-right">2</span></a>
-        <a href="#" class="list-group-item">Quinta <span class="badge pull-right">3</span></a>
-        <a href="#" class="list-group-item">Sexta <span class="badge pull-right">6</span></a>
-        <a href="#" class="list-group-item">Sábado <span class="badge pull-right">12</span></a>
-        <a href="#" class="list-group-item">Domingo <span class="badge pull-right">22</span></a>
-      </div>
-    </div>
-  </div>
-
 </div>

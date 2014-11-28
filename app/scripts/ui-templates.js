@@ -1,36 +1,17 @@
-angular.module('ui-templates', ['template/scripts/libs/angular-bootstrap/accordion.html']);
+angular.module('ui-templates', ['template/accordion/accordion-group.html']);
 
-angular.module("template/scripts/libs/angular-bootstrap/accordion.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("template/scripts/libs/angular-bootstrap/accordion.html",
-    "<div ng-controller=\"AccordionCtrl\">\n" +
-    "  <p>\n" +
-    "    <button class=\"btn btn-default btn-sm\" ng-click=\"status.open = !status.open\">Toggle last panel</button>\n" +
-    "    <button class=\"btn btn-default btn-sm\" ng-click=\"status.isFirstDisabled = ! status.isFirstDisabled\">Enable / Disable first panel</button>\n" +
-    "  </p>\n" +
-    "\n" +
-    "  <label class=\"checkbox\">\n" +
-    "    <input type=\"checkbox\" ng-model=\"oneAtATime\">\n" +
-    "    Open only one at a time\n" +
-    "  </label>\n" +
-    "  <accordion close-others=\"oneAtATime\">\n" +
-    "    <accordion-group heading=\"Static Header, initially expanded\" is-open=\"status.isFirstOpen\" is-disabled=\"status.isFirstDisabled\">\n" +
-    "      This content is straight in the template.\n" +
-    "    </accordion-group>\n" +
-    "    <accordion-group heading=\"{{group.title}}\" ng-repeat=\"group in groups\">\n" +
-    "      {{group.content}}\n" +
-    "    </accordion-group>\n" +
-    "    <accordion-group heading=\"Dynamic Body Content\">\n" +
-    "      <p>The body of the accordion group grows to fit the contents</p>\n" +
-    "        <button class=\"btn btn-default btn-sm\" ng-click=\"addItem()\">Add Item</button>\n" +
-    "        <div ng-repeat=\"item in items\">{{item}}</div>\n" +
-    "    </accordion-group>\n" +
-    "    <accordion-group is-open=\"status.open\">\n" +
-    "        <accordion-heading>\n" +
-    "            I can have markup, too! <i class=\"pull-right glyphicon\" ng-class=\"{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}\"></i>\n" +
-    "        </accordion-heading>\n" +
-    "        This is just some content to illustrate fancy headings.\n" +
-    "    </accordion-group>\n" +
-    "  </accordion>\n" +
+angular.module("template/accordion/accordion-group.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("template/accordion/accordion-group.html",
+    "<div class=\"panel panel-default\">\n" +
+    "  <div class=\"panel-heading\" ng-click=\"toggleOpen()\">\n" +
+    "    <h4 class=\"panel-title\">\n" +
+    "      <a href=\"\" class=\"accordion-toggle\" accordion-transclude=\"heading\">\n" +
+    "        <span ng-class=\"{'text-muted': isDisabled}\">{{heading}}</span>\n" +
+    "      </a>\n" +
+    "    </h4>\n" +
+    "  </div>\n" +
+    "  <div class=\"panel-collapse\" collapse=\"!isOpen\" ng-transclude>\n" +
+    "  </div>\n" +
     "</div>\n" +
     "");
 }]);

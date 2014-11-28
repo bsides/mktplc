@@ -50,6 +50,17 @@ module.exports = (grunt) ->
         files: ['<%= yeoman.app %>/scripts/**/*.{coffee,litcoffee,coffee.md}']
         tasks: ['newer:coffee:dist']
 
+      bootstrap:
+        files: ['<%= yeoman.app %>/scripts/libs/**/*.html']
+        tasks: ['html2js:bootstrap']
+
+      mktplace:
+        files: [
+          '<%= yeoman.app %>/scripts/components/**/*.html'
+          '<%= yeoman.app %>/scripts/shared/**/*.html'
+        ]
+        tasks: ['html2js:marketplace']
+
       compass:
         files: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}']
         tasks: [
@@ -65,8 +76,8 @@ module.exports = (grunt) ->
           livereload: '<%= connect.options.livereload %>'
 
         files: [
-          '<%= yeoman.app %>/{,*/}*.html'
-          '.tmp/styles/{,*/}*.css'
+          '<%= yeoman.app %>/**/*.html'
+          '.tmp/styles/**/*.css'
           '.tmp/scripts/**/*.js'
           '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
         ]
@@ -201,7 +212,7 @@ module.exports = (grunt) ->
       # Templates for Angular
       bootstrap:
         options:
-          base: 'app'
+          base: 'app/scripts/libs/angular-bootstrap/'
           module: 'ui-templates'
           rename: (modulePath) ->
             moduleName = modulePath.replace('app/scripts/libs/angular-bootstrap/', '')
@@ -501,7 +512,6 @@ module.exports = (grunt) ->
     'concat'
     'ngAnnotate'
     'copy:dist'
-    'coffeelint'
     'cdnify'
     'cssmin'
     'uglify'

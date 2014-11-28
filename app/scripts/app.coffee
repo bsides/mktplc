@@ -12,17 +12,17 @@ root = exports ? this
 
 root.app = angular
   .module('marketplaceApp', [
-    'ui.bootstrap',
-    'marketplace.templates',
-    'ui-templates',
-    'ngAnimate',
-    'ngAria',
-    'ngCookies',
-    'ngMessages',
-    'ngResource',
-    'ngRoute',
-    'ngSanitize',
-    'ngTouch',
+    'ui.bootstrap'
+    'marketplace.templates'
+    'ui-templates'
+    'ngAnimate'
+    'ngAria'
+    'ngCookies'
+    'ngMessages'
+    'ngResource'
+    'ngRoute'
+    'ngSanitize'
+    'ngTouch'
   ])
   .config ($routeProvider) ->
     $routeProvider
