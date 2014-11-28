@@ -10,25 +10,25 @@ true
 # use this if you want to recursively match all subfolders:
 # 'test/spec/**/*.js'
 module.exports = (grunt) ->
-  
+
   # Load grunt tasks automatically
   require('load-grunt-tasks') grunt
-  
+
   # Time how long tasks take. Can help when optimizing build times
   require('time-grunt') grunt
-  
+
   # Configurable paths for the application
   appConfig =
     app: require('./bower.json').appPath or 'app'
     dist: 'dist'
 
-  
+
   # Define the configuration for all the tasks
   grunt.initConfig
-    
+
     # Project settings
     yeoman: appConfig
-    
+
     # Watches files for changes and runs tasks based on the changed files
     watch:
       bower:
@@ -45,6 +45,10 @@ module.exports = (grunt) ->
           'newer:coffee:test'
           'karma'
         ]
+
+      coffeelint:
+        files: ['<%= yeoman.app %>/scripts/**/*.{coffee,litcoffee,coffee.md}']
+        tasks: ['newer:coffee:dist']
 
       compass:
         files: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}']
@@ -67,12 +71,12 @@ module.exports = (grunt) ->
           '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
         ]
 
-    
+
     # The actual grunt server settings
     connect:
       options:
         port: 9000
-        
+
         # Change this to '0.0.0.0' to access the server from outside.
         hostname: 'localhost'
         livereload: 35729
@@ -103,7 +107,7 @@ module.exports = (grunt) ->
           open: true
           base: '<%= yeoman.dist %>'
 
-    
+
     # Make sure code styles are up to par and there are no obvious mistakes
     jshint:
       options:
@@ -113,7 +117,7 @@ module.exports = (grunt) ->
       all:
         src: ['Gruntfile.js']
 
-    
+
     # Empties folders to start fresh
     clean:
       dist:
@@ -128,7 +132,7 @@ module.exports = (grunt) ->
 
       server: '.tmp'
 
-    
+
     # Add vendor prefixed styles
     autoprefixer:
       options:
@@ -142,7 +146,7 @@ module.exports = (grunt) ->
           dest: '.tmp/styles/'
         ]
 
-    
+
     # Automatically inject Bower components into the app
     wiredep:
       app:
@@ -168,7 +172,45 @@ module.exports = (grunt) ->
         src: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}']
         ignorePath: /(\.\.\/){1,2}bower_components\//
 
-    
+
+    # The other views
+    html2js:
+      marketplace:
+        options:
+          base: 'app'
+          module: 'marketplace.templates'
+          singleModule: true
+          useStrict: true
+          htmlmin:
+            collapseBooleanAttributes: true
+            collapseWhitespace: true
+            removeAttributeQuotes: true
+            removeComments: true
+            removeEmptyAttributes: true
+            removeRedundantAttributes: true
+            removeScriptTypeAttributes: true
+            removeStyleLinkTypeAttributes: true
+
+        src: [
+          'app/scripts/components/**/*.html'
+          'app/scripts/shared/**/*.html'
+          'app/scripts/utils/**/*.html'
+        ]
+        dest: 'app/scripts/marketplace-templates.js'
+
+      # Templates for Angular
+      bootstrap:
+        options:
+          base: 'app'
+          module: 'ui-templates'
+          rename: (modulePath) ->
+            moduleName = modulePath.replace('app/scripts/libs/angular-bootstrap/', '')
+            'template/' + moduleName
+
+        src: ['app/scripts/libs/angular-bootstrap/**/*.html']
+        dest: 'app/scripts/ui-templates.js'
+
+
     # Compiles CoffeeScript to JavaScript
     coffee:
       options:
@@ -193,7 +235,15 @@ module.exports = (grunt) ->
           ext: '.js'
         ]
 
-    
+    coffeelint:
+      dist:
+        files: [
+          cwd: '<%= yeoman.app %>/scripts'
+          src: '**/*.coffee'
+        ]
+      options:
+        configFile: 'coffeelint.json'
+
     # Compiles Sass to CSS and generates necessary files if requested
     compass:
       options:
@@ -219,7 +269,7 @@ module.exports = (grunt) ->
         options:
           debugInfo: true
 
-    
+
     # Renames files for browser caching purposes
     filerev:
       dist:
@@ -230,7 +280,7 @@ module.exports = (grunt) ->
           '<%= yeoman.dist %>/styles/fonts/*'
         ]
 
-    
+
     # Reads HTML for usemin blocks to enable smart builds that automatically
     # concat, minify and revision files. Creates configurations in memory so
     # additional tasks can operate on them
@@ -249,7 +299,7 @@ module.exports = (grunt) ->
 
             post: {}
 
-    
+
     # Performs rewrites based on filerev and the useminPrepare configuration
     usemin:
       html: ['<%= yeoman.dist %>/{,*/}*.html']
@@ -260,7 +310,7 @@ module.exports = (grunt) ->
           '<%= yeoman.dist %>/images'
         ]
 
-    
+
     # The following *-min tasks will produce minified files in the dist folder
     # By default, your `index.html`'s <!-- Usemin block --> will take care of
     # minification. These next options are pre-configured if you do not wish
@@ -324,7 +374,7 @@ module.exports = (grunt) ->
           dest: '<%= yeoman.dist %>'
         ]
 
-    
+
     # ng-annotate tries to make the code safe for minification automatically
     # by using the Angular long form for dependency injection.
     ngAnnotate:
@@ -339,13 +389,13 @@ module.exports = (grunt) ->
           dest: '.tmp/concat/scripts'
         ]
 
-    
+
     # Replace Google CDN references
     cdnify:
       dist:
         html: ['<%= yeoman.dist %>/*.html']
 
-    
+
     # Copies remaining files to places other tasks can use
     copy:
       dist:
@@ -385,7 +435,7 @@ module.exports = (grunt) ->
         dest: '.tmp/styles/'
         src: '{,*/}*.css'
 
-    
+
     # Run some tasks in parallel to speed up the build process
     concurrent:
       server: [
@@ -403,7 +453,7 @@ module.exports = (grunt) ->
         'svgmin'
       ]
 
-    
+
     # Test settings
     karma:
       unit:
@@ -421,6 +471,8 @@ module.exports = (grunt) ->
       'wiredep'
       'concurrent:server'
       'autoprefixer'
+      'html2js:bootstrap'
+      'html2js:marketplace'
       'connect:livereload'
       'watch'
     ]
@@ -444,9 +496,12 @@ module.exports = (grunt) ->
     'useminPrepare'
     'concurrent:dist'
     'autoprefixer'
+    'html2js:bootstrap'
+    'html2js:marketplace'
     'concat'
     'ngAnnotate'
     'copy:dist'
+    'coffeelint'
     'cdnify'
     'cssmin'
     'uglify'

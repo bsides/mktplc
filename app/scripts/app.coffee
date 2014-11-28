@@ -12,6 +12,9 @@ root = exports ? this
 
 root.app = angular
   .module('marketplaceApp', [
+    'ui.bootstrap',
+    'marketplace.templates',
+    'ui-templates',
     'ngAnimate',
     'ngAria',
     'ngCookies',
@@ -19,24 +22,24 @@ root.app = angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
   ])
   .config ($routeProvider) ->
     $routeProvider
       .when '/',
         templateUrl: 'scripts/shared/mainView.html'
-        controller: 'MainController'
+        controller: 'MainCtrl'
       .when '/search',
         templateUrl: 'scripts/components/search/searchView.html'
-        controller: 'SearchController'
+        controller: 'SearchCtrl'
       .when '/purchases',
         templateUrl: 'scripts/components/purchases/purchasesView.html'
-        controller: 'PurchasesController'
+        controller: 'PurchasesCtrl'
       .when '/bids',
         templateUrl: 'scripts/components/bids/bidsView.html'
-        controller: 'BidsController'
+        controller: 'BidsCtrl'
       .when '/campaigns',
         templateUrl: 'scripts/components/campaigns/campaignsView.html'
-        controller: 'CampaignsController'
+        controller: 'CampaignsCtrl'
       .otherwise
         redirectTo: '/'

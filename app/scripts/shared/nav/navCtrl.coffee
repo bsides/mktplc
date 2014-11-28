@@ -8,7 +8,7 @@
  #
  # Navigation Controller
 ###
-app.controller 'NavController', ($scope, $location) ->
+app.controller 'NavCtrl', ($scope, $location) ->
 
   $scope.isActive = (viewLocation) ->
     $location.path() == viewLocation
