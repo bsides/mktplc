@@ -6,7 +6,18 @@
           Jornais <i class="pull-right ficon" ng-class="{'ficon-down-open': status.open, 'ficon-right-open': !status.open}"></i>
       </accordion-heading>
       <div class="list-group">
-        <a class="list-group-item" ng-repeat="item in items">{{item.name}} <span class="badge pull-right">{{item.count}}</span></a>
+        <a class="list-group-item" ng-repeat="item in news">{{item.name}} <span class="badge pull-right">{{item.count}}</span></a>
+      </div>
+    </accordion-group>
+  </accordion>
+
+  <accordion close-others="false">
+    <accordion-group is-open="status.open">
+      <accordion-heading ng-click="status.open = !status.open">
+          Faixa Etária <i class="pull-right ficon" ng-class="{'ficon-down-open': status.open, 'ficon-right-open': !status.open}"></i>
+      </accordion-heading>
+      <div class="list-group">
+        <a class="list-group-item" ng-repeat="item in ageGroups">{{item.name}} <span class="badge pull-right">{{item.count}}</span></a>
       </div>
     </accordion-group>
   </accordion>
@@ -17,7 +28,7 @@
           Área de Atuação <i class="pull-right ficon" ng-class="{'ficon-down-open': status.open, 'ficon-right-open': !status.open}"></i>
       </accordion-heading>
       <div class="list-group">
-        <a class="list-group-item" ng-repeat="item in items">{{item.name}} <span class="badge pull-right">{{item.count}}</span></a>
+        <a class="list-group-item" ng-repeat="item in regions">{{item.name}} <span class="badge pull-right">{{item.count}}</span></a>
       </div>
     </accordion-group>
   </accordion>
@@ -25,34 +36,12 @@
   <accordion close-others="false">
     <accordion-group is-open="status.open">
       <accordion-heading ng-click="status.open = !status.open">
-          Jornais <i class="pull-right ficon" ng-class="{'ficon-down-open': status.open, 'ficon-right-open': !status.open}"></i>
+          Dias da Semana <i class="pull-right ficon" ng-class="{'ficon-down-open': status.open, 'ficon-right-open': !status.open}"></i>
       </accordion-heading>
       <div class="list-group">
-        <a class="list-group-item" ng-repeat="item in items">{{item.name}} <span class="badge pull-right">{{item.count}}</span></a>
+        <a class="list-group-item" ng-repeat="item in weekDays">{{item.name}} <span class="badge pull-right">{{item.count}}</span></a>
       </div>
     </accordion-group>
   </accordion>
 
-</div>
-
-
-
-<div class="panel-group" id="accordion">
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapseNewspappers">
-          <span>Jornais</span>
-        </a>
-      </h4>
-    </div>
-    <div id="collapseNewspappers" class="panel-collapse collapse in">
-      <div class="list-group">
-        <a href="#" class="list-group-item">Estadão <span class="badge pull-right">11</span></a>
-        <a href="#" class="list-group-item">Folha <span class="badge pull-right">9</span></a>
-        <a href="#" class="list-group-item">O Globo <span class="badge pull-right">5</span></a>
-        <a href="#" class="list-group-item">The New York Times <span class="badge pull-right">1</span></a>
-      </div>
-    </div>
-  </div>
 </div>

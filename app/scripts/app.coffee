@@ -24,7 +24,8 @@ root.app = angular
     'ngSanitize'
     'ngTouch'
   ])
-  .config ($routeProvider) ->
+  .config ($routeProvider, $locationProvider) ->
+    # $locationProvider.html5Mode(true)
     $routeProvider
       .when '/',
         templateUrl: 'scripts/shared/mainView.html'

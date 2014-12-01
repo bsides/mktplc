@@ -37,7 +37,9 @@ module.exports = (grunt) ->
 
       coffee:
         files: ['<%= yeoman.app %>/scripts/**/*.{coffee,litcoffee,coffee.md}']
-        tasks: ['newer:coffee:dist']
+        tasks: ['newer:coffeelint:dist', 'newer:coffee:dist']
+        options:
+          spawn: false
 
       coffeeTest:
         files: ['test/spec/{,*/}*.{coffee,litcoffee,coffee.md}']
@@ -46,9 +48,9 @@ module.exports = (grunt) ->
           'karma'
         ]
 
-      coffeelint:
-        files: ['<%= yeoman.app %>/scripts/**/*.{coffee,litcoffee,coffee.md}']
-        tasks: ['newer:coffee:dist']
+      # coffeelint:
+      #   files: ['<%= yeoman.app %>/scripts/**/*.{coffee,litcoffee,coffee.md}']
+      #   tasks: ['newer:coffeelint:dist']
 
       bootstrap:
         files: ['<%= yeoman.app %>/scripts/libs/**/*.html']
@@ -227,6 +229,8 @@ module.exports = (grunt) ->
       options:
         sourceMap: true
         sourceRoot: ''
+        bare: true
+        spawn: false
 
       dist:
         files: [
@@ -248,10 +252,9 @@ module.exports = (grunt) ->
 
     coffeelint:
       dist:
-        files: [
-          cwd: '<%= yeoman.app %>/scripts'
-          src: '**/*.coffee'
-        ]
+        files:
+          src: ['<%= yeoman.app %>/scripts/**/*.coffee']
+
       options:
         configFile: 'coffeelint.json'
 
