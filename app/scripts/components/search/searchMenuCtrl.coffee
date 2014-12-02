@@ -1,4 +1,4 @@
-app.controller 'SearchMenuCtrl', ($scope) ->
+app.controller 'SearchMenuCtrl', ($scope, publishersService) ->
   # $scope.status =
   #   open: false
 
@@ -63,3 +63,9 @@ app.controller 'SearchMenuCtrl', ($scope) ->
     name: 'Domingo'
     count: 298
   ]
+
+  dataService.getTest().success (data) ->
+    $scope.data = data
+  .error (error) ->
+    $scope.status = 'Unable to load publisher data: ' + error.message
+

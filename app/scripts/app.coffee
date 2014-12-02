@@ -25,7 +25,6 @@ root.app = angular
     'ngTouch'
   ])
   .config ($routeProvider, $locationProvider) ->
-    # $locationProvider.html5Mode(true)
     $routeProvider
       .when '/',
         templateUrl: 'scripts/shared/mainView.html'
