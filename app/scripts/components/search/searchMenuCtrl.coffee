@@ -1,6 +1,22 @@
-app.controller 'SearchMenuCtrl', ($scope) ->
-  # $scope.status =
-  #   open: false
+app.controller 'SearchMenuCtrl', ($scope, $http, $log) ->
+  headers =
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods': 'GET, OPTIONS',
+    # 'Content-Type': 'application/json',
+    'Accept': 'application/json'
+  url = '//api.marketplace.localhost:8888/v1/common/geolocation/state'
+
+  $http(
+    method: 'GET'
+    headers: headers
+    url: url
+  ).success (result) ->
+    $scope.states = result._embedded.geolocation_state
+  .error (data, status, headers, config) ->
+    $log.log 'data: ' + data
+    $log.log 'status: ' + status
+    $log.log 'headers: ' + headers
+    $log.log config
 
   $scope.news = [
     name: 'Estadão',
@@ -63,9 +79,3 @@ app.controller 'SearchMenuCtrl', ($scope) ->
     name: 'Domingo'
     count: 298
   ]
-
-  # dataService.getTest().success (data) ->
-  #   $scope.data = data
-  # .error (error) ->
-  #   $scope.status = 'Unable to load publisher data: ' + error.message
-

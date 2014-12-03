@@ -4,6 +4,9 @@ true
 # Generated on 2014-11-25 using generator-angular 0.10.0
 'use strict'
 
+# Great help to work with LAMP approach
+# http://darrenhall.info/development/yeoman-and-mamp
+
 # # Globbing
 # for performance reasons we're only matching one level down:
 # 'test/spec/{,*/}*.js'
@@ -54,14 +57,14 @@ module.exports = (grunt) ->
 
       bootstrap:
         files: ['<%= yeoman.app %>/scripts/libs/**/*.html']
-        tasks: ['html2js:bootstrap']
+        tasks: ['html2js:bootstrap', 'copy:dev']
 
       mktplace:
         files: [
           '<%= yeoman.app %>/scripts/components/**/*.html'
           '<%= yeoman.app %>/scripts/shared/**/*.html'
         ]
-        tasks: ['html2js:marketplace']
+        tasks: ['html2js:marketplace', 'copy:dev']
 
       compass:
         files: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}']
@@ -299,7 +302,7 @@ module.exports = (grunt) ->
     # concat, minify and revision files. Creates configurations in memory so
     # additional tasks can operate on them
     useminPrepare:
-      html: '<%= yeoman.app %>/index.html'
+      html: '<%= yeoman.app %>/index.php'
       options:
         dest: '<%= yeoman.dist %>'
         flow:
