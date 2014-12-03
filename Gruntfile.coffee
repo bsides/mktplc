@@ -412,6 +412,22 @@ module.exports = (grunt) ->
 
     # Copies remaining files to places other tasks can use
     copy:
+      dev:
+        files: [
+          {
+            expand: true
+            dot: true
+            cwd: '<%= yeoman.app %>'
+            dest: '.tmp/'
+            src: [
+              'scripts/ui-templates.js'
+              'scripts/marketplace-templates.js'
+              'scripts/**/*.html'
+              'styles/**/*.css'
+              'styles/**/*.{css,eot,svg,ttf,woff}'
+            ]
+          }
+        ]
       dist:
         files: [
           {
@@ -482,12 +498,13 @@ module.exports = (grunt) ->
       ])
     grunt.task.run [
       'clean:server'
+      'html2js:bootstrap'
+      'html2js:marketplace'
       'wiredep'
       'concurrent:server'
       'autoprefixer'
-      'html2js:bootstrap'
-      'html2js:marketplace'
-      'connect:livereload'
+      'copy:dev'
+      # 'connect:livereload'
       'watch'
     ]
     return
