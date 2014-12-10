@@ -38,6 +38,19 @@ return array(
                             ),
                         ),
                     ),
+                    'list' => array(
+                        'type'    => 'Segment',
+                        'options' => array(
+                            'route'    => '/list[/:action][/:id]',
+                            'constraints' => array(
+                                'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'id'     => '[0-9]*',
+                            ),
+                            'defaults' => array(
+                                'controller' => 'Direct\Controller\List',
+                            ),
+                        ),
+                    ),
                 ),
             ),
         ),

@@ -1,11 +1,23 @@
 <?php
 namespace Direct\Model;
 
+/**
+ * Class Determination
+ *
+ * @package Direct\Model
+ */
 class Determination
 {
-    public function get()
+    /**
+     * @param $id
+     *
+     * @return array
+     */
+    public function get($id)
     {
-        return [
+        $id = (int) $id;
+
+        $array = [
             [
                 'id'   => 1,
                 'name' => 'Capa'
@@ -19,5 +31,7 @@ class Determination
                 'name' => 'Anteverso da Folha de Capa Direita do Caderno de Imóveis de São José dos Campos'
             ],
         ];
+
+        return 0 === $id ? $array : array_filter($array, function($item) use ($id) { return $item['id'] == $id; });
     }
 }

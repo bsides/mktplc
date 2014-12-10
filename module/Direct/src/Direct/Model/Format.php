@@ -1,11 +1,23 @@
 <?php
 namespace Direct\Model;
 
+/**
+ * Class Format
+ *
+ * @package Direct\Model
+ */
 class Format
 {
-    public function get()
+    /**
+     * @param $id
+     *
+     * @return array
+     */
+    public function get($id)
     {
-        return [
+        $id = (int) $id;
+
+        $array = [
             [
                 'id'   => 1,
                 'name' => 'Página Dupla'
@@ -19,5 +31,8 @@ class Format
                 'name' => 'Sete Quartos de Página'
             ],
         ];
+
+        return 0 === $id ? $array : array_filter($array, function($item) use ($id) { return $item['id'] == $id; });
+
     }
 }

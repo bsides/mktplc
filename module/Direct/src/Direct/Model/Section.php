@@ -1,11 +1,23 @@
 <?php
 namespace Direct\Model;
 
+/**
+ * Class Section
+ *
+ * @package Direct\Model
+ */
 class Section
 {
-    public function get()
+    /**
+     * @param $id
+     *
+     * @return array
+     */
+    public function get($id)
     {
-        return [
+        $id = (int) $id;
+
+        $array = [
             [
                 'id'   => 1,
                 'name' => 'Caderno de Esportes'
@@ -19,5 +31,7 @@ class Section
                 'name' => 'Caderno de Desenhar'
             ],
         ];
+
+        return 0 === $id ? $array : array_filter($array, function($item) use ($id) { return $item['id'] == $id; });
     }
 }

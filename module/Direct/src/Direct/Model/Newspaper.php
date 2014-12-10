@@ -1,11 +1,23 @@
 <?php
 namespace Direct\Model;
 
+/**
+ * Class Newspaper
+ *
+ * @package Direct\Model
+ */
 class Newspaper
 {
-    public function get()
+    /**
+     * @param $id
+     *
+     * @return array
+     */
+    public function get($id)
     {
-        return [
+        $id = (int) $id;
+
+        $array = [
             [
                 'id'   => 1,
                 'name' => 'Jornal X'
@@ -19,5 +31,7 @@ class Newspaper
                 'name' => 'Jornal W'
             ],
         ];
+
+        return 0 === $id ? $array : array_filter($array, function($item) use ($id) { return $item['id'] == $id; });
     }
 }

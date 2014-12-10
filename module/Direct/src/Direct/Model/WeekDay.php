@@ -1,11 +1,23 @@
 <?php
 namespace Direct\Model;
 
+/**
+ * Class WeekDay
+ *
+ * @package Direct\Model
+ */
 class WeekDay
 {
-    public function get()
+    /**
+     * @param $id
+     *
+     * @return array
+     */
+    public function get($id)
     {
-        return [
+        $id = (int) $id;
+
+        $array = [
             [
                 'id'   => 1,
                 'name' => 'Segunda'
@@ -19,5 +31,7 @@ class WeekDay
                 'name' => 'Quarta'
             ],
         ];
+
+        return 0 === $id ? $array : array_filter($array, function($item) use ($id) { return $item['id'] == $id; });
     }
 }
