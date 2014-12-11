@@ -120,10 +120,10 @@ class ListController extends AbstractActionController
     /**
      * @return JsonModel
      */
-    public function sectionAction()
+    public function columnAction()
     {
         $service = $this->getServiceLocator()
-                        ->get( 'Section' );
+                        ->get( 'Column' );
 
         $id = (int)$this->params( 'id' );
 

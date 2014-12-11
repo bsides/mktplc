@@ -35,6 +35,8 @@ return array(
                                 'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
                             ),
                             'defaults' => array(
+                                'controller' => 'Direct\Controller\List',
+                                'action'     => 'index',
                             ),
                         ),
                     ),
@@ -48,6 +50,7 @@ return array(
                             ),
                             'defaults' => array(
                                 'controller' => 'Direct\Controller\List',
+                                'action'     => 'index',
                             ),
                         ),
                     ),
@@ -57,8 +60,8 @@ return array(
     ),
     'service_manager' => array(
         'factories' => array(
-            'Section' => function() {
-                return new \Direct\Model\Section();
+            'Column' => function() {
+                return new \Direct\Model\Column();
             },
             'Newspaper' => function() {
                 return new \Direct\Model\Newspaper();
@@ -84,9 +87,6 @@ return array(
         ),
         'aliases' => array(
             'Direct\Model\Section' => 'Section',
-        ),
-        'shared' => array(
-            'Section' => false,
         ),
     ),
     'controllers' => array(

@@ -4,7 +4,4 @@ return [
         'base_url' => 'https://casapi.dev.predicta.local',
         'system' => 'DIRECT_MARKETPLACE'
     ],
-    'modules' => array(
-        'ZendDeveloperTools'
-    ),
 ];
