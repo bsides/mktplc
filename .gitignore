@@ -3,4 +3,5 @@ frontend/dist
 frontend/.tmp
 frontend/.sass-cache
 frontend/bower_components
+public/*
 .idea/

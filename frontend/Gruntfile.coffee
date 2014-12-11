@@ -24,6 +24,10 @@ module.exports = (grunt) ->
   appConfig =
     app: require('./bower.json').appPath or 'app'
     dist: 'dist'
+    public: '../public'
+    layout: '../module/Direct/view/layout'
+    index: '../module/Direct/view/index'
+    bower: 'bower_components'
 
 
   # Define the configuration for all the tasks
@@ -40,7 +44,7 @@ module.exports = (grunt) ->
 
       coffee:
         files: ['<%= yeoman.app %>/scripts/**/*.{coffee,litcoffee,coffee.md}']
-        tasks: ['newer:coffeelint:dist', 'newer:coffee:dist']
+        tasks: ['newer:coffeelint:dist', 'newer:coffee:dev']
         options:
           spawn: false
 
@@ -69,8 +73,8 @@ module.exports = (grunt) ->
       compass:
         files: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}']
         tasks: [
-          'compass:server'
-          'autoprefixer'
+          'compass:dev'
+          'autoprefixer:dev'
         ]
 
       gruntfile:
@@ -81,9 +85,9 @@ module.exports = (grunt) ->
           livereload: '<%= connect.options.livereload %>'
 
         files: [
-          '<%= yeoman.app %>/**/*.html'
-          '.tmp/styles/**/*.css'
-          '.tmp/scripts/**/*.js'
+          '<%= yeoman.app %>/**/*.{html,php,phtml,coffee,js,css,scss,sass}'
+          # '.tmp/styles/**/*.css'
+          # '.tmp/scripts/**/*.js'
           '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
         ]
 
@@ -136,6 +140,8 @@ module.exports = (grunt) ->
 
     # Empties folders to start fresh
     clean:
+      options:
+        force: true
       dist:
         files: [
           dot: true
@@ -147,6 +153,19 @@ module.exports = (grunt) ->
         ]
 
       server: '.tmp'
+
+      public:
+        files: [
+          src: [
+            '<%= yeoman.public %>/**/*'
+            '!<%= yeoman.public %>/index.php'
+            '!<%= yeoman.public %>/.htaccess'
+          ]
+        ]
+
+      layout: '<%= yeoman.layout %>/{,*/}*'
+
+      index: '<%= yeoman.index %>/{,*/}*'
 
 
     # Add vendor prefixed styles
@@ -162,11 +181,19 @@ module.exports = (grunt) ->
           dest: '.tmp/styles/'
         ]
 
+      dev:
+        files: [
+          expand: true
+          cwd: '<%= yeoman.public %>/styles/'
+          src: '{,*/}*.css'
+          dest: '<%= yeoman.public %>/styles/'
+        ]
+
 
     # Automatically inject Bower components into the app
     wiredep:
       app:
-        src: ['<%= yeoman.app %>/index.html']
+        src: ['<%= yeoman.app %>/layout.phtml']
         exclude: [
           'bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js'
           'bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/affix.js'
@@ -253,6 +280,15 @@ module.exports = (grunt) ->
           ext: '.js'
         ]
 
+      dev:
+        files: [
+          expand: true
+          cwd: '<%= yeoman.app %>/scripts'
+          src: '**/*.coffee'
+          dest: '<%= yeoman.public %>/scripts'
+          ext: '.js'
+        ]
+
     coffeelint:
       dist:
         files:
@@ -285,6 +321,23 @@ module.exports = (grunt) ->
       server:
         options:
           debugInfo: true
+
+      dev:
+        options:
+          debugInfo: true
+          sassDir: '<%= yeoman.app %>/styles'
+          cssDir: '<%= yeoman.public %>/styles'
+          generatedImagesDir: '.tmp/images/generated'
+          imagesDir: '<%= yeoman.public %>/images'
+          javascriptsDir: '<%= yeoman.public %>/scripts'
+          fontsDir: '<%= yeoman.public %>/styles/fonts'
+          importPath: './bower_components'
+          httpImagesPath: '/images'
+          httpGeneratedImagesPath: '/images/generated'
+          httpFontsPath: '/styles/fonts'
+          relativeAssets: false
+          assetCacheBuster: false
+          raw: 'Sass::Script::Number.precision = 10\n'
 
 
     # Renames files for browser caching purposes
@@ -415,6 +468,38 @@ module.exports = (grunt) ->
 
     # Copies remaining files to places other tasks can use
     copy:
+      public:
+        files: [
+          {
+            expand: true
+            dot: true
+            cwd: '<%= yeoman.app %>'
+            dest: '<%= yeoman.public %>/'
+            src: [
+              'scripts/ui-templates.js'
+              'scripts/marketplace-templates.js'
+              'styles/**/*.css'
+              'styles/**/*.{css,eot,svg,ttf,woff}'
+              'scripts/**/*.{js,html}'
+            ]
+          }
+        ]
+      layout:
+        files: [
+          expand: true
+          dot: true
+          cwd: '<%= yeoman.app %>'
+          dest: '<%= yeoman.layout %>/'
+          src: 'layout.phtml'
+        ]
+      index:
+        files: [
+          expand: true
+          dot: true
+          cwd: '<%= yeoman.app %>'
+          dest: '<%= yeoman.index %>/'
+          src: 'index.phtml'
+        ]
       dev:
         files: [
           {
@@ -430,6 +515,12 @@ module.exports = (grunt) ->
               'styles/**/*.{css,eot,svg,ttf,woff}'
             ]
           }
+          {
+            expand: true
+            cwd: '.'
+            src: 'bower_components/bootstrap-sass-official/assets/fonts/bootstrap/*'
+            dest: '<%= yeoman.public %>'
+          }
         ]
       dist:
         files: [
@@ -442,8 +533,11 @@ module.exports = (grunt) ->
               '*.{ico,png,txt}'
               '.htaccess'
               '*.html'
-              'scripts/shared/{,*/}*.html'
-              'scripts/components/{,*/}*.html'
+              '*.php'
+              'scripts/ui-templates.js'
+              'scripts/marketplace-templates.js'
+              #'scripts/shared/{,*/}*.html'
+              #'scripts/components/{,*/}*.html'
               'images/{,*/}*.{webp}'
               'fonts/{,*/}*.*'
             ]
@@ -469,6 +563,31 @@ module.exports = (grunt) ->
         src: '{,*/}*.css'
 
 
+    bowercopy:
+      # options:
+      #   clean: true
+
+      all:
+        options:
+          destPrefix: '<%= yeoman.public %>/bower_components'
+        files:
+          'es5-shim/es5-shim.js': 'es5-es5-shim/es5-shim.js'
+          'json3/lib/json3.js': 'json3/lib/json3.js'
+          'jquery/dist/jquery.js': 'jquery/dist/jquery.js'
+          'angular/angular.js': 'angular/angular.js'
+          'angular-animate/angular-animate.js': 'angular-animate/angular-animate.js'
+          'angular-aria/angular-aria.js': 'angular-aria/angular-aria.js'
+          'angular-cookies/angular-cookies.js' :'angular-cookies/angular-cookies.js'
+          'angular-messages/angular-messages.js': 'angular-messages/angular-messages.js'
+          'angular-resource/angular-resource.js': 'angular-resource/angular-resource.js'
+          'angular-route/angular-route.js': 'angular-route/angular-route.js'
+          'angular-sanitize/angular-sanitize.js': 'angular-sanitize/angular-sanitize.js'
+          'angular-touch/angular-touch.js': 'angular-touch/angular-touch.js'
+          'moment/moment.js': 'moment/moment.js'
+          'angular-bootstrap/ui-bootstrap-tpls.js': 'angular-bootstrap/ui-bootstrap-tpls.js'
+          'angular-i18n/angular-locale_pt-br.js': 'angular-i18n/angular-locale_pt-br.js'
+
+
     # Run some tasks in parallel to speed up the build process
     concurrent:
       server: [
@@ -484,6 +603,10 @@ module.exports = (grunt) ->
         'compass:dist'
         'imagemin'
         'svgmin'
+      ]
+      dev: [
+        'coffee:dev'
+        'compass:dev'
       ]
 
 
@@ -512,6 +635,23 @@ module.exports = (grunt) ->
     ]
     return
 
+  grunt.registerTask 'dev', 'Essa tarefa deve ser usada para desenvolvimento apenas. Compila CoffeeScript, Sass (SCSS) e os copia nos caminhos necessarios em public (js/css/fonts/images). Execute "grunt publish" para enviar para deploy.', ->
+    grunt.task.run [
+      'clean:public'
+      'clean:layout'
+      'clean:index'
+      'html2js:bootstrap'
+      'html2js:marketplace'
+      'wiredep'
+      'concurrent:dev'
+      'autoprefixer:dev'
+      'copy:public'
+      'copy:layout'
+      'copy:index'
+      'bowercopy'
+      'watch'
+    ]
+
   grunt.registerTask 'server', 'DEPRECATED TASK. Use the "serve" task instead', (target) ->
     grunt.log.warn 'The `server` task has been deprecated. Use `grunt serve` to start a server.'
     grunt.task.run ['serve:' + target]
@@ -532,12 +672,12 @@ module.exports = (grunt) ->
     'autoprefixer'
     'html2js:bootstrap'
     'html2js:marketplace'
-    'concat'
+    #'concat'
     'ngAnnotate'
     'copy:dist'
-    'cdnify'
-    'cssmin'
-    'uglify'
+    #'cdnify'
+    #'cssmin'
+    #'uglify'
     'filerev'
     'usemin'
     'htmlmin'
