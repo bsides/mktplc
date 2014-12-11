@@ -32,6 +32,9 @@ root.app = angular
       .when '/search',
         templateUrl: 'scripts/components/search/searchView.html'
         controller: 'SearchCtrl'
+      .when '/results',
+        templateUrl: 'scripts/components/results/resultsView.html'
+        controller: 'ResultsCtrl'
       .when '/purchases',
         templateUrl: 'scripts/components/purchases/purchasesView.html'
         controller: 'PurchasesCtrl'

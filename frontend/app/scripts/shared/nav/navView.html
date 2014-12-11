@@ -12,7 +12,7 @@
     </div>
     <div ng-controller="NavCtrl" class="collapse navbar-collapse" id="navbar">
       <ul class="nav navbar-nav">
-        <li ng-class="{ active:isActive('/search') }">
+        <li ng-class="{ active:isActive('/search')||isActive('/results') }">
           <a href="/search">Busca</a>
         </li>
         <li ng-class="{ active:isActive('/purchases') }">
@@ -25,14 +25,6 @@
           <a href="/campaigns">Campanhas</a>
         </li>
       </ul>
-      <form action="" class="navbar-form navbar-right">
-        <button type="button" class="btn btn-default">
-          <i class="ficon ficon-basket"></i>
-          <span class="badge">1</span>
-          <span class="price-label">Valor total</span>
-          <span class="price-value">R$ {{ cart.totalPrice | currency }}</span>
-        </button>
-      </form>
     </div><!--/.nav-collapse -->
   </div>
 </nav>
