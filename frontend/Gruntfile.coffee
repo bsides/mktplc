@@ -571,7 +571,7 @@ module.exports = (grunt) ->
         options:
           destPrefix: '<%= yeoman.public %>/bower_components'
         files:
-          'es5-shim/es5-shim.js': 'es5-es5-shim/es5-shim.js'
+          'es5-shim/es5-shim.js': 'es5-shim/es5-shim.js'
           'json3/lib/json3.js': 'json3/lib/json3.js'
           'jquery/dist/jquery.js': 'jquery/dist/jquery.js'
           'angular/angular.js': 'angular/angular.js'

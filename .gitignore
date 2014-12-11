@@ -4,4 +4,6 @@ frontend/.tmp
 frontend/.sass-cache
 frontend/bower_components
 public/*
+module/Direct/view/index/*
+module/Direct/view/layout/*
 .idea/
