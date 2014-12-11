@@ -1,0 +1,80 @@
+<div ng-controller="SearchMenuCtrl">
+
+  <accordion close-others="false">
+    <accordion-group is-open="status.open">
+      <accordion-heading ng-click="status.open = !status.open">
+          Jornais <i class="pull-right ficon" ng-class="{'ficon-down-open': status.open, 'ficon-right-open': !status.open}"></i>
+      </accordion-heading>
+      <div class="list-group">
+        <a class="list-group-item" ng-repeat="item in newspappers">{{item.name}} <span class="badge pull-right">{{item.count}}</span></a>
+      </div>
+    </accordion-group>
+  </accordion>
+
+  <accordion close-others="false">
+    <accordion-group is-open="status.open">
+      <accordion-heading ng-click="status.open = !status.open">
+          Categorias <i class="pull-right ficon" ng-class="{'ficon-down-open': status.open, 'ficon-right-open': !status.open}"></i>
+      </accordion-heading>
+      <div class="list-group">
+        <a class="list-group-item" ng-repeat="item in categories">{{item.name}} <span class="badge pull-right">{{item.count}}</span></a>
+      </div>
+    </accordion-group>
+  </accordion>
+
+  <accordion close-others="false">
+    <accordion-group is-open="status.open">
+      <accordion-heading ng-click="status.open = !status.open">
+          Dias da Semana <i class="pull-right ficon" ng-class="{'ficon-down-open': status.open, 'ficon-right-open': !status.open}"></i>
+      </accordion-heading>
+      <div class="list-group">
+        <a class="list-group-item" ng-repeat="item in weekdays">{{item.name}} <span class="badge pull-right">{{item.count}}</span></a>
+      </div>
+    </accordion-group>
+  </accordion>
+
+  <accordion close-others="false">
+    <accordion-group is-open="status.open">
+      <accordion-heading ng-click="status.open = !status.open">
+          Determinações <i class="pull-right ficon" ng-class="{'ficon-down-open': status.open, 'ficon-right-open': !status.open}"></i>
+      </accordion-heading>
+      <div class="list-group">
+        <a class="list-group-item" ng-repeat="item in determinations">{{ item.name }} <span class="badge pull-right">{{ item.count }}</span></a>
+      </div>
+    </accordion-group>
+  </accordion>
+
+  <accordion close-others="false">
+    <accordion-group is-open="status.open">
+      <accordion-heading ng-click="status.open = !status.open">
+          Formatos <i class="pull-right ficon" ng-class="{'ficon-down-open': status.open, 'ficon-right-open': !status.open}"></i>
+      </accordion-heading>
+      <div class="list-group">
+        <a class="list-group-item" ng-repeat="item in formats">{{ item.name }} <span class="badge pull-right">{{ item.count }}</span></a>
+      </div>
+    </accordion-group>
+  </accordion>
+
+  <accordion close-others="false">
+    <accordion-group is-open="status.open">
+      <accordion-heading ng-click="status.open = !status.open">
+          Perfis <i class="pull-right ficon" ng-class="{'ficon-down-open': status.open, 'ficon-right-open': !status.open}"></i>
+      </accordion-heading>
+      <div class="list-group">
+        <a class="list-group-item" ng-repeat="item in profiles">{{ item.name }} <span class="badge pull-right">{{ item.count }}</span></a>
+      </div>
+    </accordion-group>
+  </accordion>
+
+  <accordion close-others="false">
+    <accordion-group is-open="status.open">
+      <accordion-heading ng-click="status.open = !status.open">
+          Cadernos <i class="pull-right ficon" ng-class="{'ficon-down-open': status.open, 'ficon-right-open': !status.open}"></i>
+      </accordion-heading>
+      <div class="list-group">
+        <a class="list-group-item" ng-repeat="item in sections">{{ item.name }} <span class="badge pull-right">{{ item.count }}</span></a>
+      </div>
+    </accordion-group>
+  </accordion>
+
+</div>
