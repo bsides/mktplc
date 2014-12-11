@@ -50,3 +50,6 @@ root.app = angular
     $httpProvider.defaults.useXDomain = true
     $httpProvider.defaults.withCredentials = true
     delete $httpProvider.defaults.headers.common['X-Requested-With']
+
+  .config ($locationProvider) ->
+    $locationProvider.html5Mode(true)
