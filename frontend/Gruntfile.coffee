@@ -481,6 +481,7 @@ module.exports = (grunt) ->
               'styles/**/*.css'
               'styles/**/*.{css,eot,svg,ttf,woff}'
               'scripts/**/*.{js,html}'
+              'index.php'
             ]
           }
         ]
