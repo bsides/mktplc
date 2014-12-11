@@ -61,14 +61,18 @@ module.exports = (grunt) ->
 
       bootstrap:
         files: ['<%= yeoman.app %>/scripts/libs/**/*.html']
-        tasks: ['html2js:bootstrap', 'copy:dev']
+        tasks: ['html2js:bootstrap', 'copy:public']
 
       mktplace:
         files: [
           '<%= yeoman.app %>/scripts/components/**/*.html'
           '<%= yeoman.app %>/scripts/shared/**/*.html'
         ]
-        tasks: ['html2js:marketplace', 'copy:dev']
+        tasks: ['html2js:marketplace', 'copy:public']
+
+      copy:
+        files: ['<%= yeoman.app %>/*.phtml']
+        tasks: ['copy:layout', 'copy:index']
 
       compass:
         files: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}']
