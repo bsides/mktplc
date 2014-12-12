@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!--> <html lang="pt-br" class="no-js"> <!--<![endif]-->
+
+<!-- INÍCIO / HTML HEADER -->
+<head>
+    <meta charset="utf-8">
+    <?php echo $this->headTitle('Login | Gazeta Press Indexer')->setSeparator(' | ')->setAutoEscape(false); ?>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content="" name="description" />
+    <meta content="" name="author" />
+    <meta name="MobileOptimized" content="320">
+
+    <!-- INÍCIO / CSS GLOBAIS -->
+    <link rel="stylesheet" type="text/css" href="<?php echo $this->basePath('/assets/plugins/font-awesome/css/font-awesome.min.css'); ?>" />
+    <link rel="stylesheet" type="text/css" href="<?php echo $this->basePath('/assets/plugins/bootstrap/css/bootstrap.min.css'); ?>" />
+    <link rel="stylesheet" type="text/css" href="<?php echo $this->basePath('/assets/plugins/uniform/css/uniform.default.css'); ?>" />
+    <!-- FIM / CSS GLOBAIS -->
+
+    <!-- INÍCIO / CSS DO TEMA -->
+    <link rel="stylesheet" type="text/css" href="<?php echo $this->basePath('/assets/css/style-metronic.css'); ?>" />
+    <link rel="stylesheet" type="text/css" href="<?php echo $this->basePath('/assets/css/style.css'); ?>" />
+    <link rel="stylesheet" type="text/css" href="<?php echo $this->basePath('/assets/css/style-responsive.css'); ?>" />
+    <link rel="stylesheet" type="text/css" href="<?php echo $this->basePath('/assets/css/plugins.css'); ?>" />
+    <link rel="stylesheet" type="text/css" id="style_color" href="<?php echo $this->basePath('/assets/css/themes/default.css'); ?>" />
+    <link rel="stylesheet" type="text/css" href="<?php echo $this->basePath('/assets/css/pages/login.css'); ?>" />
+    <link rel="stylesheet" type="text/css" href="<?php echo $this->basePath('/assets/css/application-custom.css'); ?>" />
+    <!-- FIM / CSS DO TEMA -->
+
+    <link rel="shortcut icon" href="<?php echo $this->basePath('/assets/img/favicon.ico'); ?>" />
+</head>
+<!-- FIM / HTML HEADER -->
+
+<!-- INÍCIO / HTML BODY -->
+<body class="login">
+<div class="logo">
+    <img src="<?php echo $this->basePath('/assets/img/gpress-logo-preto-109x112.png'); ?>"" alt="Gazeta Press Indexer" />
+</div>
+
+<div class="app-name">
+    <h1>Indexer</h1>
+</div>
+
+<div class="content">
+    <!-- BEGIN LOGIN FORM -->
+    <?php echo $this->form()->openTag($form); ?>
+    <h3 class="form-title">Login</h3>
+    <div class="alert alert-danger display-hide">
+        <button class="close" data-close="alert"></button>
+        <span>Você precisa digitar o usuário e senha.</span>
+    </div>
+
+    <?php if ($this->success === false) : ?>
+        <div class="alert alert-danger">
+            <button class="close" data-close="alert"></button>
+            <span><?php echo $this->escapeHtml($this->message); ?></span>
+        </div>
+    <?php endif; ?>
+
+    <div class="form-group">
+        <?php echo $this->formLabel($form->get('username')); ?>
+        <div class="input-icon">
+            <i class="fa fa-user"></i>
+            <?php echo $this->formElement($form->get('username')); ?>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <?php echo $this->formLabel($form->get('password')); ?>
+        <div class="input-icon">
+            <i class="fa fa-lock"></i>
+            <?php echo $this->formElement($form->get('password')); ?>
+        </div>
+    </div>
+
+    <div class="form-actions">
+        <button type="submit" class="btn green pull-right">
+            Login <i class="m-icon-swapright m-icon-white"></i>
+        </button>
+    </div>
+    <?php echo $this->form()->closeTag($form); ?>
+</div>
+
+
+<div class="copyright">
+    <?php echo date('Y'); ?> &copy; Gazeta Press - Fundação Cásper Líbero.
+</div>
+
+<!-- INÍCIO / JS -->
+<!-- INÍCIO / GLOBAL JS -->
+<!--[if lt IE 9]>
+<script src="assets/plugins/respond.min.js"></script>
+<script src="assets/plugins/excanvas.min.js"></script>
+<![endif]-->
+<script src="<?php echo $this->basePath('/assets/plugins/jquery-1.10.2.min.js'); ?>" type="text/javascript"></script>
+<script src="<?php echo $this->basePath('/assets/plugins/jquery-migrate-1.2.1.min.js'); ?>" type="text/javascript"></script>
+<!-- IMPORTANT! Load jquery-ui-1.10.3.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
+<script src="<?php echo $this->basePath('/assets/plugins/jquery-ui/jquery-ui-1.10.3.custom.min.js'); ?>" type="text/javascript"></script>
+<script src="<?php echo $this->basePath('/assets/plugins/bootstrap/js/bootstrap.min.js'); ?>" type="text/javascript"></script>
+<script src="<?php echo $this->basePath('/assets/plugins/bootstrap-hover-dropdown/twitter-bootstrap-hover-dropdown.min.js'); ?>" type="text/javascript" ></script>
+<script src="<?php echo $this->basePath('/assets/plugins/jquery-slimscroll/jquery.slimscroll.min.js'); ?>" type="text/javascript" ></script>
+<script src="<?php echo $this->basePath('/assets/plugins/jquery.cookie.min.js'); ?>" type="text/javascript"></script>
+<script src="<?php echo $this->basePath('/assets/plugins/uniform/jquery.uniform.min.js'); ?>" type="text/javascript"></script>
+<script src="<?php echo $this->basePath('/assets/plugins/jquery-validation/dist/jquery.validate.min.js'); ?>" type="text/javascript"></script>
+<script src="<?php echo $this->basePath('/assets/plugins/jquery-validation/localization/messages_pt_BR.js'); ?>" type="text/javascript"></script>
+<script src="<?php echo $this->basePath('/assets/scripts/app-theme.js'); ?>" type="text/javascript"></script>
+<script src="<?php echo $this->basePath('/assets/scripts/app-global.js'); ?>" type="text/javascript"></script>
+<script src="<?php echo $this->basePath('/assets/scripts/login.js'); ?>" type="text/javascript"></script>
+<!-- FIM / GLOBAL JS -->
+
+<?php $this->headScript()->captureStart() ?>
+App.init();
+Login.init();
+<?php $this->headScript()->captureEnd() ?>
+
+<!-- FIM / JS -->
+</body>
+<!-- FIM / HTML BODY -->
+</html>

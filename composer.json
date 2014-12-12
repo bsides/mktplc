@@ -9,12 +9,20 @@
     "homepage": "http://framework.zend.com/",
     "require": {
         "php": ">=5.3.3",
-        "zendframework/zendframework": "2.3.*"
+        "zendframework/zendframework": "2.3.*",
+        "predicta/cas-api-sdk-php": "dev-master",
+        "doctrine/common": ">=2.1"
     },
     "require-dev": {
         "zendframework/zftool": "dev-master",
         "phpmd/phpmd" : "@stable",
         "squizlabs/php_codesniffer": "dev-master",
         "zendframework/zend-developer-tools": "dev-master"
+    },
+    "repositories": {
+        "predicta/cas-api-sdk-php": {
+            "type": "vcs",
+            "url": "git@gitlab.corp.predicta.com.br:infra/cas_api_sdk_php.git"
+        }
     }
 }
