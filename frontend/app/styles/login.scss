@@ -1,0 +1,66 @@
+/* login */
+
+
+div.header {
+  background-color: #333333;
+  height: 300px;
+  text-align: center;
+  img {
+    margin-top: 150px;
+  }
+}
+div.login {
+  width: 700px;
+  margin: -50px auto 0;
+  overflow: hidden;
+  a {
+    text-decoration: underline;
+    color: #333;
+    float: right;
+  }
+  form {
+    font-size: $font-size-small;
+    background-color: #555555;
+    padding: 25px;
+    margin-bottom: 10px;
+    input {
+      padding: 0 15px;
+      height: 29px;
+      border: 1px solid #b9b9b9;
+      border-radius: 3px;
+      width: 250px;
+      margin: 0 39px 0 0;
+    }
+    &.reset-pass {
+      background-color: #ffffff;
+      box-shadow: 3px 3px 3px 0 rgba(0, 0, 0, 0.2);
+      width: 560px;
+      margin: 0 auto;
+      h3 {
+        color: #ed4747;
+      }
+      div, fieldset {
+        margin-left: 10px;
+      }
+    }
+    &.reset-pass.new-pass {
+      div {
+        border: 2px solid #fdcd79;
+        margin: 25px 0;
+        padding: 10px;
+      }
+      h2 {
+        margin: 0;
+      }
+      fieldset {
+        text-align: right;
+      }
+      input {
+        width: 236px;
+      }
+      table {
+        margin-bottom: 30px;
+      }
+    }
+  }
+}
