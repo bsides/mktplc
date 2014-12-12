@@ -1,12 +1,8 @@
+'use strict'
+
 app.controller 'SearchMenuCtrl', ($scope, $http, $log) ->
 
-  # # Returns id: {id, name}
-  # request = (url, whoReturns) ->
-  #   $http.get(url)
-  #   .success (data) ->
-  #     whoReturns = data
-
-  # $scope.newspappers = request '/direct/list/newspaper', $scope.newspappers
+  # TODO: refatorar essa porcaria. Sério, isso é horrível
 
   # Returns id: {id, name}
   $http.get('/direct/list/newspaper')
@@ -41,3 +37,8 @@ app.controller 'SearchMenuCtrl', ($scope, $http, $log) ->
     .success (data) ->
       $scope.sections = data
 
+  $scope.regions = [
+      name: 'Sao Paulo'
+    ,
+      name: 'Rio de Janeiro'
+  ]
