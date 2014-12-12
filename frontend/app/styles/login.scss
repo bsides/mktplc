@@ -13,7 +13,9 @@ div.login {
   width: 700px;
   margin: -50px auto 0;
   overflow: hidden;
-  a {
+  button.link-button {
+    background: transparent;
+    border: 0;
     text-decoration: underline;
     color: #333;
     float: right;

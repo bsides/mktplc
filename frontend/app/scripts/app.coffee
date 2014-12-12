@@ -45,8 +45,8 @@ root.app = angular
         templateUrl: 'scripts/components/campaigns/campaignsView.html'
         controller: 'CampaignsCtrl'
       .when '/login',
-        templateUrl: 'scripts/components/login/loginView.html'
-        controller: 'loginCtrl'
+        templateUrl: 'scripts/shared/login/loginView.html'
+        controller: 'LoginCtrl'
       .otherwise
         redirectTo: '/'
 

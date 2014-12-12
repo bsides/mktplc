@@ -1,5 +1,6 @@
 <!--Login-->
 <div>
+<div id="login" ng-hide="isForgotten">
   <div class="header"><img src="../images/logo_market_place.png"></div>
   <div class="login">
     <form>
@@ -7,13 +8,13 @@
       <input type="password" placeholder="senha">
       <button type="button" class="btn btn-primary" ng-click="">Entrar</button>
     </form>
-    <a href="/account/info">Esqueci a senha</a>
+    <button type="button" ng-click="resetPass()" class="link-button">Esqueci a senha</a>
   </div>
 </div>
 
 
 <!--Esqueci minha senha-->
-<div>
+<div id="reset-pass" ng-show="isForgotten and !isSendEmail">
   <div class="header"><img src="../images/logo_market_place.png"></div>
   <div class="login">
     <form class="reset-pass">
@@ -24,16 +25,16 @@
       </div>
       <fieldset>
         <input type="text" placeholder="e-mail">
-        <button type="button" class="btn btn-primary" ng-click="">Enviar</button>
+        <button type="button" class="btn btn-primary" ng-click="sendEmail()">Enviar</button>
+        <button type="button" class="btn btn-info" ng-click="resetPass()">cancelar</button>
       </fieldset>
-
     </form>
   </div>
 </div>
 
 
 <!--Email enviado-->
-<div>
+<div id="sendEmail" ng-show="isForgotten and isSendEmail">
   <div class="header"><img src="../images/logo_market_place.png"></div>
   <div class="login">
     <form class="reset-pass">
@@ -47,14 +48,13 @@
         <button type="button" class="btn btn-info" ng-click="">enviar o email novamente</button>
         <button type="button" class="btn btn-primary" ng-click="">login</button>
       </fieldset>
-
     </form>
   </div>
 </div>
 
 
 <!--Definir senha-->
-<div>
+<div class="hidden">
   <div class="header"><img src="../images/logo_market_place.png"></div>
   <div class="login">
     <form class="reset-pass new-pass">
@@ -72,11 +72,7 @@
         <button type="button" class="btn btn-info" ng-click="">cancelar</button>
         <button type="button" class="btn btn-primary" ng-click="">salvar</button>
       </fieldset>
-
     </form>
   </div>
 </div>
-
-
-
-
+</div>
