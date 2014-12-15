@@ -411,7 +411,7 @@
             "source": {
                 "type": "git",
                 "url": "git@gitlab.corp.predicta.com.br:infra/cas_api_sdk_php.git",
-                "reference": "90990b47763bc2c3f8800b323358cb7d0eb89303"
+                "reference": "0f9abc6ee585e9c23a3a687c4dfba7f3480c4c16"
             },
             "require": {
                 "php": ">=5.4",
@@ -442,7 +442,7 @@
                 "predicta direct",
                 "sdk api"
             ],
-            "time": "2014-12-15 13:38:45"
+            "time": "2014-12-15 19:44:38"
         },
         {
             "name": "zendframework/zendframework",
