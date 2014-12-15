@@ -1,10 +1,15 @@
-<!doctype html>
+<?php echo $this->doctype(); ?>
 <html class="no-js">
   <head>
     <meta charset="utf-8">
-    <title>Marketplace</title>
+    <base href="<?php echo $this->url('home'); ?>">
+    <?php echo $this->headTitle('Marketplace') ?>
+    <?php // echo $this->headTitle('Marketplace '. $this->translate('Skeleton Application'))->setSeparator(' - ')->setAutoEscape(false) ?>
     <meta name="description" content="">
-    <meta name="viewport" content="width=device-width">
+    <?php echo $this->headMeta()
+        ->appendName('viewport', 'width=device-width, initial-scale=1.0')
+        ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
+    ?>
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
@@ -15,11 +20,18 @@
     <!-- endbuild -->
   </head>
   <body ng-app="marketplaceApp">
+    <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div ng-include="'scripts/shared/login/loginView.html'"></div>
+    <header ng-include="'scripts/shared/header/headerView.html'" ng-hide="{{isLogin=true}}" class="ng-hide"></header>
+    <div ng-include="'scripts/shared/nav/navView.html'" ng-hide="{{isLogin=true}}" class="ng-hide"></div>
+
+    <div ng-view=""></div>
 
     <footer class="footer" ng-include="'scripts/shared/footer/footerView.html'"></footer>
+
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
@@ -62,11 +74,10 @@
     <script src="scripts/ui-templates.js"></script>
     <script src="scripts/app.js"></script>
     <script src="scripts/shared/mainCtrl.js"></script>
-    <script src="scripts/components/search/searchServices.js"></script>
     <script src="scripts/shared/nav/navCtrl.js"></script>
+    <script src="scripts/shared/login/loginCtrl.js"></script>
+    <script src="scripts/components/results/resultsCtrl.js"></script>
     <script src="scripts/components/search/searchCtrl.js"></script>
-    <script src="scripts/components/search/searchMenuCtrl.js"></script>
-    <script src="scripts/components/search/searchMenuDirective.js"></script>
     <script src="scripts/components/purchases/purchasesCtrl.js"></script>
     <script src="scripts/components/bids/bidsCtrl.js"></script>
     <script src="scripts/components/campaigns/campaignsCtrl.js"></script>

@@ -92,7 +92,8 @@ return array(
     'controllers' => array(
         'invokables' => array(
             'Direct\Controller\Index' => 'Direct\Controller\IndexController',
-            'Direct\Controller\List' => 'Direct\Controller\ListController'
+            'Direct\Controller\List' => 'Direct\Controller\ListController',
+            'Direct\Controller\Item' => 'Direct\Controller\ItemController'
         ),
     ),
     'view_manager' => array(

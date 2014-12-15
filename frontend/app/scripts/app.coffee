@@ -27,8 +27,9 @@ root.app = angular
   .config ($routeProvider) ->
     $routeProvider
       .when '/',
-        templateUrl: 'scripts/shared/mainView.html'
-        controller: 'MainCtrl'
+        redirectTo: '/search'
+      .when '/home',
+        redirectTo: '/search'
       .when '/search',
         templateUrl: 'scripts/components/search/searchView.html'
         controller: 'SearchCtrl'
@@ -45,8 +46,8 @@ root.app = angular
         templateUrl: 'scripts/components/campaigns/campaignsView.html'
         controller: 'CampaignsCtrl'
       .when '/login',
-        templateUrl: 'scripts/components/login/loginView.html'
-        controller: 'loginCtrl'
+        templateUrl: 'scripts/shared/login/loginView.html'
+        controller: 'LoginCtrl'
       .otherwise
         redirectTo: '/'
 
