@@ -81,6 +81,10 @@ module.exports = (grunt) ->
           'autoprefixer:dev'
         ]
 
+      images:
+        files: ['<%= yeoman.app %>/images/**/*']
+        tasks: ['copy:public']
+
       gruntfile:
         files: ['Gruntfile.js']
 
@@ -486,8 +490,17 @@ module.exports = (grunt) ->
               'styles/**/*.{css,eot,svg,ttf,woff}'
               'scripts/**/*.{js,html}'
               'index.php'
+              'images/**/*'
             ]
           }
+        ]
+      favicons:
+        files: [
+          flatten: true
+          expand: true
+          filter: 'isFile'
+          src: '<%= yeoman.app %>/favicons/*'
+          dest: '<%= yeoman.public %>/'
         ]
       layout:
         files: [
@@ -504,6 +517,12 @@ module.exports = (grunt) ->
           cwd: '<%= yeoman.app %>'
           dest: '<%= yeoman.index %>/'
           src: 'index.phtml'
+        ]
+      bowercopy:
+        files: [
+          expand: true
+          src: '<%= yeoman.bower %>/**/*'
+          dest: '<%= yeoman.public %>/'
         ]
       dev:
         files: [
@@ -592,7 +611,6 @@ module.exports = (grunt) ->
           'angular-bootstrap/ui-bootstrap-tpls.js': 'angular-bootstrap/ui-bootstrap-tpls.js'
           'angular-i18n/angular-locale_pt-br.js': 'angular-i18n/angular-locale_pt-br.js'
 
-
     # Run some tasks in parallel to speed up the build process
     concurrent:
       server: [
@@ -653,7 +671,9 @@ module.exports = (grunt) ->
       'copy:public'
       'copy:layout'
       'copy:index'
-      'bowercopy'
+      'copy:favicons'
+      'copy:bowercopy'
+      # 'bowercopy'
       'watch'
     ]
 

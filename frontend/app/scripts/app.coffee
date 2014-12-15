@@ -30,6 +30,8 @@ root.app = angular
         redirectTo: '/search'
       .when '/home',
         redirectTo: '/search'
+      .when 'ofertas',
+        redirectTo: '/search'
       .when '/search',
         templateUrl: 'scripts/components/search/searchView.html'
         controller: 'SearchCtrl'
