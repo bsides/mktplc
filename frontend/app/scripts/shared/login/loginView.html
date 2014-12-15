@@ -1,60 +1,60 @@
 <!--Login-->
-<div>
-<div id="login" ng-hide="isForgotten">
-  <div class="header"><img src="../images/logo_market_place.png"></div>
-  <div class="login">
-    <form>
-      <input type="text" placeholder="e-mail">
-      <input type="password" placeholder="senha">
-      <button type="button" class="btn btn-primary" ng-click="">Entrar</button>
-    </form>
-    <button type="button" ng-click="resetPass()" class="link-button">Esqueci a senha</a>
+<div ng-show="!isNewPass" ng-controller="LoginCtrl">
+  <div id="login" ng-hide="isForgotten">
+    <div class="header"><img src="../images/logo_market_place.png"></div>
+    <div class="login">
+      <form action method="POST" name="form-login" id="form-login">
+        <input type="text" name="username" required="required" placeholder="e-mail" id="username" value="">
+        <input type="password" name="password" required="required" placeholder="senha" id="password" value="">
+        <button type="submit" class="btn btn-primary">Entrar</button>
+      </form>
+      <button type="button" ng-click="resetPass()" class="link-button">Esqueci a senha</button>
+    </div>
+  </div>
+
+
+  <!--Esqueci minha senha-->
+  <div id="reset-pass" ng-show="isForgotten && !isSendEmail">
+    <div class="header"><img src="../images/logo_market_place.png"></div>
+    <div class="login">
+      <form class="reset-pass">
+        <h3>Esqueceu sua senha?</h3>
+        <div>
+          <p>Digite o endereço de e-mail usado para criar sua conta.</p>
+          <p>Vamos localizar suas informações e lhe enviar um e-mail com um link para redefinir sua senha.</p>
+        </div>
+        <fieldset>
+          <input type="text" placeholder="e-mail">
+          <button type="button" class="btn btn-primary" ng-click="sendEmail()">Enviar</button>
+          <button type="button" class="btn btn-info" ng-click="resetPass()">cancelar</button>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+
+
+  <!--Email enviado-->
+  <div id="sendEmail" ng-show="isForgotten && isSendEmail">
+    <div class="header"><img src="../images/logo_market_place.png"></div>
+    <div class="login">
+      <form class="reset-pass">
+        <h3>Esqueceu sua senha?</h3>
+        <div>
+          <p>Confira seu e-mail! Enviamos um link para que você possa redefinir sua senha.</p>
+          <p>Este e-mail contém um link que o levará para uma página onde você pode criar uma nova senha.</p>
+          <p>Se você não receber este e-mail dentro de alguns minutos, verifique sua pasta de spam, ou envie um outro pedido.</p>
+        </div>
+        <fieldset>
+          <button type="button" class="btn btn-info" ng-click="isSendEmail = false">enviar o email novamente</button>
+          <button type="button" class="btn btn-primary" ng-click="resetPass()">login</button>
+        </fieldset>
+      </form>
+    </div>
   </div>
 </div>
-
-
-<!--Esqueci minha senha-->
-<div id="reset-pass" ng-show="isForgotten and !isSendEmail">
-  <div class="header"><img src="../images/logo_market_place.png"></div>
-  <div class="login">
-    <form class="reset-pass">
-      <h3>Esqueceu sua senha?</h3>
-      <div>
-        <p>Digite o endereço de e-mail usado para criar sua conta.</p>
-        <p>Vamos localizar suas informações e lhe enviar um e-mail com um link para redefinir sua senha.</p>
-      </div>
-      <fieldset>
-        <input type="text" placeholder="e-mail">
-        <button type="button" class="btn btn-primary" ng-click="sendEmail()">Enviar</button>
-        <button type="button" class="btn btn-info" ng-click="resetPass()">cancelar</button>
-      </fieldset>
-    </form>
-  </div>
-</div>
-
-
-<!--Email enviado-->
-<div id="sendEmail" ng-show="isForgotten and isSendEmail">
-  <div class="header"><img src="../images/logo_market_place.png"></div>
-  <div class="login">
-    <form class="reset-pass">
-      <h3>Esqueceu sua senha?</h3>
-      <div>
-        <p>Confira seu e-mail! Enviamos um link para que você possa redefinir sua senha.</p>
-        <p>Este e-mail contém um link que o levará para uma página onde você pode criar uma nova senha.</p>
-        <p>Se você não receber este e-mail dentro de alguns minutos, verifique sua pasta de spam, ou envie um outro pedido.</p>
-      </div>
-      <fieldset>
-        <button type="button" class="btn btn-info" ng-click="">enviar o email novamente</button>
-        <button type="button" class="btn btn-primary" ng-click="">login</button>
-      </fieldset>
-    </form>
-  </div>
-</div>
-
 
 <!--Definir senha-->
-<div class="hidden">
+<div ng-show="isNewPass" ng-controller="LoginCtrl">
   <div class="header"><img src="../images/logo_market_place.png"></div>
   <div class="login">
     <form class="reset-pass new-pass">
@@ -69,10 +69,9 @@
         <tr><td><input type="password" placeholder="senha"></td><td><input type="password" placeholder="senha"></td></tr>
       </table>
       <fieldset>
-        <button type="button" class="btn btn-info" ng-click="">cancelar</button>
-        <button type="button" class="btn btn-primary" ng-click="">salvar</button>
+        <button type="button" class="btn btn-info" ng-click="isNewPass = false">cancelar</button>
+        <button type="button" class="btn btn-primary" ng-click="isNewPass = false">salvar</button>
       </fieldset>
     </form>
   </div>
-</div>
 </div>

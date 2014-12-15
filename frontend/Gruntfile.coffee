@@ -26,6 +26,7 @@ module.exports = (grunt) ->
     dist: 'dist'
     public: '../public'
     layout: '../module/Direct/view/layout'
+    login: '../module/Application/view/application/auth'
     index: '../module/Direct/view/index'
     bower: 'bower_components'
 
@@ -72,7 +73,7 @@ module.exports = (grunt) ->
 
       copy:
         files: ['<%= yeoman.app %>/*.phtml']
-        tasks: ['copy:layout', 'copy:index']
+        tasks: ['copy:layout', 'copy:login', 'copy:index']
 
       compass:
         files: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}']
@@ -169,7 +170,10 @@ module.exports = (grunt) ->
 
       layout: '<%= yeoman.layout %>/{,*/}*'
 
+      login: '<%= yeoman.login %>/{,*/}*'
+
       index: '<%= yeoman.index %>/{,*/}*'
+
 
 
     # Add vendor prefixed styles
@@ -497,6 +501,14 @@ module.exports = (grunt) ->
           dest: '<%= yeoman.layout %>/'
           src: 'layout.phtml'
         ]
+      login:
+        files: [
+          expand: true
+          dot: true
+          cwd: '<%= yeoman.app %>'
+          dest: '<%= yeoman.login %>/'
+          src: 'login.phtml'
+        ]
       index:
         files: [
           expand: true
@@ -645,6 +657,7 @@ module.exports = (grunt) ->
       'clean:public'
       'clean:layout'
       'clean:index'
+      'clean:login'
       'html2js:bootstrap'
       'html2js:marketplace'
       'wiredep'
@@ -653,6 +666,7 @@ module.exports = (grunt) ->
       'copy:public'
       'copy:layout'
       'copy:index'
+      'copy:login'
       'bowercopy'
       'watch'
     ]

@@ -27,8 +27,9 @@ root.app = angular
   .config ($routeProvider) ->
     $routeProvider
       .when '/',
-        templateUrl: 'scripts/shared/mainView.html'
-        controller: 'MainCtrl'
+        redirectTo: '/search'
+      .when '/home',
+        redirectTo: '/search'
       .when '/search',
         templateUrl: 'scripts/components/search/searchView.html'
         controller: 'SearchCtrl'

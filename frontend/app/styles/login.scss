@@ -1,6 +1,8 @@
 /* login */
 
-
+body {
+  background: none repeat scroll 0 0 #f2f2f2;
+}
 div.header {
   background-color: #333333;
   height: 300px;
@@ -12,6 +14,7 @@ div.header {
 div.login {
   width: 700px;
   margin: -50px auto 0;
+  padding: 10px;
   overflow: hidden;
   button.link-button {
     background: transparent;
@@ -31,7 +34,7 @@ div.login {
       border: 1px solid #b9b9b9;
       border-radius: 3px;
       width: 250px;
-      margin: 0 39px 0 0;
+      margin: 0 20px 0 0;
     }
     &.reset-pass {
       background-color: #ffffff;
