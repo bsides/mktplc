@@ -1,3 +1,4 @@
+@import "variables";
 /* login */
 
 
@@ -5,6 +6,7 @@ div.header {
   background-color: #333333;
   height: 300px;
   text-align: center;
+
   img {
     margin-top: 150px;
   }
@@ -13,6 +15,7 @@ div.login {
   width: 700px;
   margin: -50px auto 0;
   overflow: hidden;
+
   a {
     text-decoration: underline;
     color: #333;
@@ -23,6 +26,7 @@ div.login {
     background-color: #555555;
     padding: 25px;
     margin-bottom: 10px;
+
     input {
       padding: 0 15px;
       height: 29px;
@@ -36,6 +40,7 @@ div.login {
       box-shadow: 3px 3px 3px 0 rgba(0, 0, 0, 0.2);
       width: 560px;
       margin: 0 auto;
+
       h3 {
         color: #ed4747;
       }
@@ -44,6 +49,7 @@ div.login {
       }
     }
     &.reset-pass.new-pass {
+
       div {
         border: 2px solid #fdcd79;
         margin: 25px 0;

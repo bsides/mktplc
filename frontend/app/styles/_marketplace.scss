@@ -1,0 +1,40 @@
+//== Marketplace Colors
+$main-color:        #0289ce;
+$action-color:      #3cb878;
+$label-color:       #e0f2fc;
+$disabled-color:    #c5c4c4;
+$main-bg:           #eceff1;
+$toolbar-bg:        #f9fafa;
+$results-bg:        #f2f4f5;
+$navbar-active-bg:  #242424;
+$text-color:        #444;
+
+$brand-primary:         $main-color;
+$brand-success:         $action-color;
+
+//** Background color for `<body>`.
+$body-bg:               $main-bg;
+//** Global text color on `<body>`.
+$text-color:            $text-color;
+
+//== Typography
+//
+//## Font, line-height, and color for body text, headings, and more.
+
+$font-family-sans-serif:  "Droid Sans", "Helvetica Neue", Helvetica, Arial, sans-serif !default;
+
+//== Navbar
+//
+//##
+
+// Basics of a navbar
+$navbar-height:                    45px;
+$navbar-border-radius:             0;
+
+$navbar-default-color:             #fff;
+$navbar-default-bg:                $main-color;
+$navbar-default-border:            transparent;
+
+// Navbar links
+$navbar-default-link-active-color:         #fff;
+$navbar-default-link-active-bg:            $navbar-active-bg;

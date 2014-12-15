@@ -3,6 +3,8 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 // Need to make some magic
 @import "compass";
 
+// Base Marketplace variables
+@import "marketplace";
 // Base Bootstrap variables
 @import "variables";
 
