@@ -1,0 +1,26 @@
+.items-by-newspaper {
+  margin-top: 20px;
+}
+.resume {
+  .panel-body {
+    background-color: #e2e2e2;
+    .categories {
+      margin-top: 20px;
+      padding: 10px;
+      display: inline-block;
+      margin-right: 15px;
+      background-color: #FFF;
+      div {
+        padding: 5px 15px;
+        margin-left: 10px;
+        display: inline-block;
+        background-color: #E4F1E7;
+        border-radius: 4px;
+      }
+    }
+  }
+}
+.actions {
+  text-align: right;
+  margin: 30px 0;
+}
