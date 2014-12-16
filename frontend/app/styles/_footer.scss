@@ -17,7 +17,12 @@ body {
 
 
 .footer {
-  background-color: #222;
+  background-color: rgba(43, 41, 41, 1.0);
   color: rgba(255, 255, 255, 0.8);
   padding-top: 19px;
+
+  // needs latest Compass, add '@import "compass"' to your scss
+  background-color: rgb(61, 71, 124); // Old browsers
+  @include filter-gradient(#333, #666, vertical); // IE6-9
+  @include background-image(linear-gradient(top, rgba(90, 89, 89, 1.0) 0%, rgba(43, 41, 41, 1.0) 100%));
 }

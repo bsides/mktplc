@@ -1,25 +1,39 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-3">
       <h2>Busca de Ofertas</h2>
     </div>
-    <div class="col-md-4">
-      Anunciante
-      <select name="" id="" class="form-control">
-        <option value="">Etecetera</option>
-        <option value="">Anunciante tal</option>
-        <option value="">Muito increvys</option>
-      </select>
+    <div class="col-md-4 col-md-offset-1">
+      <div class="advertiser-toggle">
+        <span class="advertiser-label">Anunciante</span>
+        <!-- Single button -->
+        <div class="btn-group" dropdown is-open="status.isopen">
+          <button type="button" class="btn btn-info dropdown-toggle" dropdown-toggle ng-disabled="disabled">
+            Predicta <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#">Infoglobo</a></li>
+            <li><a href="#">Fast Ads</a></li>
+            <li><a href="#">Outro anunciante</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Ver restante</a></li>
+          </ul>
+        </div>
+      </div>
     </div>
     <div class="col-md-4">
-      <form action="" class="navbar-form navbar-right">
-        <button type="button" class="btn btn-default">
+      <div class="cart-button" ng-click="goCart()">
+        <span class="cart-icon">
           <i class="ficon ficon-basket"></i>
-          <span class="badge">1</span>
-          <span class="price-label">Valor total</span>
-          <span class="price-value">R$ {{ cart.totalPrice | currency }}</span>
-        </button>
-      </form>
+        </span>
+        <span class="cart-quantity">
+          <span>1</span>
+        </span>
+        <span class="cart-total">
+          <span class="price-label">R$</span>
+          <span class="price-value">{{ cartTotal | currency:"" }}</span>
+        </span>
+      </div>
     </div>
   </div>
 </div>
