@@ -1,3 +1,6 @@
+// Insert here replaces, stupidity and other stuff
+// we really need to - but can do better in the future
+
 // Stupid replace
 .btn {
   line-height: 1.42857143;
@@ -16,8 +19,11 @@ nav > .container {
   padding-right: 0;
 }
 
-.full-width {
-  width: 100%;
+.label {
+  font-weight: normal;
+  padding: .6em 1em .7em;
+  font-size: $font-size-min;
+  border-radius: $border-radius-base;
 }
 
 // Angular Bootstrap http://angular-ui.github.io/bootstrap/

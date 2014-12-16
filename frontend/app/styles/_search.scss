@@ -1,40 +1,74 @@
-.section {
-  margin-bottom: 20px;
-}
 .search-results {
-  .label {
-    text-transform: uppercase;
-    padding: .2em .5em .2em;
-    font-size: 60%;
-  }
-  .label-default {
-    background-color: #aaa;
-  }
-  .panel-body {
-    padding: 10px;
-  }
-  .panel-footer {
-    position: relative;
+  background: $results-bg;
+  border: 2px solid $white;
+  border-radius: $border-radius-base;
+  margin: 0;
 
-    .btn {
-      position: absolute;
-      right: 0.35em;
-      bottom: 0.35em;
-      text-transform: lowercase;
-    }
-    .price {
-      font-weight: bold;
-    }
+  .search-toolbar {
+    background: $toolbar-bg;
+    margin-bottom: 14px;
+    padding: 10px 14px;
+  }
+  .result-count {
+    font-weight: bold;
+    color: $main-color;
+  }
+  .whitey-sel {
+    margin-right: 40px;
   }
 }
-.search-menu {
-  .panel-title a {
-    text-decoration: none;
+// Structure
+.container + .container {
+  margin-top: 30px;
+}
+.whitey {
+  background: $white;
+  margin: 0;
+  border-radius: $border-radius-base;
+
+  & > div {
+    padding: 10px 16px;
+  }
+  .terms-box {
+    border: 1px solid #e7e9e3;
+    padding: 8px 8px 12px;
+    display: inline-block;
+    width: 860px;
+  }
+  .btn-primary {
+    margin-top: 0.5rem;
+  }
+  .label.zone {
+    text-transform: uppercase;
+  }
+  .search-labels {
+    min-width: 110px;
+    display: inline-block;
+  }
+  .filter-box {
+    display: inline-block;
+  }
+  .filter-box + .filter-box {
+    margin-left: 30px;
   }
 }
+.filter-label {
+  font-size: $font-size-less;
+  color: $light-gray;
+}
+.form-control.whitey-sel {
+  display: inline-block;
+  width: auto;
+  margin-left: 16px;
+}
+.fort {
+  font-weight: bold;
+}
+
 // Title
 h2 {
   line-height: 0.3em;
+  font-weight: bold;
 }
 
 // Advertiser dropdown

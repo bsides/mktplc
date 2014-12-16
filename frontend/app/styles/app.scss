@@ -7,13 +7,15 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 @import "marketplace";
 // Base Bootstrap variables
 @import "variables";
+// Marketplace commons
+@import "commons";
 
 // bower:scss
 @import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
 // endbower
 
-// Our icons
-@import "direct-icons.css";
+// Our icons (already inserted into the html since it's already a css)
+// @import "direct-icons.css";
 
 // Mais parts
 @import "header";
