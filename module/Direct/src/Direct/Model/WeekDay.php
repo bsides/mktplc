@@ -20,15 +20,18 @@ class WeekDay
         $array = [
             [
                 'id'   => 1,
-                'name' => 'Segunda'
+                'name' => 'Segunda',
+                'code' => 'SEG'
             ],
             [
                 'id'   => 2,
-                'name' => 'Terça'
+                'name' => 'Terça',
+                'code' => 'TER'
             ],
             [
                 'id'   => 3,
-                'name' => 'Quarta'
+                'name' => 'Quarta',
+                'code' => 'QUA'
             ],
         ];
 
