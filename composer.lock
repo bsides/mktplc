@@ -411,7 +411,7 @@
             "source": {
                 "type": "git",
                 "url": "git@gitlab.corp.predicta.com.br:infra/cas_api_sdk_php.git",
-                "reference": "0f9abc6ee585e9c23a3a687c4dfba7f3480c4c16"
+                "reference": "c203bd32c6a79e998798bab0a28eb99ca5d2dc50"
             },
             "require": {
                 "php": ">=5.4",
@@ -442,7 +442,7 @@
                 "predicta direct",
                 "sdk api"
             ],
-            "time": "2014-12-15 19:44:38"
+            "time": "2014-12-17 16:18:57"
         },
         {
             "name": "zendframework/zendframework",
@@ -691,12 +691,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/squizlabs/PHP_CodeSniffer.git",
-                "reference": "4a5c496f929146b0eebf13b0cc5a105bcf559755"
+                "reference": "4a2e00a22be06cb906cd5edc94a526922305da60"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/4a5c496f929146b0eebf13b0cc5a105bcf559755",
-                "reference": "4a5c496f929146b0eebf13b0cc5a105bcf559755",
+                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/4a2e00a22be06cb906cd5edc94a526922305da60",
+                "reference": "4a2e00a22be06cb906cd5edc94a526922305da60",
                 "shasum": ""
             },
             "require": {
@@ -756,7 +756,7 @@
                 "phpcs",
                 "standards"
             ],
-            "time": "2014-12-15 04:59:47"
+            "time": "2014-12-17 02:25:30"
         },
         {
             "name": "symfony/config",

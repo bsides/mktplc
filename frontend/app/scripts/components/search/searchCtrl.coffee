@@ -17,3 +17,6 @@ app.controller 'SearchCtrl', ($scope) ->
       $scope.resultLabel = counter + ' resultado'
     else
       $scope.resultLabel = 'Sua busca não retornou resultados'
+
+  $scope.goCart = ->
+    window.location.href="/bids"
