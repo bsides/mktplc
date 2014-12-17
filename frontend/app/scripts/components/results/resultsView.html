@@ -1,57 +1,85 @@
-<div class="search-micro-results">
-  <div class="row" ng-repeat="result in (searchData.length / 3 | returnArray)">
-    <div class="col-md-4" ng-repeat="result in searchData.slice(3 * $index, 3 * $index + 3)">
+<div class="row search-filters">
 
-      <div class="panel panel-default">
-        <div class="panel-body">
-          <div class="section">
-            <table>
-              <tr class="top">
-                <td rowspan="3" colspan="3" class="week-day">
-                  <a href="#">
-                    <div class="week mon">{{ result.weekDays }}</div>
-                  </a>
-                </td>
-                <td colspan="4">
-                  <h4 class="media-heading">{{ result.newspaper }}</h4>
-                </td>
-                <td class="added">
-                  <div><i class="ficon ficon-basket"></i></div>
-                </td>
-              </tr>
-              <tr>
-                <td class="padding-0">formato</td>
-                <td colspan="2"><strong>{{ result.format }}</strong></td>
-              </tr>
-              <tr>
-                <td class="padding-0">caderno</td>
-                <td colspan="2"><strong>{{ result.column }}</strong></td>
-              </tr>
-              <tr>
-                <td colspan="3">
-                  <div class="polychrome cian"></div>
-                  <div class="polychrome yellow"></div>
-                  <div class="polychrome magent"></div>
-                </td>
-                <td colspan="3" class="reg"><i class="ficon ficon-location"></i> <span>ver regiões</span></td>
-                <td colspan="2"></td>
-              </tr>
-              <tr>
-                <td colspan="5">
-                  <div class="text-right">R$ <span class="price">{{ result.price }}</span></div>
-                </td>
-                <td colspan="3" class="text-right">
-                  <button type="button" class="btn btn-primary" ng-click="addToCart(5000)" disabled="disabled">Adicionar</button>
-                </td>
-              </tr>
-            </table>
-          </div>
+  <div class="col-md-12">
+    <div class="row search-toolbar">
+
+      <span class="result-count">{{ formatResults(searchData.length) }}</span>
+
+      <div class="pull-right">
+        <span class="filter-label">ordenacao</span>
+        <select name="" id="" class="form-control whitey-sel" ng-model="selectedOrder">
+          <option value="">Aleatória</option>
+          <option value="price">Por preço</option>
+          <option value="newspaper">Por jornal</option>
+        </select>
+
+        <div class="btn-group">
+          <label class="btn btn-default" ng-model="viewMode" btn-radio="'view-regular'"><i class="ficon ficon-layout"></i></label>
+          <label class="btn btn-default" ng-model="viewMode" btn-radio="'view-compact'"><i class="ficon ficon-menu"></i></label>
         </div>
       </div>
 
     </div>
+
+    <div class="search-results" ng-class="viewMode">
+      <div class="row" ng-repeat="result in (searchData.length / 3 | returnArray)">
+        <div ng-class="{ 'col-md-4': viewMode == 'view-regular', 'col-md-12': viewMode == 'view-compact' }" ng-repeat="result in searchData.slice(3 * $index, 3 * $index + 3) | orderBy:selectedOrder">
+
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <div class="section">
+                <table>
+                  <tr class="top">
+                    <td rowspan="3" colspan="3" class="week-day">
+                      <a href="#">
+                        <div class="week mon">{{ result.weekDays }}</div>
+                      </a>
+                    </td>
+                    <td colspan="4">
+                      <h4 class="media-heading">{{ result.newspaper }}</h4>
+                    </td>
+                    <td class="added" ng-show="addedToCart">
+                      <div><i class="ficon ficon-basket"></i></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="padding-0">formato</td>
+                    <td colspan="2"><strong>{{ result.format }}</strong></td>
+                  </tr>
+                  <tr>
+                    <td class="padding-0">caderno</td>
+                    <td colspan="2"><strong>{{ result.column }}</strong></td>
+                  </tr>
+                  <tr>
+                    <td colspan="3">
+                      <div class="polychrome cian"></div>
+                      <div class="polychrome yellow"></div>
+                      <div class="polychrome magent"></div>
+                    </td>
+                    <td colspan="3" class="reg"><i class="ficon ficon-location"></i> <span>ver regiões</span></td>
+                    <td colspan="2"></td>
+                  </tr>
+                  <tr>
+                    <td colspan="5">
+                      <div class="text-right">R$ <span class="price">{{ result.price }}</span></div>
+                    </td>
+                    <td colspan="3" class="text-right">
+                      <button type="button" class="btn btn-primary" ng-click="addToCart(9090909)" disabled="disabled">Adicionar</button>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
+
+
 
 <pre>
   {{ searchData }}

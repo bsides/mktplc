@@ -87,7 +87,9 @@ root.app.helpers =
       return JSON.stringify(json, 'undefined', 2)
 
     json = json.replace(/&/g, '&').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+    # coffeelint: disable=max_line_length
     result = json.replace /("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, (match) ->
+      # coffeelint: enable=max_line_length
       cls = 'number'
       if /^"/.test(match)
         if /:$/.test(match)
