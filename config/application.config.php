@@ -1,11 +1,21 @@
 <?php
+$env = getenv('APPLICATION_ENV') ?: 'production';
+
+// Use the $env value to determine which modules to load
+$modules = array(
+    'Application',
+    'Direct',
+    'Cas',
+    'ShoppingCart'
+);
+if ($env == 'development') {
+    $modules[] = 'ZendDeveloperTools';
+    $modules[] = 'ZFTool';
+}
+
 return array(
     // This should be an array of module namespaces used in the application.
-    'modules' => array(
-        'Application',
-        'Direct',
-        'Cas',
-    ),
+    'modules' => $modules,
 
     // These are various options for the listeners attached to the ModuleManager
     'module_listener_options' => array(
@@ -23,7 +33,7 @@ return array(
         // provided by modules themselves. Paths may use GLOB_BRACE notation.
         'config_glob_paths' => array(
             /* Arquivos de configuração para distintos ambientes */
-            'config/autoload/{,*.}' . (getenv('APPLICATION_ENV') ?: 'production') . '.php',
+            'config/autoload/' . (getenv('APPLICATION_ENV') ?: 'production') . '.php',
             'config/autoload/{,*.}{global,local}.php',
         ),
 
