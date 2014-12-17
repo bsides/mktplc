@@ -19,4 +19,4 @@ app.controller 'SearchCtrl', ($scope) ->
       $scope.resultLabel = 'Sua busca não retornou resultados'
 
   $scope.goCart = ->
-    window.location.href="/cart"
+    window.location.href="/bids"

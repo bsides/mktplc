@@ -50,9 +50,6 @@ root.app = angular
       .when '/login',
         templateUrl: 'scripts/shared/login/loginView.html'
         controller: 'LoginCtrl'
-      .when '/cart',
-        templateUrl: 'scripts/components/cart/cartView.html'
-        controller: 'CartCtrl'
       .otherwise
         redirectTo: '/'
 
