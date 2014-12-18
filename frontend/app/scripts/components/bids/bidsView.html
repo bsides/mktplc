@@ -1,14 +1,7 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-3">
-      <h2>Proposta</h2>
-    </div>
-    <div class="col-md-4 col-md-offset-1">
-      <div class="btn-group">
-        <button type="button" class="btn btn-primary" aria-expanded="false" ng-click="goSearch()">
-          Continuar Comprando
-        </button>
-      </div>
+    <div class="col-md-8">
+      <h2>Carrinho | Proposta</h2>
     </div>
     <div class="col-md-4">
       <div class="cart-button">
@@ -28,75 +21,58 @@
 </div>
 <div class="container">
 
-  <div class="advertiser-toggle">
-    <span class="advertiser-label">Associe a proposta a uma campanha ou crie uma nova</span>
-    <!-- Single button -->
-    <div class="btn-group" dropdown is-open="status.isopen">
-      <button type="button" class="btn btn-info dropdown-toggle" dropdown-toggle ng-disabled="disabled">
-        Campanha <span class="caret"></span>
-      </button>
-      <ul class="dropdown-menu" role="menu">
-        <li><a href="#">Campanha ABC</a></li>
-        <li><a href="#">Campanha GHI</a></li>
-        <li><a href="#">Campanha XYZ</a></li>
-        <li class="divider"></li>
-        <li><a href="#">Nova Campanha</a></li>
-      </ul>
-    </div>
-  </div>
-
   <div class="panel panel-default items-by-newspaper">
     <div class="panel-heading">
       <div class="row">
-        <div class="col-md-8"># Jornal ABC</div>
-        <div class="col-md-1"><strong>valor total</strong></div>
-        <div class="col-md-2">R$ 1.000,00</div>
-        <div class="col-md-1">#</div>
+        <div class="col-md-8"><i class="ficon ficon-doc-1"></i> Jornal : Estado de São Paulo</div>
+        <div class="col-md-3"><button class="btn btn-info"><i class="ficon ficon-comment"></i>observações gerais</button></div>
+        <div class="col-md-1 text-right"><button class="btn btn-info"><i class="ficon ficon-trash"></i></button></div>
       </div>
     </div>
     <div class="panel-body">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <div class="row">
-            <div class="col-md-8">cadernos <strong>Anúncio futebol</strong></div>
-            <div class="col-md-2"><strong>valor unitário</strong></div>
-            <div class="col-md-2">R$ 1.000,00</div>
-          </div>
+      <div class="resume">
+        <table>
+          <tr>
+            <td><strong>características</strong></td>
+            <td>caderno<br><span class="label label-info">Esportes</span></td>
+            <td>formato<br><span class="label label-info">meia página</span></td>
+            <td>categoria<br><span class="label label-info">Esportes</span></td>
+            <td>dia da semana<br><span class="label label-info">domingo</span></td>
+            <td>determinação<br><span class="label label-info">capa</span></td>
+            <td>região<br><span class="label label-info"><button>ver regiões</button></span></td>
+            <td>
+              cor<br>
+              <div class="polychrome cian"></div>
+              <div class="polychrome yellow"></div>
+              <div class="polychrome magent"></div>
+            </td>
+            <td>quantidade<br><select><option>1</option></select></td>
+          </tr>
+        </table>
+      </div>
+
+      <div>
+        <div class="row head">
+          <div class="col-md-7"><strong>itens adicionados</strong></div>
+          <div class="col-md-1">observações</div>
+          <div class="col-md-2 text-center">*data de publicação</div>
+          <div class="col-md-2 text-center">valor</div>
         </div>
-        <div class="panel-body">
-          <table width="100%" class="table">
-            <thead>
-              <tr>
-                <td colspan="2">Formato</td>
-                <td>Cor</td>
-                <td>Atuação</td>
-                <td>Dia da semana</td>
-                <td>Categoria</td>
-                <td>Sexo</td>
-                <td>Quantidade</td>
-                <td>Total</td>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td colspan="2">meia página</td>
-                <td>cromia</td>
-                <td>são paulo</td>
-                <td>domingo</td>
-                <td>esportes</td>
-                <td>feminino</td>
-                <td><input type="text" size="3"></td>
-                <td>1.000,00</td>
-              </tr>
-              <tr>
-                <td>datas</td>
-                <td><input type="text" size="8"></td>
-                <td><input type="text" size="8"></td>
-                <td><input type="text" size="8"></td>
-                <td colspan="5"></td>
-              </tr>
-            </tbody>
-          </table>
+
+        <div class="row body">
+          <div class="col-md-7"><button class="btn btn-info"><i class="ficon ficon-trash"></i></button> Anúncio 1</div>
+          <div class="col-md-1 text-center"><button class="btn btn-info"><i class="ficon ficon-comment"></i></button></div>
+          <div class="col-md-2 text-center"><i class="ficon ficon-calendar"></i><input type="text" size="8"></div>
+          <div class="col-md-2 text-center"><strong>100.000,00</strong></div>
+        </div>
+        <div class="row body">
+          <div class="col-md-7"><button class="btn btn-info"><i class="ficon ficon-trash"></i></button> Anúncio 1</div>
+          <div class="col-md-1 text-center"><button class="btn btn-info"><i class="ficon ficon-comment"></i></button></div>
+          <div class="col-md-2 text-center"><i class="ficon ficon-calendar"></i><input type="text" size="8"></div>
+          <div class="col-md-2 text-center"><strong>100.000,00</strong></div>
+        </div>
+        <div class="row foot">
+          <div class="col-md-12 text-right"><strong>Total R$</strong><span class="label"> 20.000,00</span></div>
         </div>
       </div>
     </div>
@@ -105,70 +81,64 @@
   <div class="panel panel-default items-by-newspaper">
     <div class="panel-heading">
       <div class="row">
-        <div class="col-md-8"># Jornal XYZ</div>
-        <div class="col-md-1"><strong>valor total</strong></div>
-        <div class="col-md-2">R$ 1.000,00</div>
-        <div class="col-md-1">#</div>
+        <div class="col-md-8"><i class="ficon ficon-doc-1"></i> Jornal : Estado de São Paulo</div>
+        <div class="col-md-3"><button class="btn btn-info"><i class="ficon ficon-comment"></i>observações gerais</button></div>
+        <div class="col-md-1 text-right"><button class="btn btn-info"><i class="ficon ficon-trash"></i></button></div>
       </div>
     </div>
     <div class="panel-body">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <div class="row">
-            <div class="col-md-8">cadernos <strong>Anúncio futebol</strong></div>
-            <div class="col-md-2"><strong>valor unitário</strong></div>
-            <div class="col-md-2">R$ 1.000,00</div>
-          </div>
+      <div class="resume">
+        <table>
+          <tr>
+            <td><strong>características</strong></td>
+            <td>caderno<br><span class="label label-info">Esportes</span></td>
+            <td>formato<br><span class="label label-info">meia página</span></td>
+            <td>categoria<br><span class="label label-info">Esportes</span></td>
+            <td>dia da semana<br><span class="label label-info">domingo</span></td>
+            <td>determinação<br><span class="label label-info">capa</span></td>
+            <td>região<br><span class="label label-info"><button>ver regiões</button></span></td>
+            <td>
+              cor<br>
+              <div class="polychrome cian"></div>
+              <div class="polychrome yellow"></div>
+              <div class="polychrome magent"></div>
+            </td>
+            <td>quantidade<br><select><option>1</option></select></td>
+          </tr>
+        </table>
+      </div>
+
+      <div>
+        <div class="row head">
+          <div class="col-md-7"><strong>itens adicionados</strong></div>
+          <div class="col-md-1">observações</div>
+          <div class="col-md-2 text-center">*data de publicação</div>
+          <div class="col-md-2 text-center">valor</div>
         </div>
-        <div class="panel-body">
-          <table width="100%" class="table">
-            <thead>
-              <tr>
-                <td colspan="2">Formato</td>
-                <td>Cor</td>
-                <td>Atuação</td>
-                <td>Dia da semana</td>
-                <td>Categoria</td>
-                <td>Sexo</td>
-                <td>Quantidade</td>
-                <td>Total</td>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td colspan="2">meia página</td>
-                <td>cromia</td>
-                <td>são paulo</td>
-                <td>domingo</td>
-                <td>esportes</td>
-                <td>feminino</td>
-                <td><input type="text" size="3"></td>
-                <td>1.000,00</td>
-              </tr>
-              <tr>
-                <td>datas</td>
-                <td><input type="text" size="8"></td>
-                <td><input type="text" size="8"></td>
-                <td><input type="text" size="8"></td>
-                <td colspan="5"></td>
-              </tr>
-            </tbody>
-          </table>
+
+        <div class="row body">
+          <div class="col-md-7"><button class="btn btn-info"><i class="ficon ficon-trash"></i></button> Anúncio 1</div>
+          <div class="col-md-1 text-center"><button class="btn btn-info"><i class="ficon ficon-comment"></i></button></div>
+          <div class="col-md-2 text-center"><i class="ficon ficon-calendar"></i><input type="text" size="8"></div>
+          <div class="col-md-2 text-center"><strong>100.000,00</strong></div>
+        </div>
+        <div class="row body">
+          <div class="col-md-7"><button class="btn btn-info"><i class="ficon ficon-trash"></i></button> Anúncio 1</div>
+          <div class="col-md-1 text-center"><button class="btn btn-info"><i class="ficon ficon-comment"></i></button></div>
+          <div class="col-md-2 text-center"><i class="ficon ficon-calendar"></i><input type="text" size="8"></div>
+          <div class="col-md-2 text-center"><strong>100.000,00</strong></div>
+        </div>
+        <div class="row foot">
+          <div class="col-md-12 text-right"><strong>Total R$</strong><span class="label"> 20.000,00</span></div>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="panel panel-default resume">
-    <div class="panel-heading"><strong>Resumo</strong></div>
-    <div class="panel-body">
-      <div class="categories">
-        Geografia<div>São Paulo</div>
-      </div>
-      <div class="categories">
-        Faixa etária<div>+ 25 anos</div>
-      </div>
-    </div>
+  <div class="value-purchase">
+    <span>Total da compra
+      <span>40.000,00</span>
+    </span>
   </div>
 
   <div class="actions">
