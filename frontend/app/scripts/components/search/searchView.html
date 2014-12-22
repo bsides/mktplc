@@ -90,32 +90,4 @@
   </div>
 </div>
 
-<div class="container">
-  <div class="row search-results">
-
-    <div class="col-md-12">
-      <div class="row search-toolbar">
-
-        <span class="result-count">{{ formatResults(resultData.count) }}</span>
-
-        <div class="pull-right">
-          <span class="filter-label">ordenacao</span>
-          <select name="" id="" class="form-control whitey-sel">
-            <option value="">Ascendente</option>
-            <option value="">Por fases da lua</option>
-            <option value="">Em marte</option>
-          </select>
-
-          <span class="filter-label">views</span>
-          <button class="btn btn-default"><i class="ficon ficon-layout"></i></button>
-          <button class="btn btn-default"><i class="ficon ficon-menu"></i></button>
-          <span><i class="ficon"></i></span>
-        </div>
-
-      </div>
-      <div ng-include="results" ng-controller="ResultsCtrl"></div>
-
-    </div>
-  </div>
-</div>
-
+<div ng-include="results" ng-controller="ResultsCtrl" class="container"></div>

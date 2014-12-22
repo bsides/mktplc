@@ -201,7 +201,7 @@ module.exports = (grunt) ->
     # Automatically inject Bower components into the app
     wiredep:
       app:
-        src: ['<%= yeoman.app %>/layout.phtml']
+        src: ['<%= yeoman.app %>/layout.phtml','<%= yeoman.dist %>/layout.phtml']
         exclude: [
           'bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js'
           'bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/affix.js'
@@ -354,7 +354,7 @@ module.exports = (grunt) ->
         src: [
           '<%= yeoman.dist %>/scripts/**/*.js'
           '<%= yeoman.dist %>/styles/{,*/}*.css'
-          '<%= yeoman.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
+          # '<%= yeoman.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
           '<%= yeoman.dist %>/styles/fonts/*'
         ]
 
@@ -363,7 +363,7 @@ module.exports = (grunt) ->
     # concat, minify and revision files. Creates configurations in memory so
     # additional tasks can operate on them
     useminPrepare:
-      html: '<%= yeoman.app %>/index.php'
+      html: '<%= yeoman.app %>/layout.phtml'
       options:
         dest: '<%= yeoman.dist %>'
         flow:
@@ -380,7 +380,7 @@ module.exports = (grunt) ->
 
     # Performs rewrites based on filerev and the useminPrepare configuration
     usemin:
-      html: ['<%= yeoman.dist %>/{,*/}*.html']
+      html: ['<%= yeoman.dist %>/{,*/}*.phtml']
       css: ['<%= yeoman.dist %>/styles/{,*/}*.css']
       options:
         assetsDirs: [
@@ -445,9 +445,8 @@ module.exports = (grunt) ->
           expand: true
           cwd: '<%= yeoman.dist %>'
           src: [
-            '*.html'
-            'scripts/shared/{,*/}*.html'
-            'scripts/components/{,*/}*.html'
+            'layout.phtml'
+            '**/*.html'
           ]
           dest: '<%= yeoman.dist %>'
         ]
@@ -471,7 +470,7 @@ module.exports = (grunt) ->
     # Replace Google CDN references
     cdnify:
       dist:
-        html: ['<%= yeoman.dist %>/*.html']
+        html: ['<%= yeoman.dist %>/*.phtml']
 
 
     # Copies remaining files to places other tasks can use
@@ -546,6 +545,47 @@ module.exports = (grunt) ->
             dest: '<%= yeoman.public %>'
           }
         ]
+      build:
+        files: [
+          {
+            expand: true
+            cwd: '<%= yeoman.dist %>'
+            src: 'layout.phtml'
+            dest: '<%= yeoman.layout %>/'
+          }
+          {
+            expand: true
+            cwd: '<%= yeoman.dist %>'
+            src: 'index.phtml'
+            dest: '<%= yeoman.index %>/'
+          }
+          {
+            expand: true
+            filter: 'isFile'
+            cwd: '<%= yeoman.app %>/'
+            src: 'styles/fonts/*'
+            dest: '<%= yeoman.public %>/'
+          }
+          {
+            flatten: true
+            expand: true
+            filter: 'isFile'
+            src: '<%= yeoman.app %>/favicons/*'
+            dest: '<%= yeoman.public %>/'
+          }
+          {
+            expand: true
+            cwd: '<%= yeoman.dist %>/'
+            src: [
+              '**'
+              '!layout.phtml'
+              '!index.phtml'
+              '!index.html'
+              '!**/bower_components/**'
+            ]
+            dest: '<%= yeoman.public %>/'
+          }
+        ]
       dist:
         files: [
           {
@@ -558,10 +598,7 @@ module.exports = (grunt) ->
               '.htaccess'
               '*.html'
               '*.php'
-              'scripts/ui-templates.js'
-              'scripts/marketplace-templates.js'
-              #'scripts/shared/{,*/}*.html'
-              #'scripts/components/{,*/}*.html'
+              '*.phtml'
               'images/{,*/}*.{webp}'
               'fonts/{,*/}*.*'
             ]
@@ -658,7 +695,7 @@ module.exports = (grunt) ->
     ]
     return
 
-  grunt.registerTask 'dev', 'Essa tarefa deve ser usada para desenvolvimento apenas. Compila CoffeeScript, Sass (SCSS) e os copia nos caminhos necessarios em public (js/css/fonts/images). Execute "grunt publish" para enviar para deploy.', ->
+  grunt.registerTask 'dev', 'Essa tarefa deve ser usada para desenvolvimento apenas. Compila CoffeeScript, Sass (SCSS) e os copia nos caminhos necessarios em public (js/css/fonts/images). Execute "grunt build (ou publish ou deploy)" para enviar para deploy. Atenção: a tarefa "watch" fica executando (esperando modificação de arquivo para auto compilação). Para sair, pressione ctrl+x.', ->
     grunt.task.run [
       'clean:public'
       'clean:layout'
@@ -689,24 +726,45 @@ module.exports = (grunt) ->
     'connect:test'
     'karma'
   ]
-  grunt.registerTask 'build', [
-    'clean:dist'
-    'wiredep'
-    'useminPrepare'
-    'concurrent:dist'
-    'autoprefixer'
-    'html2js:bootstrap'
-    'html2js:marketplace'
-    #'concat'
-    'ngAnnotate'
-    'copy:dist'
-    #'cdnify'
-    #'cssmin'
-    #'uglify'
-    'filerev'
-    'usemin'
-    'htmlmin'
-  ]
+
+  grunt.registerTask 'build', ->
+    grunt.log.oklns 'Essa tarefa é para construir os arquivos em /public e as views do módulo Direct (layout / index). Para desenvolvimento, use a tarefa "grunt dev".'
+    grunt.log.subhead 'OBS - Essa tarefa apaga os diretórios de destino antes de compilar os arquivos'
+    try
+      grunt.task.run [
+        'clean:dist'
+        'html2js:bootstrap'
+        'html2js:marketplace'
+        'wiredep'
+        'useminPrepare'
+        'concurrent:dist'
+        'autoprefixer:dist'
+        'concat'
+        'ngAnnotate'
+        'copy:dist'
+        #'cdnify'
+        'cssmin'
+        'uglify'
+        'filerev'
+        'usemin'
+        'htmlmin'
+        'clean:public'
+        'copy:build'
+      ]
+      grunt.verbose.ok()
+    catch e
+      grunt.verbose.or.write().error().error(e.message);
+      grunt.fail.warn 'Algo deu errado! Veja o erro acima.'
+
+
+  grunt.registerTask 'publish', (target) ->
+    grunt.log.oklns 'Esse comando é só um alias para "grunt build"'
+    grunt.task.run ['build:' + target]
+
+  grunt.registerTask 'deploy', (target) ->
+    grunt.log.oklns 'Esse comando é só um alias para "grunt build"'
+    grunt.task.run ['build:' + target]
+
   grunt.registerTask 'default', [
     'newer:jshint'
     'test'
