@@ -36,32 +36,32 @@
                       </a>
                     </td>
                     <td colspan="4">
-                      <h4 class="media-heading">{{ result.newspaper }}</h4>
+                      <h4>{{ result.newspaper }}</h4>
                     </td>
                     <td class="added" ng-show="addedToCart">
                       <div><i class="ficon ficon-basket"></i></div>
                     </td>
                   </tr>
-                  <tr>
-                    <td class="padding-0">formato</td>
+                  <tr class="info">
+                    <td>formato</td>
                     <td colspan="2"><strong>{{ result.format }}</strong></td>
                   </tr>
-                  <tr>
-                    <td class="padding-0">caderno</td>
+                  <tr class="info">
+                    <td>caderno</td>
                     <td colspan="2"><strong>{{ result.column }}</strong></td>
                   </tr>
                   <tr>
                     <td colspan="3">
-                      <div class="polychrome cian"></div>
+                      <div class="polychrome cyan"></div>
                       <div class="polychrome yellow"></div>
-                      <div class="polychrome magent"></div>
+                      <div class="polychrome magenta"></div>
                     </td>
                     <td colspan="3" class="reg"><i class="ficon ficon-location"></i> <span>ver regiões</span></td>
                     <td colspan="2"></td>
                   </tr>
                   <tr>
                     <td colspan="5">
-                      <div class="text-right">R$ <span class="price">{{ result.price }}</span></div>
+                      <div class="text-right full-price">R$ <span class="price">{{ result.price }}</span></div>
                     </td>
                     <td colspan="3" class="text-right">
                       <button type="button" class="btn btn-primary" ng-click="addToCart(9090909)" disabled="disabled">Adicionar</button>
