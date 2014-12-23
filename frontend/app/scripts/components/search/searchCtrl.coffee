@@ -13,3 +13,6 @@ app.controller 'SearchCtrl', ($scope) ->
   $scope.goCart = ->
     window.location.href="/bids"
 
+  $scope.test = ->
+    console.log("mudou");
+
