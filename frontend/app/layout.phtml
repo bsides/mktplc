@@ -1,5 +1,5 @@
 <?php echo $this->doctype(); ?>
-<html class="no-js" ng-app="marketplaceApp">
+<html class="no-js" ng-app="marketplaceApp" ng-controller="MainCtrl">
   <head>
     <meta charset="utf-8">
     <base href="<?php echo $this->url('home'); ?>">
@@ -90,6 +90,7 @@
     <script src="scripts/marketplace-templates.js"></script>
     <script src="scripts/ui-templates.js"></script>
     <script src="scripts/app.js"></script>
+    <script src="scripts/shared/mainServices.js"></script>
     <script src="scripts/shared/mainCtrl.js"></script>
     <script src="scripts/shared/nav/navCtrl.js"></script>
     <script src="scripts/shared/login/loginCtrl.js"></script>

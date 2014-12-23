@@ -1,6 +1,6 @@
 'use strict'
 
-app.controller 'ResultsCtrl', ($scope, ResultService) ->
+app.controller 'ResultsCtrl', ($scope, $http, ResultService, $rootScope) ->
 # rows with ng-repeat
 # http://angularjs4u.com/filters/angularjs-template-divs-row/
 
@@ -25,3 +25,5 @@ app.controller 'ResultsCtrl', ($scope, ResultService) ->
   $scope.isOrderAsc = true
   $scope.toggleOrder = ->
     $scope.isOrderAsc = not $scope.isOrderAsc
+
+  $scope.cart = $rootScope.tcart
