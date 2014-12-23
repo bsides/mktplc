@@ -4,6 +4,7 @@ frontend/.tmp
 frontend/.sass-cache
 frontend/bower_components
 frontend/app/scripts/marketplace-templates.js
+frontend/app/scripts/ui-templates.js
 public/*
 module/Direct/view/index/*
 module/Direct/view/layout/*

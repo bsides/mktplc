@@ -15,7 +15,7 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 // endbower
 
 // Our icons (already inserted into the html since it's already a css)
-// @import "direct-icons.css";
+@import "direct-icons.css";
 
 // Mais parts
 @import "header";
