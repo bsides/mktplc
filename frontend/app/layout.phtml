@@ -1,9 +1,9 @@
 <?php echo $this->doctype(); ?>
-<html class="no-js">
+<html class="no-js" ng-app="marketplaceApp">
   <head>
     <meta charset="utf-8">
     <base href="<?php echo $this->url('home'); ?>">
-    <?php echo $this->headTitle('Marketplace') ?>
+    <title ng-bind="title">Marketplace</title>
     <?php // echo $this->headTitle('Marketplace '. $this->translate('Skeleton Application'))->setSeparator(' - ')->setAutoEscape(false) ?>
     <meta name="description" content="">
     <?php echo $this->headMeta()
@@ -35,7 +35,7 @@
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="msapplication-TileImage" content="/mstile-144x144.png">
   </head>
-  <body ng-app="marketplaceApp">
+  <body>
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -81,6 +81,7 @@
     <script src="bower_components/angular-touch/angular-touch.js"></script>
     <script src="bower_components/moment/moment.js"></script>
     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="bower_components/angular-route-styles/route-styles.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 

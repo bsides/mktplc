@@ -20,3 +20,8 @@ app.controller 'ResultsCtrl', ($scope, ResultService) ->
   # Modo de Visualização
   # aceita "view-regular" ou "view-compact"
   $scope.viewMode = 'view-regular'
+
+  # Ordenação começa de forma ascendente
+  $scope.isOrderAsc = true
+  $scope.toggleOrder = ->
+    $scope.isOrderAsc = not $scope.isOrderAsc

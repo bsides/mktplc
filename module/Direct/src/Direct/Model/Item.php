@@ -28,15 +28,15 @@ class Item
         $newspaper[] = 'Folha';
         $newspaper[] = 'O Globo';
 
-        $weekDays[] = 'Segundas';
-        $weekDays[] = 'Terças';
-        $weekDays[] = 'Domingos';
+        $weekDays[] = 'Seg';
+        $weekDays[] = 'Ter';
+        $weekDays[] = 'Dom';
 
-        setlocale(LC_MONETARY, 'pt_BR');
+        // setlocale(LC_MONETARY, 'pt_BR');
         for($x=0; $x<=rand(3,8); $x++) {
             $deal['id'] = rand(1,999);
             $deal['color'] = $color[rand(0,2)];
-            $deal['price'] = money_format('%.2n', rand(1000.00,99999.00));
+            $deal['price'] = number_format(rand(10000.01,99999.99), 2);
             $deal['column'] = $column[rand(0,1)];
             $deal['format'] = $format[rand(0,2)];
             $deal['newspaper'] = $newspaper[rand(0,2)];

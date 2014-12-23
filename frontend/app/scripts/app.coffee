@@ -21,6 +21,7 @@ root.app = angular
     'ngMessages'
     'ngResource'
     'ngRoute'
+    'routeStyles'
     'ngSanitize'
     'ngTouch'
   ])
@@ -35,21 +36,26 @@ root.app = angular
       .when '/search',
         templateUrl: 'scripts/components/search/searchView.html'
         controller: 'SearchCtrl'
+        title: 'Marketplace - Busca de ofertas'
       .when '/results',
         templateUrl: 'scripts/components/results/resultsView.html'
         controller: 'ResultsCtrl'
       .when '/purchases',
         templateUrl: 'scripts/components/purchases/purchasesView.html'
         controller: 'PurchasesCtrl'
+        css: 'styles/purchases.css'
+        title: 'Marketplace - Últimas compras'
       .when '/bids',
         templateUrl: 'scripts/components/bids/bidsView.html'
         controller: 'BidsCtrl'
+        title: 'Marketplace - Enviando proposta'
       .when '/campaigns',
         templateUrl: 'scripts/components/campaigns/campaignsView.html'
         controller: 'CampaignsCtrl'
       .when '/login',
         templateUrl: 'scripts/shared/login/loginView.html'
         controller: 'LoginCtrl'
+        title: 'Entrando no Marketplace'
       .otherwise
         redirectTo: '/'
 
@@ -64,6 +70,15 @@ root.app = angular
     $locationProvider.html5Mode(true)
 
 
+# Setup title
+app.run [
+  '$location'
+  '$rootScope'
+  ($location, $rootScope) ->
+    $rootScope.$on "$routeChangeSuccess", (event, current, previous) ->
+      $rootScope.title = current.$$route.title
+      return
+]
 
 ###*
  # @ngdoc object

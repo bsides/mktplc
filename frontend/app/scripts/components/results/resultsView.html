@@ -6,12 +6,16 @@
       <span class="result-count">{{ formatResults(searchData.length) }}</span>
 
       <div class="pull-right">
-        <span class="filter-label">ordenacao</span>
-        <select name="" id="" class="form-control whitey-sel" ng-model="selectedOrder">
-          <option value="">Aleatória</option>
-          <option value="price">Por preço</option>
-          <option value="newspaper">Por jornal</option>
-        </select>
+        <!-- <span class="filter-label">ordenacao</span> -->
+        <div class="ordering btn-group">
+          <select name="" id="" class="form-control whitey-sel" ng-model="selectedOrder">
+            <option value="">Ordenar aleatoriamente</option>
+            <option value="newspaper">Ordenar por jornal</option>
+            <option value="price">Ordenar por preço</option>
+            <option value="column">Ordenar por caderno</option>
+          </select>
+          <button type="button" class="btn btn-default" ng-click="toggleOrder()" title="{ isOrderAsc ? 'Trocar para ordenação decrescente' : 'Trocar para ordenação ascendente' }"><i ng-class="isOrderAsc ? 'ficon ficon-down' : 'ficon ficon-up'"></i></button>
+        </div>
 
         <div class="btn-group">
           <label class="btn btn-default" ng-model="viewMode" btn-radio="'view-regular'"><i class="ficon ficon-layout"></i></label>
@@ -23,7 +27,7 @@
 
     <div class="search-results" ng-class="viewMode">
       <div class="row" ng-repeat="result in (searchData.length / 3 | returnArray)">
-        <div ng-class="{ 'col-md-4': viewMode == 'view-regular', 'col-md-12': viewMode == 'view-compact' }" ng-repeat="result in searchData.slice(3 * $index, 3 * $index + 3) | orderBy:selectedOrder">
+        <div ng-class="{ 'col-md-4': viewMode == 'view-regular', 'col-md-12': viewMode == 'view-compact' }" ng-repeat="result in searchData.slice(3 * $index, 3 * $index + 3) | orderBy:selectedOrder:!isOrderAsc">
 
           <div class="panel panel-default">
             <div class="panel-body">
