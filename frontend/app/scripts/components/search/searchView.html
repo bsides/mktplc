@@ -1,18 +1,16 @@
 <div class="start-search">
-  <div class="back-ground"></div>
+  <div class="background"></div>
   <div class="container">
     <div class="panel panel-default">
       <div class="panel-body">
         <strong>Anunciante</strong>
-        <select name="advertisers" ng-bind="test()">
-          <option value="0">selecione</option>
-          <option value="1">Adv1</option>
-          <option value="2">Adv2</option>
+        <select name="advertisers" ng-model="isAdvertiser">
+          <option value="">Selecione um Anunciante</option>
+          <option ng-repeat="advertiser in advertisers | orderBy:'name'" value="{{advertiser.id}}">{{advertiser.name}}</option>
         </select>
       </div>
     </div>
-    <div class="disabled"></div>
-    <div class="panel panel-default wp-search">
+    <div class="panel panel-default wp-search" ng-class="isAdvertiser > 0 ? test() : 'disabled'">
       <div class="panel-body">
         <strong> Busca de Ofertas </strong>
         <span>Preencha ao menos um dos campos para prosseguir</span>
@@ -23,7 +21,7 @@
             </tab-heading>
 
             <div class="clear-filters">
-              <button class="btn">limpar filtros</button>
+              <button class="btn" ng-click="clearFilters()">limpar filtros</button>
             </div>
             <div class="row whitey">
               <table>
@@ -32,7 +30,7 @@
                     *categoria
                     <input type="text" placeholder="digite ou selecione">
                   </td>
-                  <td>
+                  <td class="filters">
                     <span class="label label-info">jornal A</span>
                     <span class="label label-info">jornal B</span>
                     <span class="label label-info">1/2 pagina</span>
@@ -49,7 +47,7 @@
             </tab-heading>
 
             <div class="clear-filters">
-              <button class="btn">limpar filtros</button>
+              <button class="btn" ng-click="clearFilters()">limpar filtros</button>
             </div>
             <div class="row whitey">
               <table>
@@ -58,7 +56,7 @@
                     *determinação
                     <input type="text" placeholder="digite ou selecione">
                   </td>
-                  <td><span class="label label-info">capa</span></td>
+                  <td class="filters"><span class="label label-info">capa</span></td>
                 </tr>
               </table>
             </div>
@@ -79,7 +77,7 @@
                     *dia da semana
                     <input type="text" placeholder="digite ou selecione">
                   </td>
-                  <td>
+                  <td class="filters">
                     <span class="label label-info">sexta</span>
                     <span class="label label-info">sabado</span>
                     <span class="label label-info">domingo</span>
@@ -103,7 +101,7 @@
                     *região
                     <input type="text" placeholder="digite ou selecione">
                   </td>
-                  <td></td>
+                  <td class="filters"></td>
                 </tr>
               </table>
             </div>

@@ -1,5 +1,5 @@
 .start-search {
-  .back-ground {
+  .background {
     background-color: #b3cedc;
     height: 250px;
     margin-top: -20px;
@@ -48,17 +48,23 @@
     .row.whitey {
       border: 1px solid #cdcdcd;
     }
-    .disabled {
-      z-index: 99;
-      background-color: rgb(205, 205, 205);
-      position: relative; height: 130px;
-      border-radius: 4px;
-      opacity: 0.3;
-    }
-    .wp-search {
-      position: relative;
-      margin-top: -130px;
-      min-height: 130px;
+    .wp-search.disabled {
+      color: #919191;
+
+      strong {
+        color: #a6a8a9;
+      }
+      .filter-tab li > a {
+        background-color: #f9f9f9;
+        color: #a6a8a9;
+      }
+      i {
+        color: #9ddbbb;
+      }
+
+      .tab-content {
+        display: none;
+      }
     }
     .panel-body {
       padding: 10px;
@@ -90,9 +96,7 @@
       border: none;
       color: #555555;
       font-weight: bold;
-    }
-    .tab-content {
-      display: none;
+      text-align: left;
     }
   }
 }

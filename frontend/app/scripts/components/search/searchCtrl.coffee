@@ -10,9 +10,23 @@ app.controller 'SearchCtrl', ($scope) ->
   $scope.resultData =
     count: 10
 
+  $scope.advertisers =  [
+                          { name:'Cdv', id:1 },
+                          { name:'Vdv', id:2 },
+                          { name:'Adv', id:3 }
+                        ]
+
+  $scope.categories =   [
+                          { name:'Esportes', id:1 },
+                          { name:'Classificados', id:2 },
+                          { name:'Entretenimento', id:3 }
+                        ]
+
   $scope.goCart = ->
     window.location.href="/bids"
 
   $scope.test = ->
-    console.log("mudou");
+    console.log('test')
 
+  $scope.clearFilters = ->
+    $("td.filters").empty()
