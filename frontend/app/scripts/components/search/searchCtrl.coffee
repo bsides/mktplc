@@ -30,3 +30,11 @@ app.controller 'SearchCtrl', ($scope) ->
 
   $scope.clearFilters = ->
     $("td.filters").empty()
+
+  $scope.formatResults = (counter) ->
+    if counter > 1
+      $scope.resultLabel = counter + ' resultados'
+    else if results == 1
+      $scope.resultLabel = counter + ' resultado'
+    else
+      $scope.resultLabel = 'Sua busca não retornou resultados'
