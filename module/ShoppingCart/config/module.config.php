@@ -39,6 +39,17 @@ return [
                     ],
                 ),
             ),
+            'cart-empty' => array(
+                'type'    => 'Segment',
+                'options' => array(
+                    'route'    => '/cart/empty',
+                    'defaults' => [
+                        '__NAMESPACE__' => 'ShoppingCart\Controller',
+                        'controller'    => 'Index',
+                        'action'        => 'empty',
+                    ],
+                ),
+            ),
         ],
     ],
     'service_manager' => [

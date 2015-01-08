@@ -89,15 +89,25 @@ class ShoppingCart implements Countable, ArrayAccess, Iterator
             unset($this->items[$item]);
         }
         if ($item instanceof Item) {
-            unset($this->items[$item->getId]);
+            unset($this->items[$item->getId()]);
         }
         $this->persist();
+    }
+
+    /**
+     * @return bool
+     */
+    public function clear()
+    {
+        $this->getStorage()->clear();
+        return TRUE;
     }
 
     private function persist()
     {
         $this->getStorage()
              ->clear();
+
         $this->getStorage()
              ->write( $this->items );
     }
