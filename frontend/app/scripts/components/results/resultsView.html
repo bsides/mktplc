@@ -14,7 +14,7 @@
             <option value="price">Ordenar por preço</option>
             <option value="column">Ordenar por caderno</option>
           </select>
-          <button type="button" class="btn btn-default" ng-click="toggleOrder()" title="{ isOrderAsc ? 'Trocar para ordenação decrescente' : 'Trocar para ordenação ascendente' }"><i ng-class="isOrderAsc ? 'ficon ficon-down' : 'ficon ficon-up'"></i></button>
+          <button type="button" class="btn btn-default" ng-class="selectedOrder ? '' : 'disabled'" ng-click="toggleOrder()" ng-attr-title="{{ orderTooltip() }}" tooltip="{{ orderTooltip() }}"><i ng-class="isOrderAsc ? 'ficon ficon-down' : 'ficon ficon-up'"></i></button>
         </div>
 
         <div class="btn-group">
@@ -32,7 +32,7 @@
           <div class="panel panel-default">
             <div class="panel-body">
               <div class="section">
-                <table>
+                <table ng-attr-id="{{ result.id }}">
                   <tr class="top">
                     <td rowspan="3" colspan="3" class="week-day">
                       <a href="#">
@@ -68,7 +68,12 @@
                       <div class="text-right full-price">R$ <span class="price">{{ result.price }}</span></div>
                     </td>
                     <td colspan="3" class="text-right">
-                      <button type="button" class="btn btn-primary" ng-click="cart.add">Adicionar</button>
+                      <input type="hidden" name="weekdays" value="{{ result.weekDays }}">
+                      <input type="hidden" name="newspaper" value="{{ result.newspaper }}">
+                      <input type="hidden" name="format" value="{{ result.format }}">
+                      <input type="hidden" name="column" value="{{ result.column }}">
+                      <input type="hidden" name="price" value="{{ result.price }}">
+                      <button type="button" class="btn btn-primary" ng-click="addToCart(result)">Adicionar</button>
                     </td>
                   </tr>
                 </table>

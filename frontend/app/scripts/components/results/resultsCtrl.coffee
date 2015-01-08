@@ -1,6 +1,6 @@
 'use strict'
 
-app.controller 'ResultsCtrl', ($scope, $http, ResultService, $rootScope) ->
+app.controller 'ResultsCtrl', ($scope, $rootScope, $filter, $http, ResultService) ->
 # rows with ng-repeat
 # http://angularjs4u.com/filters/angularjs-template-divs-row/
 
@@ -26,4 +26,31 @@ app.controller 'ResultsCtrl', ($scope, $http, ResultService, $rootScope) ->
   $scope.toggleOrder = ->
     $scope.isOrderAsc = not $scope.isOrderAsc
 
+  # Tooltip dinâmica de acordo com a ordenação
+  $scope.orderTooltip = ->
+    if $scope.isOrderAsc then 'Trocar para ordem decrescente' else 'Trocar para ordem crescente'
+
   $scope.cart = $rootScope.tcart
+
+
+  # Ações do carrinho
+  # $scope.cart =
+  #   add: (id) ->
+  #     found = $filter('filter')($scope.searchData, {id: id}, true)
+  #     if found.length
+  #       console.log JSON.stringify(found[0])
+
+  # $scope.testando = (item) ->
+  #   console.log item
+
+  $scope.addToCart = (bid) ->
+    req =
+      method: 'POST'
+      url: '/cart/add'
+      data: bid
+
+    $http(req).success(->
+      'Adicionado com sucesso'
+    ).error (->
+      'Houve um error ao adicionar'
+    )
