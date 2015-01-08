@@ -714,6 +714,23 @@ module.exports = (grunt) ->
       'watch'
     ]
 
+  grunt.registerTask 'back', 'Essa tarefa deve ser usada para desenvolvimento apenas. Faz as coisas do Frontend ficarem no lugar deles. Ideal para Backend.', ->
+    grunt.task.run [
+      'clean:public'
+      'clean:layout'
+      'clean:index'
+      'html2js:bootstrap'
+      'html2js:marketplace'
+      'wiredep'
+      'concurrent:dev'
+      'autoprefixer:dev'
+      'copy:public'
+      'copy:layout'
+      'copy:index'
+      'copy:favicons'
+      'copy:bowercopy'
+    ]
+
   grunt.registerTask 'server', 'DEPRECATED TASK. Use the "serve" task instead', (target) ->
     grunt.log.warn 'The `server` task has been deprecated. Use `grunt serve` to start a server.'
     grunt.task.run ['serve:' + target]
@@ -764,6 +781,14 @@ module.exports = (grunt) ->
   grunt.registerTask 'deploy', (target) ->
     grunt.log.oklns 'Esse comando é só um alias para "grunt build"'
     grunt.task.run ['build:' + target]
+
+  grunt.registerTask 'backend', (target) ->
+    grunt.log.oklns 'Esse comando é só um alias para "grunt back"'
+    grunt.task.run ['back:' + target]
+
+  grunt.registerTask 'be', (target) ->
+    grunt.log.oklns 'Esse comando é só um alias para "grunt back"'
+    grunt.task.run ['back:' + target]
 
   grunt.registerTask 'default', [
     'newer:jshint'
