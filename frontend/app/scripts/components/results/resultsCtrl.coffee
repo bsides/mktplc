@@ -1,6 +1,6 @@
 'use strict'
 
-app.controller 'ResultsCtrl', ($scope, $filter, $http, Results) ->
+app.controller 'ResultsCtrl', ($scope, $rootScope, $filter, $http, Results) ->
 # rows with ng-repeat
 # http://angularjs4u.com/filters/angularjs-template-divs-row/
 
@@ -63,9 +63,12 @@ app.controller 'ResultsCtrl', ($scope, $filter, $http, Results) ->
     #   'Houve um erro ao adicionar'
     # )
     Results.add(bid).success((data) ->
-      data
+      console.log data
+      console.log bid.price
+      $rootScope.cartTotal = parseInt($rootScope.cartTotal) + parseInt(bid.price)
+      console.log $rootScope.cartTotal
     ).error((data) ->
-      data
+      console.log data
     )
 
   # Remover

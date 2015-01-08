@@ -5,8 +5,10 @@ app.factory 'Results', ($resource, $http) ->
     get: '/direct/item'
     add: '/cart/add'
     remove: '/cart/delete/'
+    cart: '/cart'
 
-  #$resource(url.get)
+  cartTotal: (price) ->
+    price = price + price
 
   get: ->
     $http.get(url.get)
@@ -23,3 +25,6 @@ app.factory 'Results', ($resource, $http) ->
       method: 'POST'
       url: url.remove + bidId
     )
+
+  cart: ->
+    $http.get(url.cart)

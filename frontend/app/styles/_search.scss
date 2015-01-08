@@ -1,4 +1,7 @@
 // Structure
+.container + .container {
+  margin-bottom: 30px;
+}
 .whitey {
   background: $white;
   margin: 0;
