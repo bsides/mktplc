@@ -19,13 +19,13 @@ class IndexController extends AbstractActionController
 
     public function addAction()
     {
+        $request = $this->getRequest();
+        if ($request->isXmlHttpRequest() === FALSE)
+            return new JsonModel([]);
+
         $cart = $this->getServiceLocator()->get('cart.service');
-        for($x=1; $x<=rand(2,10); $x++) {
-            $item = new Model\Item;
-            $item->setId($x);
-            $item->setName('Item ' . $x);
-            $item->setQuantity(rand(1,20));
-            $item->setPrice(floatval(rand(100,2000)));
+        if ($request->isPost()) {
+            $item = new Model\Item($request->getPost()->toArray());
             $cart->addItem($item);
         }
         return new JsonModel(['message' => 'success']);
@@ -38,6 +38,13 @@ class IndexController extends AbstractActionController
             $cart = $this->getServiceLocator()->get('cart.service');
             $cart->removeItem($id);
         }
+        return new JsonModel(['message' => 'success']);
+    }
+
+    public function emptyAction()
+    {
+        $cart = $this->getServiceLocator()->get('cart.service');
+        $cart->clear();
         return new JsonModel(['message' => 'success']);
     }
 }
