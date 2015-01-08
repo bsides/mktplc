@@ -1,26 +1,99 @@
 .items-by-newspaper {
   margin-top: 20px;
-}
-.resume {
+
+  .panel-heading {
+    background: #ffffff;
+  }
   .panel-body {
-    .categories {
-      margin-top: 20px;
-      padding: 10px;
-      display: inline-block;
-      margin-right: 15px;
-      background-color: #FFF;
-      border: 2px solid #f2f2f2;
-      div {
-        padding: 5px 15px;
-        margin-left: 10px;
-        display: inline-block;
-        background-color: #E4F1E7;
-        border-radius: 4px;
+    padding: 10px;
+
+    .resume {
+      border: 2px solid #488fbe;
+      margin: 10px auto 20px;
+      padding: 0;
+
+      table {
+        margin: 0;
+
+        tr {
+          td {
+            font-size: $font-size-small;
+            padding: 10px 0;
+
+            &:last-child {
+              background-color: #dff2fc;
+              text-align: right;
+              padding-right: 10px;
+              width: 80px;
+            }
+            &:first-child {
+              width: 120px;
+              padding-left: 10px;
+            }
+            span > button {
+              border: none;
+              background: none;
+              text-decoration: underline;
+            }
+          }
+        }
       }
+    }
+    .row {
+      margin: 0 auto;
+      &.body {
+        margin-top: 10px;
+
+        & > div {
+          border: 1px solid #cdcdcd;
+          border-right: 0;
+          border-left: 0;
+          line-height: 40px;
+          input {
+            line-height: normal;
+          }
+          &:last-child {
+            border-right: 1px solid #cdcdcd;
+          }
+          &:first-child {
+            border-left: 1px solid #cdcdcd;
+          }
+        }
+      }
+      &.foot {
+        margin: 30px 0;
+
+        div {
+          padding-right: 0;
+
+          span {
+            margin-left: 10px;
+            background-color: #ebebeb;
+            color: #444;
+            font-size: $font-size-base;
+            font-weight: bold;
+            border-radius: 0;
+          }
+        }
+      }
+    }
+  }
+}
+.value-purchase {
+  text-align: right;
+  margin-top: 30px;
+
+  & > span {
+    padding: 10px 30px;
+    background-color: #e1faed;
+
+    & > span {
+      margin-left: 30px;
+      font-weight: bold;
     }
   }
 }
 .actions {
   text-align: right;
-  margin: 30px 0;
+  margin: 60px 0;
 }

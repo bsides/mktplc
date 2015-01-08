@@ -13,6 +13,13 @@ app.controller 'SearchCtrl', ($scope, $rootScope) ->
   $scope.resultData =
     count: 10
 
+  $scope.formatResults = (counter) ->
+    if counter > 1
+      $scope.resultLabel = counter + ' resultados'
+    else if results == 1
+      $scope.resultLabel = counter + ' resultado'
+    else
+      $scope.resultLabel = 'Sua busca não retornou resultados'
+
   $scope.goCart = ->
     window.location.href="/bids"
-
