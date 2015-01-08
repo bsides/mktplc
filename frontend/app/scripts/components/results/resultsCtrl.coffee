@@ -16,8 +16,10 @@ app.controller 'ResultsCtrl', ($scope, $filter, $http, Results) ->
   # Deal with them
   Results.get().success(handleAllResults)
 
+  # Counter
   $scope.countResults = $scope.searchData.length
 
+  # Formatador de resultado
   $scope.formatResults = (counter) ->
     if counter > 1
       $scope.resultLabel = counter + ' resultados'
@@ -43,16 +45,14 @@ app.controller 'ResultsCtrl', ($scope, $filter, $http, Results) ->
 
 
   # Ações do carrinho
-  # $scope.cart =
-  #   add: (id) ->
-  #     found = $filter('filter')($scope.searchData, {id: id}, true)
-  #     if found.length
-  #       console.log JSON.stringify(found[0])
-
-  # $scope.testando = (item) ->
-  #   console.log item
-
+  # Adicionar
+  $scope.url =
+    get: '/direct/item'
+    add: '/cart/add'
+    remove: '/cart/delete/'
   $scope.addToCart = (bid) ->
+    # adicionamos manualmente a quantidade 1 caso quantity não exista
+    bid.quantity = 1 unless bid.quantity
     req =
       method: 'POST'
       url: '/cart/add'
@@ -61,5 +61,27 @@ app.controller 'ResultsCtrl', ($scope, $filter, $http, Results) ->
     $http(req).success(->
       'Adicionado com sucesso'
     ).error (->
-      'Houve um error ao adicionar'
+      'Houve um erro ao adicionar'
     )
+    # Results.add(bid).success(handleAllResults)
+
+  # Remover
+  $scope.removeFromCart = (bidId) ->
+    req =
+      method: 'POST'
+      url: '/car/delete/' + bidId
+
+    $http(req).success(->
+      'Removido com sucesso'
+    ).error(->
+      'Houve um erro ao remover ' + bidId
+    )
+
+  # $scope.cart =
+  #   add: (id) ->
+  #     found = $filter('filter')($scope.searchData, {id: id}, true)
+  #     if found.length
+  #       console.log JSON.stringify(found[0])
+
+  # $scope.testando = (item) ->
+  #   console.log item

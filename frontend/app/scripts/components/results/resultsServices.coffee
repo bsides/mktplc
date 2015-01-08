@@ -1,8 +1,22 @@
 'use strict'
 
 app.factory 'Results', ($resource, $http) ->
-  urlBase = '/direct/item'
-  #$resource(urlBase)
+  url =
+    get: '/direct/item'
+    add: '/cart/add'
+    remove: '/cart/delete/'
+
+  #$resource(url.get)
 
   get: ->
-    $http.get(urlBase)
+    $http.get(url.get)
+
+  add: (bid) ->
+    console.log bid
+    $http.get(
+      method: 'POST'
+      url: url.add
+      data: bid
+    )
+
+  delete: ->

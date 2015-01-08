@@ -68,11 +68,6 @@
                       <div class="text-right full-price">R$ <span class="price">{{ result.price }}</span></div>
                     </td>
                     <td colspan="3" class="text-right">
-                      <input type="hidden" name="weekdays" value="{{ result.weekDays }}">
-                      <input type="hidden" name="newspaper" value="{{ result.newspaper }}">
-                      <input type="hidden" name="format" value="{{ result.format }}">
-                      <input type="hidden" name="column" value="{{ result.column }}">
-                      <input type="hidden" name="price" value="{{ result.price }}">
                       <button type="button" class="btn btn-primary" ng-click="addToCart(result)">Adicionar</button>
                     </td>
                   </tr>
