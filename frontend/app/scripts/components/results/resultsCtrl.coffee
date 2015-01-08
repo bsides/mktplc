@@ -1,10 +1,21 @@
 'use strict'
 
-app.controller 'ResultsCtrl', ($scope, $rootScope, $filter, $http, ResultService) ->
+app.controller 'ResultsCtrl', ($scope, $filter, $http, Results) ->
 # rows with ng-repeat
 # http://angularjs4u.com/filters/angularjs-template-divs-row/
 
-  $scope.searchData = ResultService.query()
+  # Try to get results
+  $scope.searchData = []
+
+  handleAllResults = (data, status) ->
+    if status == 200
+      $scope.searchData = data
+    else
+      $scope.searchData = 'Erro ao retornar os dados'
+
+  # Deal with them
+  Results.get().success(handleAllResults)
+
   $scope.countResults = $scope.searchData.length
 
   $scope.formatResults = (counter) ->
@@ -29,8 +40,6 @@ app.controller 'ResultsCtrl', ($scope, $rootScope, $filter, $http, ResultService
   # Tooltip dinâmica de acordo com a ordenação
   $scope.orderTooltip = ->
     if $scope.isOrderAsc then 'Trocar para ordem decrescente' else 'Trocar para ordem crescente'
-
-  $scope.cart = $rootScope.tcart
 
 
   # Ações do carrinho

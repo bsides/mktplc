@@ -1,5 +1,8 @@
 'use strict'
 
-app.factory 'ResultService', ($resource) ->
+app.factory 'Results', ($resource, $http) ->
   urlBase = '/direct/item'
-  $resource(urlBase)
+  #$resource(urlBase)
+
+  get: ->
+    $http.get(urlBase)
