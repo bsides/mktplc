@@ -60,6 +60,15 @@ root.app = angular
     $httpProvider.defaults.withCredentials = true
     delete $httpProvider.defaults.headers.common['X-Requested-With']
 
+    # Intercept POST requests, convert to standard form encoding
+    $httpProvider.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded"
+    $httpProvider.defaults.transformRequest.unshift (data, headersGetter) ->
+      key = undefined
+      result = []
+      for key of data
+        result.push encodeURIComponent(key) + "=" + encodeURIComponent(data[key])  if data.hasOwnProperty(key)
+      result.join "&"
+
   .config ($locationProvider) ->
     $locationProvider.html5Mode(true)
 
