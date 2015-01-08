@@ -7,4 +7,4 @@
  # # MainCtrl
  # Controller of the marketplaceApp
 ###
-app.controller 'MainCtrl', ($scope) ->
+app.controller 'MainCtrl', ($rootScope) ->

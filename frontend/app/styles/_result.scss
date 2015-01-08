@@ -1,0 +1,224 @@
+.search-filters {
+  background: $results-bg;
+  border: 2px solid $white;
+  border-radius: $border-radius-base;
+  margin: 0;
+
+  .search-toolbar {
+    background: $toolbar-bg;
+    margin-bottom: 14px;
+    padding: 10px 14px;
+  }
+  .result-count {
+    font-weight: bold;
+    color: $main-color;
+  }
+}
+// Structure
+.container + .container {
+  margin-top: 30px;
+}
+.form-control.whitey-sel {
+  display: inline-block;
+  width: auto;
+  margin-left: 16px;
+}
+
+// Ordering
+.btn-group.ordering {
+  margin-right: 40px;
+
+  & > select {
+    border-radius: 0;
+    border-bottom-left-radius: $border-radius-base;
+    border-top-left-radius: $border-radius-base;
+    float: left;
+    position: relative;
+  }
+}
+
+// Result
+// viewMode = compact
+.view-compact {
+
+  .panel {
+    margin-bottom: 8px;
+    box-shadow: 1px 2px 1px rgba(0, 0, 0, 0.2);
+  }
+  .panel-body{
+
+    // Legibilidade >>>>> Código.
+    table {
+      margin: 0;
+    }
+    tr {
+      width: 25%;
+    }
+    tr + tr {
+      width: 15%;
+    }
+    tr + tr + tr {
+      width: 15%;
+    }
+    tr + tr + tr + tr {
+      width: 17%;
+      margin-top: 20px;
+    }
+    tr + tr + tr + tr + tr {
+      width: 28%;
+      margin-top: 10px;
+      margin-bottom: 6px;
+    }
+    tr {
+      float: left;
+      margin-top: 30px;
+      min-width: 10%;
+
+      &.info td {
+        padding: 0 6px 0 0;
+      }
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+    td {
+      line-height: inherit;
+    }
+    h4 {
+      margin: 0 0 0 20px;
+    }
+    tr:last-child > td:first-child {
+      padding-right: 20px;
+    }
+    .price {
+      font-size: $font-size-big;
+    }
+    .full-price {
+      border-radius: $border-radius-base;
+      padding: 4px 14px 4px 30px;
+    }
+    .week {
+      width: 50px;
+      height: 50px;
+      line-height: 52px;
+      padding: 0;
+    }
+  }
+}
+
+// Card
+// viewMode = regular
+.panel-body {
+  padding: 0px;
+
+  a:hover {
+    text-decoration: none;
+  }
+  table {
+    width: 100%;
+    margin: 0 0 10px 0;
+  }
+  tr {
+
+    &.top td {
+      padding-top: 10px;
+    }
+    &.info td {
+      padding: 0;
+    }
+  }
+  td {
+    line-height: 24px;
+    font-size: $font-size-small;
+
+    & > div {
+      background-color: #eceff1;
+      padding: 5px;
+      margin: 10px 0;
+    }
+    &:first-child {
+      padding-left: 10px;
+    }
+    &.week-day {
+      width: 60px;
+      vertical-align: top;
+    }
+    &.added {
+      padding: 0;
+      vertical-align: top;
+      position: relative;
+
+      & > div {
+        background-color: transparent;
+        border-color: transparent $brand-primary transparent transparent;
+        border-style: solid;
+        border-width: 0 50px 50px 0;
+        margin: 0;
+        padding: 0;
+        color: $white;
+        position: absolute;
+        top: 0;
+        right: -1px;
+
+        & > i {
+          position: absolute;
+          left: 24px;
+        }
+      }
+    }
+    button {
+      margin-right: 10px;
+    }
+    h4 {
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+  }
+  .reg {
+    line-height: 50px;
+    font-weight: bold;
+
+    & > i {
+      color: $brand-primary;
+    }
+    & > span {
+      text-decoration: underline;
+    }
+  }
+}
+.week {
+  text-align: center;
+  border-radius: 50%;
+  height: $week-size;
+  width: $week-size;
+  color: $week-color;
+  text-transform: uppercase;
+  font-weight: bold;
+  padding-top: 20px;
+  background-color: $week-bg-color;
+}
+.polychrome {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  position: relative;
+  float: left;
+  opacity: 0.8;
+
+  &.cyan {
+    background-color: #0293dc !important;
+    left: 0;
+    z-index: 5;
+  }
+  &.yellow {
+    background-color: #fef501 !important;
+    left: -7px;
+    z-index: 1;
+  }
+  &.magenta {
+    background-color: #dc2679 !important;
+    left: -27px;
+    top: -6px;
+    z-index: 3;
+  }
+}
