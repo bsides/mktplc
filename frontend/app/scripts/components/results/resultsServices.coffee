@@ -12,11 +12,14 @@ app.factory 'Results', ($resource, $http) ->
     $http.get(url.get)
 
   add: (bid) ->
-    console.log bid
-    $http.get(
+    $http(
       method: 'POST'
       url: url.add
       data: bid
     )
 
-  delete: ->
+  delete: (bidId) ->
+    $http(
+      method: 'POST'
+      url: url.remove + bidId
+    )
