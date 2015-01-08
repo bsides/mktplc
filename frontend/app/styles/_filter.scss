@@ -1,0 +1,133 @@
+.start-search {
+  .background {
+    background-color: #b3cedc;
+    height: 250px;
+    margin-top: -20px;
+  }
+  .wrps {
+    margin-top: 40px;
+  }
+  .wp-journal {
+    margin-top: 35px;
+
+    .tb-journal {
+
+      td div {
+        border: 1px solid #72bee4;
+        padding: 0;
+        background-color: #ffffff;
+      }
+      td tr td {
+        border-bottom: 2px solid #efefef;
+      }
+      td tbody tr:last-child td {
+        border-bottom: none;
+      }
+      thead td:first-child {
+        color: #2294d2;
+      }
+      .clear-filters {
+        border: none;
+        margin: 0;
+      }
+    }
+  }
+  .container {
+    margin-top: -150px;
+  }
+  table {
+    margin: 0;
+
+    td {
+      padding: 10px;
+
+      &:first-child {
+        background-color: #f3f4f4;
+        width: 325px;
+        font-weight: bold;
+
+        input {
+          margin-left: 10px;
+          font-weight: normal;
+          padding: 2px 5px;
+          min-width: 200px;
+        }
+      }
+    }
+  }
+  strong {
+    font-size: $font-size-large;
+  }
+  span {
+    margin-left: 20px;
+    font-size: $font-size-small;
+  }
+  .clear-filters {
+    text-align: right;
+    margin-top: 10px;
+
+    button {
+      border: none;
+      background: none;
+      text-decoration: underline;
+      font-size: $font-size-small;
+    }
+  }
+  .row.whitey {
+    border: 1px solid #cdcdcd;
+  }
+  .wp-search.disabled {
+    color: #919191;
+
+    strong {
+      color: #a6a8a9;
+    }
+    .filter-tab li > a {
+      background-color: #f9f9f9;
+      color: #a6a8a9;
+    }
+    i {
+      color: #9ddbbb;
+    }
+
+    .tab-content {
+      display: none;
+    }
+  }
+  .panel-body {
+    padding: 10px;
+
+    select[name="advertisers"] {
+      background-color: #dff2fc;
+      margin-left: 20px;
+      min-width: 250px;
+      padding: 5px;
+    }
+  }
+
+  /* Customizando as tabs*/
+  .filter-tab {
+    margin-top: 40px;
+
+    ul {
+      background-color: #f3f4f4;
+    }
+
+    a i{
+      color: #3cb878;
+    }
+    li > a,
+    li.active > a,
+    li.active > a:hover,
+    li.active > a:focus {
+      background-color: #f3f4f4;
+      border: none;
+      color: #555555;
+      font-weight: bold;
+      text-align: left;
+    }
+  }
+}
+.bg-white {
+  background-color: #ffffff !important;
+}
