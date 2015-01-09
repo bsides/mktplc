@@ -45,28 +45,36 @@ app.controller 'ResultsCtrl', ($scope, $rootScope, $filter, $http, Results) ->
 
 
   # Ações do carrinho
+
+  # Utilitários
+  $scope.isAddedToCart = {}
+  $scope.isAddingToCart = {}
+
   # Adicionados
   # $scope.addedToCart = ->
   #   $scope.cart =
+
   # Adicionar
   $scope.addToCart = (bid) ->
+    # Ações ao adicionar:
+    # 1 - Loading no botão, para preparar para a chamada ajax
+    # 2 - envia dados para o carrinho
+    # 3 - no sucesso, desabilita o botão de adicionar, adiciona ícone de "adicionado" e desliga loading
+    # 4 - acrescenta quantidade e atualiza valor ao carrinho
+
     # adicionamos manualmente a quantidade 1 caso quantity não exista
     bid.quantity = 1 unless bid.quantity
-    # req =
-    #   method: 'POST'
-    #   url: '/cart/add'
-    #   data: bid
 
-    # $http(req).success(->
-    #   'Adicionado com sucesso'
-    # ).error (->
-    #   'Houve um erro ao adicionar'
-    # )
+    # 1 - Loading no botão, para preparar para a chamada ajax
+    $scope.isAddingToCart[bid.id] = true
+
+    # 2 - envia dados para o carrinho
     Results.add(bid).success((data) ->
-      console.log data
-      console.log bid.price
-      $rootScope.cartTotal = parseInt($rootScope.cartTotal) + parseInt(bid.price)
-      console.log $rootScope.cartTotal
+      # 3 - no sucesso, desabilita o botão de adicionar, adiciona ícone de "adicionado" e desliga loading
+      $scope.isAddedToCart[bid.id] = true
+      $scope.isAddingToCart[bid.id] = false
+      # 4 - acrescenta quantidade e atualiza valor ao carrinho
+      $rootScope.cartTotal = parseFloat($rootScope.cartTotal) + parseFloat(bid.price)
     ).error((data) ->
       console.log data
     )
@@ -85,3 +93,5 @@ app.controller 'ResultsCtrl', ($scope, $rootScope, $filter, $http, Results) ->
 
   # $scope.testando = (item) ->
   #   console.log item
+
+

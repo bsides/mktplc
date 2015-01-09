@@ -6,44 +6,17 @@ app.controller 'SearchCtrl', ($scope, $rootScope, $modal, Results) ->
 
   $scope.results = 'scripts/components/results/resultsView.html'
   # $scope.filter = 'scripts/components/filter/filterView.html'
+
+  # Coloca o total do carrinho numa variável global
   if typeof $rootScope.cartTotal != 'undefined'
-    $scope.cartTotal = $rootScope.cartTotal
+    $rootScope.cartTotal
   else
     $rootScope.cartTotal = 0
-    $scope.cartTotal = $rootScope.cartTotal
+
+  console.log $rootScope.cartTotal
 
   $scope.resultData =
     count: 10
-
-  $scope.advertisers =  [
-    {
-      name: 'Cdv'
-      id: 1
-    }
-    {
-      name: 'Vdv'
-      id: 2
-    }
-    {
-      name: 'Adv'
-      id: 3
-    }
-  ]
-
-  $scope.categories =   [
-    {
-      name: 'Esportes'
-      id: 1
-    }
-    {
-      name: 'Classificados'
-      id: 2
-    }
-    {
-      name: 'Entretenimento'
-      id: 3
-    }
-  ]
 
   $scope.goCart = ->
     window.location.href='/bids'
@@ -75,3 +48,35 @@ app.controller 'SearchCtrl', ($scope, $rootScope, $modal, Results) ->
         test: ->
           $scope.test
     )
+
+  # Dados que deveriam vir do servidor (mock)
+  $scope.advertisers =  [
+    {
+      name: 'Cdv'
+      id: 1
+    }
+    {
+      name: 'Vdv'
+      id: 2
+    }
+    {
+      name: 'Adv'
+      id: 3
+    }
+  ]
+
+  $scope.categories =   [
+    {
+      name: 'Esportes'
+      id: 1
+    }
+    {
+      name: 'Classificados'
+      id: 2
+    }
+    {
+      name: 'Entretenimento'
+      id: 3
+    }
+  ]
+
