@@ -38,7 +38,7 @@ class Item
             $deal['price'] = 10000.01;
             $deal['column'] = $column[rand(0,1)];
             $deal['format'] = $format[rand(0,2)];
-            $deal['newspaper'] = $newspaper[rand(0,2)];
+            $deal['name'] = $newspaper[rand(0,2)];
             $deal['weekDay'] = $weekDays[rand(0,2)];
             $deal['image'] = 'http://cdni.wired.co.uk/1920x1280/o_r/Pug.jpg';
 
