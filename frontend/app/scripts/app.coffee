@@ -73,7 +73,10 @@ root.app = angular
   .config ($locationProvider) ->
     $locationProvider.html5Mode(true)
 
-
+  # .constant 'CONSTANTS',
+  #   GO_CART: ->
+  #     window.location.href='/bids'
+  #     return
 
 ###*
  # @ngdoc object

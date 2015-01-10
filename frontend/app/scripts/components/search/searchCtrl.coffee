@@ -13,8 +13,6 @@ app.controller 'SearchCtrl', ($scope, $rootScope, $modal, Results) ->
   else
     $rootScope.cartTotal = 0
 
-  console.log $rootScope.cartTotal
-
   $scope.resultData =
     count: 10
 
