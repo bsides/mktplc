@@ -6,8 +6,11 @@ $modules = array(
     'Application',
     'Direct',
     'Cas',
-    'ShoppingCart'
+    'ShoppingCart',
+    'ApigilityClient',
+    'DirectSdk',
 );
+
 if ($env == 'development') {
     $modules[] = 'ZendDeveloperTools';
     $modules[] = 'ZFTool';
