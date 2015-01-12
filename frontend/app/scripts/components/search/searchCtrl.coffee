@@ -20,7 +20,6 @@ app.controller 'SearchCtrl', ($scope, $rootScope, $modal, Results) ->
     window.location.href='/bids'
 
   $scope.test = ->
-    console.log('test')
 
   $scope.clearFilters = ->
     $('td.filters').empty()
@@ -81,3 +80,6 @@ app.controller 'SearchCtrl', ($scope, $rootScope, $modal, Results) ->
     }
   ]
 
+  $scope.filterSelected = 'categories'
+  $scope.setFilter = (filter) ->
+    $scope.filterSelected = filter
