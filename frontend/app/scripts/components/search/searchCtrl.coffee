@@ -47,6 +47,9 @@ app.controller 'SearchCtrl', ($scope, $rootScope, $modal, Results) ->
           $scope.test
     )
 
+  $scope.makeFilter = (item, model, label) ->
+
+
   # Dados que deveriam vir do servidor (mock)
   $scope.advertisers =  [
     {
