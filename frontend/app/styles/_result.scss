@@ -80,6 +80,20 @@
     }
     td {
       line-height: inherit;
+
+      &.added {
+        position: inherit;
+
+        & > div {
+          position: absolute;
+          right: 10px;
+
+          & > i {
+            top: 5px;
+            left: 25px;
+          }
+        }
+      }
     }
     h4 {
       margin: 0 0 0 20px;
@@ -93,6 +107,7 @@
     .full-price {
       border-radius: $border-radius-base;
       padding: 4px 14px 4px 30px;
+      width: 160px;
     }
     .week {
       width: 50px;
@@ -100,6 +115,9 @@
       line-height: 52px;
       padding: 0;
     }
+  }
+  & > section {
+    position: relative;
   }
 }
 
@@ -128,13 +146,15 @@
     line-height: 24px;
     font-size: $font-size-small;
 
-    & > div {
+    & > div.full-price {
       background-color: $main-bg;
-      padding: 5px;
+      padding: 5px 10px;
       margin: 10px 0;
+      width: 200px;
+      font-size: $font-size-big;
     }
     &:first-child {
-      padding-left: 10px;
+      padding-left: 15px;
     }
     &.week-day {
       width: 60px;
@@ -164,7 +184,7 @@
       }
     }
     button {
-      margin-right: 10px;
+      margin-right: 15px;
       min-width: 80px;
     }
     button:disabled {
