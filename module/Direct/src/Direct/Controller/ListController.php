@@ -77,12 +77,10 @@ class ListController extends AbstractActionController
      */
     public function formatAction()
     {
-        $service = $this->getServiceLocator()
-                        ->get( 'Format' );
+        $service = $this->getServiceLocator()->get('direct.common.format');
+        $id = $this->params('id', null);
 
-        $id = (int)$this->params( 'id' );
-
-        return new JsonModel( $service->get( $id ) );
+        return new JsonModel($service->fetch($id)['data']);
     }
 
     /**
@@ -103,12 +101,10 @@ class ListController extends AbstractActionController
      */
     public function weekDayAction()
     {
-        $service = $this->getServiceLocator()
-                        ->get( 'WeekDay' );
+        $service = $this->getServiceLocator()->get('direct.common.weekday');
+        $id = $this->params('id', null);
 
-        $id = (int)$this->params( 'id' );
-
-        return new JsonModel( $service->get( $id ) );
+        return new JsonModel($service->fetch($id)['data']);
     }
 
     /**
