@@ -44,7 +44,7 @@ class ListController extends AbstractActionController
      */
     public function categoryAction()
     {
-        $service = $this->getServiceLocator()->get('direct.newspaper.category');
+        $service = $this->getServiceLocator()->get('direct.common.category');
         $id = $this->params('id', null);
 
         return new JsonModel($service->fetch($id)['data']);
@@ -56,7 +56,6 @@ class ListController extends AbstractActionController
     public function colorAction()
     {
         $service = $this->getServiceLocator()->get('direct.newspaper.color');
-
         $id = $this->params('id', null);
 
         return new JsonModel($service->fetch($id)['data']);
@@ -67,12 +66,10 @@ class ListController extends AbstractActionController
      */
     public function determinationAction()
     {
-        $service = $this->getServiceLocator()
-                        ->get( 'Determination' );
+        $service = $this->getServiceLocator()->get('direct.newspaper.determination');
+        $id = $this->params('id', null);
 
-        $id = (int)$this->params( 'id' );
-
-        return new JsonModel( $service->get( $id ) );
+        return new JsonModel($service->fetch($id)['data']);
     }
 
     /**
