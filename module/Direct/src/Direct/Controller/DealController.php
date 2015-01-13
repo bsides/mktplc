@@ -13,22 +13,27 @@ use Zend\View\Model\JsonModel;
 use Direct\Model;
 
 /**
- * Class ListController
+ * Class DealController
  *
  * @package Direct\Controller
  */
-class ItemController extends AbstractActionController
+class DealController extends AbstractActionController
 {
+
+    public function indexAction()
+    {
+        return new JsonModel( [] );
+    }
+
     /**
      * @return array|JsonModel
      */
-    public function indexAction()
+    public function sendAction()
     {
         $post = $this->getRequest()->getPost()->toArray();
-        $service = $this->getServiceLocator()->get('direct.newspaper.item');
-
-        return new JsonModel($service->find()['data']);
-
+        $deal = new Model\Deal();
+        $deal->save($post);
+        return new JsonModel( ['result' => 'success'] );
     }
 
 }
