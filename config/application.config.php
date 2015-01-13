@@ -36,7 +36,7 @@ return array(
         // provided by modules themselves. Paths may use GLOB_BRACE notation.
         'config_glob_paths' => array(
             /* Arquivos de configuração para distintos ambientes */
-            'config/autoload/' . (getenv('APPLICATION_ENV') ?: 'production') . '.php',
+            sprintf('config/autoload/{,*.}{global,%s,local}.php', $env),
             'config/autoload/{,*.}{global,local}.php',
         ),
 
