@@ -44,12 +44,10 @@ class ListController extends AbstractActionController
      */
     public function categoryAction()
     {
-        $service = $this->getServiceLocator()
-                        ->get( 'Category' );
+        $service = $this->getServiceLocator()->get('direct.common.category');
+        $id = $this->params('id', null);
 
-        $id = (int)$this->params( 'id' );
-
-        return new JsonModel( $service->get( $id ) );
+        return new JsonModel($service->fetch($id)['data']);
     }
 
     /**
@@ -57,12 +55,10 @@ class ListController extends AbstractActionController
      */
     public function colorAction()
     {
-        $service = $this->getServiceLocator()
-                        ->get( 'Color' );
+        $service = $this->getServiceLocator()->get('direct.newspaper.color');
+        $id = $this->params('id', null);
 
-        $id = (int)$this->params( 'id' );
-
-        return new JsonModel( $service->get( $id ) );
+        return new JsonModel($service->fetch($id)['data']);
     }
 
     /**
@@ -70,12 +66,10 @@ class ListController extends AbstractActionController
      */
     public function determinationAction()
     {
-        $service = $this->getServiceLocator()
-                        ->get( 'Determination' );
+        $service = $this->getServiceLocator()->get('direct.newspaper.determination');
+        $id = $this->params('id', null);
 
-        $id = (int)$this->params( 'id' );
-
-        return new JsonModel( $service->get( $id ) );
+        return new JsonModel($service->fetch($id)['data']);
     }
 
     /**
@@ -83,12 +77,10 @@ class ListController extends AbstractActionController
      */
     public function formatAction()
     {
-        $service = $this->getServiceLocator()
-                        ->get( 'Format' );
+        $service = $this->getServiceLocator()->get('direct.common.format');
+        $id = $this->params('id', null);
 
-        $id = (int)$this->params( 'id' );
-
-        return new JsonModel( $service->get( $id ) );
+        return new JsonModel($service->fetch($id)['data']);
     }
 
     /**
@@ -109,12 +101,10 @@ class ListController extends AbstractActionController
      */
     public function weekDayAction()
     {
-        $service = $this->getServiceLocator()
-                        ->get( 'WeekDay' );
+        $service = $this->getServiceLocator()->get('direct.common.weekday');
+        $id = $this->params('id', null);
 
-        $id = (int)$this->params( 'id' );
-
-        return new JsonModel( $service->get( $id ) );
+        return new JsonModel($service->fetch($id)['data']);
     }
 
     /**
