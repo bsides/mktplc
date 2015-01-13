@@ -1,11 +1,13 @@
 'use strict'
 
-app.factory 'Results', ($resource, $http) ->
+app.factory 'Results', ($resource, $http, $q) ->
   url =
     get: '/direct/item'
     add: '/cart/add'
     remove: '/cart/delete/'
     cart: '/cart'
+    filter: '/direct/item'
+    list: '/direct/list'
 
   cartTotal: (price) ->
     price = price + price
@@ -28,3 +30,13 @@ app.factory 'Results', ($resource, $http) ->
 
   cart: ->
     $http.get(url.cart)
+
+  sendFilter: (filter) ->
+    $http(
+      method: 'POST'
+      url: url.filter
+      data: filter
+    )
+
+  list: (filter) ->
+    $http.get(url.list + filter)

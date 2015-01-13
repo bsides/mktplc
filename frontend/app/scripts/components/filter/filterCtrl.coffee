@@ -1,5 +1,18 @@
 'use strict'
 
+app.factory 'modalUtils', [
+  '$modalStack'
+  ($modalStack) ->
+    return (
+      modalsExist: ->
+        !!$modalStack.getTop()
+
+      closeAllModals: ->
+        $modalStack.dismissAll()
+        return
+    )
+]
+
 app.controller 'FilterCtrl', (
   $scope,
   $modalInstance,

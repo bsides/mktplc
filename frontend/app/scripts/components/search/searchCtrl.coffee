@@ -1,13 +1,13 @@
 'use strict'
 
-app.controller 'SearchCtrl', ($scope, $rootScope, $modal, $log, Results) ->
+app.controller 'SearchCtrl', ($scope, $rootScope, $modal, $modalStack, $timeout, $q, $log, Results) ->
 # TODO: rows with ng-repeat
 # http://angularjs4u.com/filters/angularjs-template-divs-row/
 
   $scope.results = 'scripts/components/results/resultsView.html'
 
   $scope.filterData = []
-  $scope.showModal = false
+  $scope.canSearch = false
 
   # Coloca o total do carrinho numa variável global
   if typeof $rootScope.cartTotal != 'undefined'
@@ -15,19 +15,18 @@ app.controller 'SearchCtrl', ($scope, $rootScope, $modal, $log, Results) ->
   else
     $rootScope.cartTotal = 0
 
-  $scope.resultData =
-    count: 10
+  $scope.cartResults = []
+  handleCartResults = (data, status) ->
+    if status == 200
+      $scope.cartResults = data
+      console.log $scope.cartResults
+    else
+      $scope.cartResults = 'Erro ao retornar os dados'
+
+  Results.cart().success(handleCartResults)
 
   $scope.goCart = ->
     window.location.href='/bids'
-
-  $scope.formatResults = (counter) ->
-    if counter > 1
-      $scope.resultLabel = counter + ' resultados'
-    else if results == 1
-      $scope.resultLabel = counter + ' resultado'
-    else
-      $scope.resultLabel = 'Sua busca não retornou resultados'
 
   $scope.newSearch = (size) ->
     modalInstance = $modal.open(
@@ -35,6 +34,7 @@ app.controller 'SearchCtrl', ($scope, $rootScope, $modal, $log, Results) ->
       # controller: 'SearchCtrl'
       controller: 'FilterCtrl'
       size: 'lg'
+      backdrop: 'static'
       resolve:
         advertisers: ->
           $scope.advertisers
@@ -62,87 +62,140 @@ app.controller 'SearchCtrl', ($scope, $rootScope, $modal, $log, Results) ->
   #   $scope.showModal = true
 
   $scope.makeFilter = ->
+    $scope.filterData = []
     angular.forEach $scope.categories, (value, key) ->
+      value['category_id[]'] = value.id
       consolidateFilterValues(value, key)
     angular.forEach $scope.weekdays, (value, key) ->
+      value['week_day_id[]'] = value.id
       consolidateFilterValues(value, key)
+    angular.forEach $scope.determinations, (value, key) ->
+      value['determination_id[]'] = value.id
+      consolidateFilterValues(value, key)
+    angular.forEach $scope.regions, (value, key) ->
+      value['state_id[]'] = value.id
+      consolidateFilterValues(value, key)
+    sendFilter($scope.filterData)
 
   consolidateFilterValues = (value, keys) ->
     $scope.filterData.push(value) if value.ticked
 
+  sendFilter = (data) ->
+    Results.sendFilter(data).success(-> data)
+    return
+    # sendingArray = []
+    # angular.forEach data, (value, key) ->
+    #   sendingArray.push(value)
+    # console.log sendingArray
+    # console.log data.['category_id[]']
+
+
+  # Abre o modal
+  $scope.forceSearch = true if $scope.filterData.length == 0
+  $scope.forceSearch = true if $scope.canSearch
+  $timeout (->
+    # Somente se ele já não estiver aberto!!!
+    if typeof $modalStack.getTop() == 'undefined'
+      $scope.newSearch() if $scope.forceSearch
+      return
+  ), 3000
 
   # Dados que deveriam vir do servidor (mock)
-  $scope.advertisers =  [
-    {
-      name: 'Cdv'
-      id: 1
-    }
-    {
-      name: 'Vdv'
-      id: 2
-    }
-    {
-      name: 'Adv'
-      id: 3
-    }
-  ]
+  $scope.listAllData = []
+  # Results.list('/determination').success (data) -> $scope.determinations = data
 
-  $scope.categories = [
-    {
-      name: 'Esportes'
-      id: 1
-    }
-    {
-      name: 'Classificados'
-      id: 2
-    }
-    {
-      name: 'Entretenimento'
-      id: 3
-    }
-  ]
+  determination = Results.list('/determination')
+  advertiser = Results.list('/advertiser')
+  weekday = Results.list('/weekday')
+  category = Results.list('/category')
+  # region = $http.get(url.list + '/region')
+  $q.all([
+    advertiser
+    category
+    weekday
+    determination
+    # region
+  ]).then (data) ->
+    $scope.listAllData = data
+    $scope.advertisers = data[0].data
+    $scope.categories = data[1].data
+    $scope.weekdays = data[2].data
+    $scope.determinations = data[3].data
+    # You can search now
+    $log.info $scope.listAllData
+    $scope.canSearch = true
 
-  $scope.determinations = [
-    {
-      name: 'Meia Página'
-      id: 1
-    }
-    {
-      name: 'Muita Página'
-      id: 2
-    }
-    {
-      name: 'Página demais'
-      id: 3
-    }
-  ]
+  # $scope.advertisers =  [
+  #   {
+  #     name: 'Cdv'
+  #     id: 1
+  #   }
+  #   {
+  #     name: 'Vdv'
+  #     id: 2
+  #   }
+  #   {
+  #     name: 'Adv'
+  #     id: 3
+  #   }
+  # ]
 
-  $scope.regions = [
-    {
-      name: 'Madagascar'
-      id: 1
-    }
-    {
-      name: 'São Paulo'
-      id: 2
-    }
-    {
-      name: 'Plutão'
-      id: 3
-    }
-  ]
+  # $scope.categories = [
+  #   {
+  #     name: 'Esportes'
+  #     id: 1
+  #   }
+  #   {
+  #     name: 'Classificados'
+  #     id: 2
+  #   }
+  #   {
+  #     name: 'Entretenimento'
+  #     id: 3
+  #   }
+  # ]
 
-  $scope.weekdays = [
-    {
-      name: 'Segunda'
-      id: 1
-    }
-    {
-      name: 'Quarta'
-      id: 2
-    }
-    {
-      name: 'Quinta'
-      id: 3
-    }
-  ]
+  # # $scope.determinations = [
+  # #   {
+  # #     name: 'Meia Página'
+  # #     id: 1
+  # #   }
+  # #   {
+  # #     name: 'Muita Página'
+  # #     id: 2
+  # #   }
+  # #   {
+  # #     name: 'Página demais'
+  # #     id: 3
+  # #   }
+  # # ]
+
+  # $scope.regions = [
+  #   {
+  #     name: 'Madagascar'
+  #     id: 1
+  #   }
+  #   {
+  #     name: 'São Paulo'
+  #     id: 2
+  #   }
+  #   {
+  #     name: 'Plutão'
+  #     id: 3
+  #   }
+  # ]
+
+  # $scope.weekdays = [
+  #   {
+  #     name: 'Segunda'
+  #     id: 1
+  #   }
+  #   {
+  #     name: 'Quarta'
+  #     id: 2
+  #   }
+  #   {
+  #     name: 'Quinta'
+  #     id: 3
+  #   }
+  # ]

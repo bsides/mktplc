@@ -11,7 +11,7 @@ app.controller 'ResultsCtrl', ($scope, $rootScope, $filter, $http, Results) ->
     if status == 200
       $scope.searchData = data
     else
-      $scope.searchData = 'Erro ao retornar os dados'
+      $scope.searchData = null
 
   # Deal with them
   Results.get().success(handleAllResults)
@@ -26,7 +26,7 @@ app.controller 'ResultsCtrl', ($scope, $rootScope, $filter, $http, Results) ->
     else if counter == 1
       $scope.resultLabel = counter + ' resultado'
     else
-      $scope.resultLabel = 'Sua busca não retornou resultados'
+      $scope.resultLabel = ''
 
   # Ordenação de resultado
 
