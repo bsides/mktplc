@@ -26,6 +26,7 @@ class ItemController extends AbstractActionController
     {
         $post = $this->getRequest()->getPost()->toArray();
         $itemGateway = new Model\Item();
-        return new JsonModel( $itemGateway->fetchAll() );
+        return new JsonModel( $itemGateway->fetchAll( $post ) );
     }
+
 }

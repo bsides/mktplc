@@ -11,7 +11,7 @@ class Item
     /**
      * @type string
      */
-    public $name;
+    public $newspaper;
 
     /**
      * @type integer

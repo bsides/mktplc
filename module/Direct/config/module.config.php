@@ -84,6 +84,9 @@ return array(
             'WeekDay' => function() {
                 return new \Direct\Model\WeekDay();
             },
+            'Advertiser' => function() {
+                return new \Direct\Model\Advertiser();
+            },
         ),
         'aliases' => array(
             'Direct\Model\Section' => 'Section',
