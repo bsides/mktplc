@@ -129,4 +129,17 @@ class ListController extends AbstractActionController
 
         return new JsonModel( $service->get( $id ) );
     }
+
+    /**
+     * @return JsonModel
+     */
+    public function advertiserAction()
+    {
+        $service = $this->getServiceLocator()
+                        ->get( 'advertiser' );
+
+        $id = (int)$this->params( 'id' );
+
+        return new JsonModel( $service->get( $id ) );
+    }
 }
