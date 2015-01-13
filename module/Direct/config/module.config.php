@@ -54,6 +54,19 @@ return array(
                             ),
                         ),
                     ),
+                    'deal' => array(
+                        'type'    => 'Segment',
+                        'options' => array(
+                            'route'    => '/deal[/:action]',
+                            'constraints' => array(
+                                'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
+                            ),
+                            'defaults' => array(
+                                'controller' => 'Direct\Controller\Deal',
+                                'action'     => 'index',
+                            ),
+                        ),
+                    ),
                 ),
             ),
         ),
@@ -96,7 +109,9 @@ return array(
         'invokables' => array(
             'Direct\Controller\Index' => 'Direct\Controller\IndexController',
             'Direct\Controller\List' => 'Direct\Controller\ListController',
-            'Direct\Controller\Item' => 'Direct\Controller\ItemController'
+            'Direct\Controller\Item' => 'Direct\Controller\ItemController',
+            'Direct\Controller\Deal' => 'Direct\Controller\DealController',
+            'Direct\Controller\UltimasCompras' => 'Direct\Controller\UltimasComprasController'
         ),
     ),
     'view_manager' => array(
