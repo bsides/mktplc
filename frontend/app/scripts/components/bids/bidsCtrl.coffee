@@ -31,7 +31,7 @@ app.controller 'BidsCtrl', ($scope, $rootScope, Results) ->
   $scope.toggleComment = (id) ->
     $scope.isCommenting[id] = not $scope.isCommenting[id]
   $scope.saveComment = (id) ->
-    $scope.
+    $scope.id
 
   # Date utilities
   $scope.today = ->
