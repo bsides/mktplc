@@ -19,7 +19,6 @@ app.controller 'SearchCtrl', ($scope, $rootScope, $modal, $modalStack, $timeout,
   handleCartResults = (data, status) ->
     if status == 200
       $scope.cartResults = data
-      console.log $scope.cartResults
     else
       $scope.cartResults = 'Erro ao retornar os dados'
 
@@ -108,21 +107,22 @@ app.controller 'SearchCtrl', ($scope, $rootScope, $modal, $modalStack, $timeout,
   advertiser = Results.list('/advertiser')
   weekday = Results.list('/weekday')
   category = Results.list('/category')
-  # region = $http.get(url.list + '/region')
+  region = Results.list('/region')
   $q.all([
     advertiser
     category
     weekday
     determination
-    # region
+    region
   ]).then (data) ->
+    console.log data
     $scope.listAllData = data
     $scope.advertisers = data[0].data
     $scope.categories = data[1].data
     $scope.weekdays = data[2].data
     $scope.determinations = data[3].data
+    $scope.regions = data[4].data
     # You can search now
-    $log.info $scope.listAllData
     $scope.canSearch = true
 
   # $scope.advertisers =  [

@@ -138,6 +138,10 @@
     *:focus {
       outline: none;
     }
+    .label {
+      display: inline-block;
+      margin: 2px 0;
+    }
   }
 }
 .bg-white {
