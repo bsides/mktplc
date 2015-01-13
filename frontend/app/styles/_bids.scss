@@ -15,29 +15,27 @@
       table {
         margin: 0;
 
-        tr {
-          td {
-            font-size: $font-size-small;
-            padding: 10px 0;
+      }
+        td {
+          font-size: $font-size-small;
+          padding: 10px 0;
 
-            &:last-child {
-              background-color: #dff2fc;
-              text-align: right;
-              padding-right: 10px;
-              width: 80px;
-            }
-            &:first-child {
-              width: 120px;
-              padding-left: 10px;
-            }
-            span > button {
-              border: none;
-              background: none;
-              text-decoration: underline;
-            }
+          &:last-child {
+            background-color: #dff2fc;
+            text-align: right;
+            padding-right: 10px;
+            width: 80px;
+          }
+          &:first-child {
+            width: 120px;
+            padding-left: 10px;
+          }
+          span > button {
+            border: none;
+            background: none;
+            text-decoration: underline;
           }
         }
-      }
     }
     .row {
       margin: 0 auto;

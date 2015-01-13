@@ -12,11 +12,7 @@
             Predicta <span class="caret"></span>
           </button>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="#">Infoglobo</a></li>
-            <li><a href="#">Fast Ads</a></li>
-            <li><a href="#">Outro anunciante</a></li>
-            <li class="divider"></li>
-            <li><a href="#">Ver restante</a></li>
+            <li ng-repeat="advertiser in advertisers"><a href="#">{{ advertiser.name }}</a></li>
           </ul>
         </div>
       </div>
