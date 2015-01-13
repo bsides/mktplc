@@ -26,7 +26,7 @@ class Module
         $moduleRouteListener = new ModuleRouteListener();
         $moduleRouteListener->attach($em);
         $authService = $sm->get('auth.service');
-        $this->restrictLogin($e, $authService, array('login'), 'login');
+        // $this->restrictLogin($e, $authService, array('login'), 'login');
     }
 
     public function getConfig()
@@ -65,6 +65,11 @@ class Module
         $sm = $app->getServiceManager();
 
         $em->attach(MvcEvent::EVENT_ROUTE, function($e) use ($authService, $whiteListRoutes, $loginRoute) {
+            //Response
+            $response = $e->getResponse();
+            //Request
+            $request = $e->getRequest();
+            //Route Match
             $match = $e->getRouteMatch();
             // A rota não existe 404
             if (!$match instanceof \Zend\Mvc\Router\Http\RouteMatch) {
@@ -79,13 +84,20 @@ class Module
             if ($authService->hasIdentity()) {
                 return;
             }
+
+            //Se for chamada Ajax e o usuário não está logado
+            //Retorna http error 401
+            if ($request->isXmlHttpRequest()) {
+                $response->setStatusCode(401);
+                return $response;
+            }
+
             // Troca a rota para a qual o usuário será redirecionado
             $router = $e->getRouter();
             $url = $router->assemble(array(), array(
                 'name' => $loginRoute
             ));
             // Redireciona o usuário
-            $response = $e->getResponse();
             $response->getHeaders()->addHeaderLine('Location', $url);
             $response->setStatusCode(302);
             return $response;

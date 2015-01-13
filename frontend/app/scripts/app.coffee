@@ -1,5 +1,8 @@
 'use strict'
 
+String::padLeft = (l, c) ->
+  Array(l - @length + 1).join(c or " ") + this
+
 ###*
  # @ngdoc overview
  # @name marketplaceApp
@@ -15,6 +18,8 @@ root.app = angular
     'ui.bootstrap'
     'marketplace.templates'
     'ui-templates'
+    'multi-select'
+    'ui-multiselect'
     'ngAnimate'
     'ngAria'
     'ngCookies'
@@ -60,10 +65,23 @@ root.app = angular
     $httpProvider.defaults.withCredentials = true
     delete $httpProvider.defaults.headers.common['X-Requested-With']
 
+    # Intercept POST requests, convert to standard form encoding
+    $httpProvider.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded"
+    $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest'
+    $httpProvider.defaults.transformRequest.unshift (data, headersGetter) ->
+      key = undefined
+      result = []
+      for key of data
+        result.push encodeURIComponent(key) + "=" + encodeURIComponent(data[key])  if data.hasOwnProperty(key)
+      result.join "&"
+
   .config ($locationProvider) ->
     $locationProvider.html5Mode(true)
 
-
+  # .constant 'CONSTANTS',
+  #   GO_CART: ->
+  #     window.location.href='/bids'
+  #     return
 
 ###*
  # @ngdoc object

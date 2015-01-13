@@ -1,6 +1,3 @@
-<div ng-include="filter"></div>
-
-<div class="hide">
 <div class="container">
   <div class="row">
     <div class="col-md-3">
@@ -15,11 +12,7 @@
             Predicta <span class="caret"></span>
           </button>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="#">Infoglobo</a></li>
-            <li><a href="#">Fast Ads</a></li>
-            <li><a href="#">Outro anunciante</a></li>
-            <li class="divider"></li>
-            <li><a href="#">Ver restante</a></li>
+            <li ng-repeat="advertiser in advertisers"><a href="#">{{ advertiser.name }}</a></li>
           </ul>
         </div>
       </div>
@@ -34,7 +27,7 @@
         </span>
         <span class="cart-total">
           <span class="price-label">R$</span>
-          <span class="price-value">{{ cartTotal | currency:"" }}</span>
+          <span class="price-value" ng-model="cartTotal">{{ cartTotal | currency:"" }}</span>
         </span>
       </div>
     </div>
@@ -45,53 +38,12 @@
     <div class="col-md-12">
       <span class="terms-label fort search-labels">Seus critérios</span>
       <div class="terms-box boxed">
-        <span class="label label-info">jornal A</span>
-        <span class="label label-info">jornal B</span>
-        <span class="label label-info">1/2 pagina</span>
-        <span class="label label-info">todos os cadernos</span>
+        <span class="label label-info" ng-repeat="criteria in filterData">{{ criteria.name }}</span>&nbsp;
+        <span ng-hide="filterData.length">Sem resultados, por favor refaça a busca</span>
       </div>
-      <button type="button" class="btn btn-primary pull-right" ng-click="modal(new-search)">Nova busca <i class="ficon ficon-down-open"></i></button>
-    </div>
-  </div>
-</div>
-<div class="container">
-  <div class="row whitey">
-    <div class="col-md-12">
-      <span class="filter-label fort search-labels">Filtros</span>
-
-      <div class="filter-box">
-        <span class="filter-label">preco</span>
-        <select name="" id="" class="form-control whitey-sel">
-          <option value="0">todos</option>
-          <option value="" selected="selected">até R$1.000,00</option>
-          <option value="">de R$1.000,00 até R$20.000,00</option>
-          <option value="">de 20.000,00 até R$100.000,00</option>
-          <option value="">de 100.000,00 em diante</option>
-        </select>
-      </div>
-
-      <div class="filter-box">
-        <span class="filter-label">dias da semana</span>
-        <select name="" id="" class="form-control whitey-sel">
-          <option value="">todos os dias</option>
-          <option value="" selected="selected">Domingo</option>
-          <option value="">Segunda</option>
-          <option value="">Terça</option>
-          <option value="">Dona Mingo</option>
-        </select>
-      </div>
-
-      <div class="filter-box">
-        <span class="filter-label">cores</span>
-        <select name="" id="" class="form-control whitey-sel">
-          <option value="">Cromia</option>
-          <option value="">PB</option>
-          <option value="">Rosa Nike XOKS</option>
-        </select>
-      </div>
+      <button type="button" class="btn btn-primary pull-right" ng-click="newSearch()">Nova busca <i class="ficon ficon-down-open"></i></button>
     </div>
   </div>
 </div>
 
-<div ng-include="results" ng-controller="ResultsCtrl" class="container"></div>
-</div>
+<div ng-include="results" ng-controller="ResultsCtrl"></div>

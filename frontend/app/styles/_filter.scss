@@ -4,9 +4,6 @@
     height: 250px;
     margin-top: -20px;
   }
-  .wrps {
-    margin-top: 40px;
-  }
   .wp-journal {
     margin-top: 35px;
 
@@ -58,7 +55,7 @@
   strong {
     font-size: $font-size-large;
   }
-  span {
+  .helper {
     margin-left: 20px;
     font-size: $font-size-small;
   }
@@ -75,6 +72,18 @@
   }
   .row.whitey {
     border: 1px solid #cdcdcd;
+    margin-bottom: 10px;
+
+    &:first-child {
+      margin-top: 20px;
+    }
+
+    .col-md-3 {
+      background: $main-bg;
+    }
+    .col-md-9 {
+      padding: 5px 5px 0;
+    }
   }
   .wp-search.disabled {
     color: #919191;
@@ -130,4 +139,8 @@
 }
 .bg-white {
   background-color: #ffffff !important;
+}
+.filter-results {
+  font-size: $font-size-less;
+  color: $light-gray;
 }

@@ -63,6 +63,10 @@ module.exports = (grunt) ->
         files: ['<%= yeoman.app %>/scripts/libs/**/*.html']
         tasks: ['html2js:bootstrap', 'copy:public']
 
+      multiselect:
+        files: ['<%= yeoman.app %>/scripts/libs/**/*.html']
+        tasks: ['html2js:multiselect', 'copy:public']
+
       mktplace:
         files: [
           '<%= yeoman.app %>/scripts/components/**/*.html'
@@ -260,6 +264,18 @@ module.exports = (grunt) ->
 
         src: ['app/scripts/libs/angular-bootstrap/**/*.html']
         dest: 'app/scripts/ui-templates.js'
+
+      # Templates for Angular
+      multiselect:
+        options:
+          base: 'app/scripts/libs/angular-multiselect/'
+          module: 'ui-multiselect'
+          rename: (modulePath) ->
+            moduleName = modulePath.replace('app/scripts/libs/angular-multiselect/', '')
+            'template/' + moduleName
+
+        src: ['app/scripts/libs/angular-multiselect/**/*.html']
+        dest: 'app/scripts/ui-multiselect.js'
 
 
     # Compiles CoffeeScript to JavaScript
@@ -484,12 +500,14 @@ module.exports = (grunt) ->
             dest: '<%= yeoman.public %>/'
             src: [
               'scripts/ui-templates.js'
+              'scripts/ui-multiselect.js'
               'scripts/marketplace-templates.js'
               'styles/**/*.css'
               'styles/**/*.{css,eot,svg,ttf,woff}'
               'scripts/**/*.{js,html}'
               'index.php'
               'images/**/*'
+              '.htaccess'
             ]
           }
         ]
@@ -532,6 +550,7 @@ module.exports = (grunt) ->
             dest: '.tmp/'
             src: [
               'scripts/ui-templates.js'
+              'scripts/ui-multiselect.js'
               'scripts/marketplace-templates.js'
               'scripts/**/*.html'
               'styles/**/*.css'
@@ -702,6 +721,7 @@ module.exports = (grunt) ->
       'clean:index'
       'html2js:bootstrap'
       'html2js:marketplace'
+      'html2js:multiselect'
       'wiredep'
       'concurrent:dev'
       'autoprefixer:dev'
@@ -712,6 +732,23 @@ module.exports = (grunt) ->
       'copy:bowercopy'
       # 'bowercopy'
       'watch'
+    ]
+
+  grunt.registerTask 'back', 'Essa tarefa deve ser usada para desenvolvimento apenas. Faz as coisas do Frontend ficarem no lugar deles. Ideal para Backend.', ->
+    grunt.task.run [
+      'clean:public'
+      'clean:layout'
+      'clean:index'
+      'html2js:bootstrap'
+      'html2js:marketplace'
+      'wiredep'
+      'concurrent:dev'
+      'autoprefixer:dev'
+      'copy:public'
+      'copy:layout'
+      'copy:index'
+      'copy:favicons'
+      'copy:bowercopy'
     ]
 
   grunt.registerTask 'server', 'DEPRECATED TASK. Use the "serve" task instead', (target) ->
@@ -764,6 +801,14 @@ module.exports = (grunt) ->
   grunt.registerTask 'deploy', (target) ->
     grunt.log.oklns 'Esse comando é só um alias para "grunt build"'
     grunt.task.run ['build:' + target]
+
+  grunt.registerTask 'backend', (target) ->
+    grunt.log.oklns 'Esse comando é só um alias para "grunt back"'
+    grunt.task.run ['back:' + target]
+
+  grunt.registerTask 'be', (target) ->
+    grunt.log.oklns 'Esse comando é só um alias para "grunt back"'
+    grunt.task.run ['back:' + target]
 
   grunt.registerTask 'default', [
     'newer:jshint'
