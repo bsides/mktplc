@@ -17,11 +17,14 @@
       <div class="filter-box">
         <span class="filter-label">dias da semana</span>
         <select name="" id="" class="form-control whitey-sel" ng-model="selectedWeekday">
-          <option value="">todos os dias</option>
-          <option value="" selected="selected">Domingo</option>
-          <option value="">Segunda</option>
-          <option value="">Terça</option>
-          <option value="">Dona Mingo</option>
+          <option value="">dias escolhidos</option>
+          <option value="Seg">Somente Segunda</option>
+          <option value="Ter">Somente Terça</option>
+          <option value="Qua">Somente Quarta</option>
+          <option value="Qui">Somente Quinta</option>
+          <option value="Sex">Somente Sexta</option>
+          <option value="Sab">Somente Sábado</option>
+          <option value="Dom">Somente Domingo</option>
         </select>
       </div>
 
@@ -71,7 +74,7 @@
 
       <div class="search-results" ng-class="viewMode">
         <div class="row" ng-repeat="result in (searchData.length / 3 | returnArray)">
-          <div ng-class="{ 'col-md-4': viewMode == 'view-regular', 'col-md-12': viewMode == 'view-compact' }" ng-repeat="result in searchData.slice(3 * $index, 3 * $index + 3) | orderBy:selectedOrder:!isOrderAsc | priceBetween:selectedPriceRange">
+          <div ng-class="{ 'col-md-4': viewMode == 'view-regular', 'col-md-12': viewMode == 'view-compact' }" ng-repeat="result in searchData.slice(3 * $index, 3 * $index + 3) | orderBy:selectedOrder:!isOrderAsc | filter:weekDay:selectedWeekday | priceBetween:selectedPriceRange">
 
             <div class="panel panel-default">
               <div class="panel-body">
