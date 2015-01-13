@@ -1,5 +1,8 @@
 'use strict'
 
+String::padLeft = (l, c) ->
+  Array(l - @length + 1).join(c or " ") + this
+
 ###*
  # @ngdoc overview
  # @name marketplaceApp
