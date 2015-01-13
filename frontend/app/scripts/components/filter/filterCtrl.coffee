@@ -10,6 +10,11 @@ app.controller 'FilterCtrl', (
   regions,
   makeFilter
   ) ->
+
+  $scope.filterSelected = 'categories'
+  $scope.setFilter = (filter) ->
+    $scope.filterSelected = filter
+
   $scope.advertisers = advertisers
   $scope.categories = categories
   $scope.weekdays = weekdays

@@ -1,93 +1,135 @@
-<div class="row search-filters">
+<div class="container">
+  <div class="row whitey">
+    <div class="col-md-12">
+      <span class="filter-label fort search-labels">Filtros</span>
 
-  <div class="col-md-12">
-    <div class="row search-toolbar">
-
-      <span class="result-count">{{ formatResults(searchData.length) }}</span>
-
-      <div class="pull-right">
-        <!-- <span class="filter-label">ordenacao</span> -->
-        <div class="ordering btn-group">
-          <select name="" id="" class="form-control whitey-sel" ng-model="selectedOrder">
-            <option value="">Ordenar aleatoriamente</option>
-            <option value="name">Ordenar por jornal</option>
-            <option value="price">Ordenar por preço</option>
-            <option value="column">Ordenar por caderno</option>
-          </select>
-          <!-- <button type="button" class="hide btn btn-default" ng-class="{ 'disabled' : !selectedOrder }" ng-click="toggleOrder()" ng-attr-title="{{ orderTooltip() }}" tooltip="{{ orderTooltip() }}" tooltip-placement="bottom"><i class="ficon" ng-class="isOrderAsc ? 'ficon-sort-alt-up' : 'ficon-sort-alt-down'"></i></button> -->
-        </div>
-
-        <div class="ordering btn-group">
-          <label class="btn btn-default" ng-model="isOrderAsc" btn-radio="true" ng-class="{ 'disabled' : !selectedOrder }"><i class="ficon ficon-sort-alt-up"></i></label>
-          <label class="btn btn-default" ng-model="isOrderAsc" btn-radio="false" ng-class="{ 'disabled' : !selectedOrder }"><i class="ficon ficon-sort-alt-down"></i></label>
-        </div>
-
-        <div class="btn-group">
-          <label class="btn btn-default" ng-model="viewMode" btn-radio="'view-regular'" tooltip="Modo completo" tooltip-placement="bottom"><i class="ficon ficon-layout"></i></label>
-          <label class="btn btn-default" ng-model="viewMode" btn-radio="'view-compact'" tooltip="Modo compacto"><i class="ficon ficon-menu"></i></label>
-        </div>
+      <div class="filter-box">
+        <span class="filter-label">preco</span>
+        <select name="" id="" class="form-control whitey-sel" ng-model="selectedPriceRange" ng-init="selectedPriceRange = 'all'">
+          <option value="all">todos</option>
+          <option value="1000-" selected="selected">até R$1.000,00</option>
+          <option value="999,20001">de R$1.000,00 até R$20.000,00</option>
+          <option value="20000,100000">de 20.000,00 até R$100.000,00</option>
+          <option value="100000+">de 100.000,00 em diante</option>
+        </select>
       </div>
 
-    </div>
+      <div class="filter-box">
+        <span class="filter-label">dias da semana</span>
+        <select name="" id="" class="form-control whitey-sel" ng-model="selectedWeekday">
+          <option value="">dias escolhidos</option>
+          <option value="Seg">Somente Segunda</option>
+          <option value="Ter">Somente Terça</option>
+          <option value="Qua">Somente Quarta</option>
+          <option value="Qui">Somente Quinta</option>
+          <option value="Sex">Somente Sexta</option>
+          <option value="Sab">Somente Sábado</option>
+          <option value="Dom">Somente Domingo</option>
+        </select>
+      </div>
 
-    <div class="search-results" ng-class="viewMode">
-      <div class="row" ng-repeat="result in (searchData.length / 3 | returnArray)">
-        <div ng-class="{ 'col-md-4': viewMode == 'view-regular', 'col-md-12': viewMode == 'view-compact' }" ng-repeat="result in searchData.slice(3 * $index, 3 * $index + 3) | orderBy:selectedOrder:!isOrderAsc">
-
-          <div class="panel panel-default">
-            <div class="panel-body">
-              <div class="section">
-                <table ng-attr-id="bid-{{ result.id }}">
-                  <tr class="top">
-                    <td rowspan="3" colspan="3" class="week-day">
-                      <a href="#">
-                        <div class="week mon">{{ result.weekDay }}</div>
-                      </a>
-                    </td>
-                    <td colspan="4">
-                      <h4>{{ result.name }}</h4>
-                    </td>
-                    <td class="added" ng-show="isAddedToCart[result.id]">
-                      <div><i class="ficon ficon-basket"></i></div>
-                    </td>
-                  </tr>
-                  <tr class="info">
-                    <td>formato</td>
-                    <td colspan="2"><strong>{{ result.format }}</strong></td>
-                  </tr>
-                  <tr class="info">
-                    <td>caderno</td>
-                    <td colspan="2"><strong>{{ result.column }}</strong></td>
-                  </tr>
-                  <tr>
-                    <td colspan="3">
-                      <div class="polychrome cyan"></div>
-                      <div class="polychrome yellow"></div>
-                      <div class="polychrome magenta"></div>
-                    </td>
-                    <td colspan="3" class="reg"><i class="ficon ficon-location"></i> <span>ver regiões</span></td>
-                    <td colspan="2"></td>
-                  </tr>
-                  <tr>
-                    <td colspan="6">
-                      <div class="text-right full-price">R$ <span class="price">{{ result.price | currency:'' }}</span></div>
-                    </td>
-                    <td colspan="2" class="text-right">
-                      <button type="button" class="btn btn-primary" ng-click="addToCart(result)" ng-disabled="isAddedToCart[result.id]"><span ng-show="!isAddingToCart[result.id] && !isAddedToCart[result.id]">Adicionar</span><span ng-class="{ 'hide' : !isAddedToCart[result.id] }">ok</span> <i class="ficon ficon-arrows-ccw ficon-flip-horizontal ficon-spin" ng-class="{ 'hide' : !isAddingToCart[result.id] }"></i></button>
-                    </td>
-                  </tr>
-                </table>
-              </div>
-            </div>
-          </div>
-
-        </div>
+      <div class="filter-box">
+        <span class="filter-label">cores</span>
+        <select name="" id="" class="form-control whitey-sel" ng-model="selectedColor">
+          <option value="">Cromia</option>
+          <option value="">PB</option>
+          <option value="">Rosa Nike XOKS</option>
+        </select>
       </div>
     </div>
-
   </div>
 </div>
+<div class="container">
+  <div class="row search-filters">
 
+    <div class="col-md-12">
+      <div class="row search-toolbar">
+
+        <span class="result-count">{{ formatResults(searchData.length) }}</span>
+
+        <div class="pull-right">
+          <!-- <span class="filter-label">ordenacao</span> -->
+          <div class="ordering btn-group">
+            <select name="" id="" class="form-control whitey-sel" ng-model="selectedOrder">
+              <option value="">Ordenar aleatoriamente</option>
+              <option value="name">Ordenar por jornal</option>
+              <option value="price">Ordenar por preço</option>
+              <option value="column">Ordenar por caderno</option>
+            </select>
+            <!-- <button type="button" class="hide btn btn-default" ng-class="{ 'disabled' : !selectedOrder }" ng-click="toggleOrder()" ng-attr-title="{{ orderTooltip() }}" tooltip="{{ orderTooltip() }}" tooltip-placement="bottom"><i class="ficon" ng-class="isOrderAsc ? 'ficon-sort-alt-up' : 'ficon-sort-alt-down'"></i></button> -->
+          </div>
+
+          <div class="ordering btn-group">
+            <label class="btn btn-default" ng-model="isOrderAsc" btn-radio="true" ng-class="{ 'disabled' : !selectedOrder }"><i class="ficon ficon-sort-alt-up"></i></label>
+            <label class="btn btn-default" ng-model="isOrderAsc" btn-radio="false" ng-class="{ 'disabled' : !selectedOrder }"><i class="ficon ficon-sort-alt-down"></i></label>
+          </div>
+
+          <div class="btn-group">
+            <label class="btn btn-default" ng-model="viewMode" btn-radio="'view-regular'" tooltip="Modo completo" tooltip-placement="bottom"><i class="ficon ficon-layout"></i></label>
+            <label class="btn btn-default" ng-model="viewMode" btn-radio="'view-compact'" tooltip="Modo compacto"><i class="ficon ficon-menu"></i></label>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="search-results" ng-class="viewMode">
+        <div class="row" ng-repeat="result in (searchData.length / 3 | returnArray)">
+          <div ng-class="{ 'col-md-4': viewMode == 'view-regular', 'col-md-12': viewMode == 'view-compact' }" ng-repeat="result in searchData.slice(3 * $index, 3 * $index + 3) | orderBy:selectedOrder:!isOrderAsc | filter:weekDay:selectedWeekday | priceBetween:selectedPriceRange">
+
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <div class="section">
+                  <table ng-attr-id="bid-{{ result.id }}">
+                    <tr class="top">
+                      <td rowspan="3" colspan="3" class="week-day">
+                        <a href="#">
+                          <div class="week mon">{{ result.weekDay }}</div>
+                        </a>
+                      </td>
+                      <td colspan="4">
+                        <h4>{{ result.name }}</h4>
+                      </td>
+                      <td class="added" ng-show="isAddedToCart[result.id]">
+                        <div><i class="ficon ficon-basket"></i></div>
+                      </td>
+                    </tr>
+                    <tr class="info">
+                      <td>formato</td>
+                      <td colspan="2"><strong>{{ result.format }}</strong></td>
+                    </tr>
+                    <tr class="info">
+                      <td>caderno</td>
+                      <td colspan="2"><strong>{{ result.column }}</strong></td>
+                    </tr>
+                    <tr>
+                      <td colspan="3">
+                        <div class="polychrome cyan"></div>
+                        <div class="polychrome yellow"></div>
+                        <div class="polychrome magenta"></div>
+                      </td>
+                      <td colspan="3" class="reg"><i class="ficon ficon-location"></i> <span>ver regiões</span></td>
+                      <td colspan="2"></td>
+                    </tr>
+                    <tr>
+                      <td colspan="6">
+                        <div class="text-right full-price">R$ <span class="price">{{ result.price | currency:'' }}</span></div>
+                      </td>
+                      <td colspan="2" class="text-right">
+                        <button type="button" class="btn btn-primary" ng-click="addToCart(result)" ng-disabled="isAddedToCart[result.id]"><span ng-show="!isAddingToCart[result.id] && !isAddedToCart[result.id]">Adicionar</span><span ng-class="{ 'hide' : !isAddedToCart[result.id] }">ok</span> <i class="ficon ficon-arrows-ccw ficon-flip-horizontal ficon-spin" ng-class="{ 'hide' : !isAddingToCart[result.id] }"></i></button>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
 
 
 <pre>

@@ -5,7 +5,6 @@ app.controller 'SearchCtrl', ($scope, $rootScope, $modal, $log, Results) ->
 # http://angularjs4u.com/filters/angularjs-template-divs-row/
 
   $scope.results = 'scripts/components/results/resultsView.html'
-  # $scope.filter = 'scripts/components/filter/filterView.html'
 
   $scope.filterData = []
   $scope.showModal = false
@@ -88,7 +87,7 @@ app.controller 'SearchCtrl', ($scope, $rootScope, $modal, $log, Results) ->
     }
   ]
 
-  $scope.categories =   [
+  $scope.categories = [
     {
       name: 'Esportes'
       id: 1
@@ -103,7 +102,7 @@ app.controller 'SearchCtrl', ($scope, $rootScope, $modal, $log, Results) ->
     }
   ]
 
-  $scope.determinations =   [
+  $scope.determinations = [
     {
       name: 'Meia Página'
       id: 1
@@ -118,7 +117,7 @@ app.controller 'SearchCtrl', ($scope, $rootScope, $modal, $log, Results) ->
     }
   ]
 
-  $scope.regions =   [
+  $scope.regions = [
     {
       name: 'Madagascar'
       id: 1
@@ -133,7 +132,7 @@ app.controller 'SearchCtrl', ($scope, $rootScope, $modal, $log, Results) ->
     }
   ]
 
-  $scope.weekdays =   [
+  $scope.weekdays = [
     {
       name: 'Segunda'
       id: 1

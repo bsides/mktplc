@@ -13,8 +13,9 @@
       <strong>Busca de Ofertas</strong>
       <span>Preencha ao menos um dos campos para prosseguir</span>
       <tabset justified="true" class="tabset filter-tab">
-        <tab>
+        <tab ng-click="setFilter('categories')">
           <tab-heading>
+            <i class="ficon" ng-class="filterSelected == 'categories' ? 'ficon-dot-circled' : 'ficon-circle-empty'"></i>
             <i class="ficon ficon-bookmarks"></i> categoria
           </tab-heading>
 
@@ -40,8 +41,9 @@
 
         </tab>
 
-        <tab>
+        <tab ng-click="setFilter('determination')">
           <tab-heading>
+            <i class="ficon" ng-class="filterSelected == 'determination' ? 'ficon-dot-circled' : 'ficon-circle-empty'"></i>
             <i class="ficon ficon-login"></i> determinação
           </tab-heading>
 
@@ -66,8 +68,9 @@
           </div>
 
         </tab>
-        <tab>
+        <tab ng-click="setFilter('weekday')">
           <tab-heading>
+            <i class="ficon" ng-class="filterSelected == 'weekday' ? 'ficon-dot-circled' : 'ficon-circle-empty'"></i>
             <i class="ficon ficon-calendar"></i> dia da semana
           </tab-heading>
 
@@ -84,8 +87,9 @@
             </div>
           </div>
         </tab>
-        <tab>
+        <tab ng-click="setFilter('region')">
           <tab-heading>
+            <i class="ficon" ng-class="filterSelected == 'region' ? 'ficon-dot-circled' : 'ficon-circle-empty'"></i>
             <i class="ficon ficon-location"></i> região
           </tab-heading>
 

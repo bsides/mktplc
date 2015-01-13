@@ -64,16 +64,16 @@
   </div>
 
   <div class="panel panel-default">
-    <div class="panel-body">
+    <div class="panel-body" ng-click="isCollapsed = !isCollapsed">
       <div class="row line-info-purchase">
         <div class="col-md-6 description">
-          <i class="ficon ficon-plus-circled"></i>
+          <i class="ficon" ng-class="{ 'ficon-plus-circled': isCollapsed, 'ficon-minus-circled': !isCollapsed }"></i>
           <strong>1253 | Proposta | 14/12/2014</strong>
         </div>
         <div class="col-md-4 adv-name">anunciante <strong>Lalala</strong></div>
         <div class="col-md-2 value"><span style="background-color: #f2f2f2;">R$ <span>50.000,00</span></span></div>
       </div>
-      <div class="detail-purchase hide">
+      <div class="detail-purchase" collapse="isCollapsed">
         <div class="by-newspape">
           <div>
             <i class="ficon ficon-doc-1"></i> Estado de São Paulo
