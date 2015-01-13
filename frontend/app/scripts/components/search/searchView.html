@@ -42,10 +42,8 @@
     <div class="col-md-12">
       <span class="terms-label fort search-labels">Seus critérios</span>
       <div class="terms-box boxed">
-        <span class="label label-info">jornal A</span>
-        <span class="label label-info">jornal B</span>
-        <span class="label label-info">1/2 pagina</span>
-        <span class="label label-info">todos os cadernos</span>
+        <span class="label label-info" ng-repeat="criteria in filterData">{{ criteria.name }}</span>&nbsp;
+        <span ng-hide="filterData.length">Sem resultados, por favor refaça a busca</span>
       </div>
       <button type="button" class="btn btn-primary pull-right" ng-click="newSearch()">Nova busca <i class="ficon ficon-down-open"></i></button>
     </div>

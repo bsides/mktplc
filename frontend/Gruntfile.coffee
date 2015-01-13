@@ -63,6 +63,10 @@ module.exports = (grunt) ->
         files: ['<%= yeoman.app %>/scripts/libs/**/*.html']
         tasks: ['html2js:bootstrap', 'copy:public']
 
+      multiselect:
+        files: ['<%= yeoman.app %>/scripts/libs/**/*.html']
+        tasks: ['html2js:multiselect', 'copy:public']
+
       mktplace:
         files: [
           '<%= yeoman.app %>/scripts/components/**/*.html'
@@ -260,6 +264,18 @@ module.exports = (grunt) ->
 
         src: ['app/scripts/libs/angular-bootstrap/**/*.html']
         dest: 'app/scripts/ui-templates.js'
+
+      # Templates for Angular
+      multiselect:
+        options:
+          base: 'app/scripts/libs/angular-multiselect/'
+          module: 'ui-multiselect'
+          rename: (modulePath) ->
+            moduleName = modulePath.replace('app/scripts/libs/angular-multiselect/', '')
+            'template/' + moduleName
+
+        src: ['app/scripts/libs/angular-multiselect/**/*.html']
+        dest: 'app/scripts/ui-multiselect.js'
 
 
     # Compiles CoffeeScript to JavaScript
@@ -484,12 +500,14 @@ module.exports = (grunt) ->
             dest: '<%= yeoman.public %>/'
             src: [
               'scripts/ui-templates.js'
+              'scripts/ui-multiselect.js'
               'scripts/marketplace-templates.js'
               'styles/**/*.css'
               'styles/**/*.{css,eot,svg,ttf,woff}'
               'scripts/**/*.{js,html}'
               'index.php'
               'images/**/*'
+              '.htaccess'
             ]
           }
         ]
@@ -532,6 +550,7 @@ module.exports = (grunt) ->
             dest: '.tmp/'
             src: [
               'scripts/ui-templates.js'
+              'scripts/ui-multiselect.js'
               'scripts/marketplace-templates.js'
               'scripts/**/*.html'
               'styles/**/*.css'
@@ -702,6 +721,7 @@ module.exports = (grunt) ->
       'clean:index'
       'html2js:bootstrap'
       'html2js:marketplace'
+      'html2js:multiselect'
       'wiredep'
       'concurrent:dev'
       'autoprefixer:dev'

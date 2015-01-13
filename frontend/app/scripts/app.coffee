@@ -15,6 +15,8 @@ root.app = angular
     'ui.bootstrap'
     'marketplace.templates'
     'ui-templates'
+    'multi-select'
+    'ui-multiselect'
     'ngAnimate'
     'ngAria'
     'ngCookies'

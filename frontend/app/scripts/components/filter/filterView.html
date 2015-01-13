@@ -4,132 +4,40 @@
       <strong>Anunciante</strong>
       <select name="advertisers" ng-model="isAdvertiser" class="form-control">
         <option value="">Selecione um Anunciante</option>
-        <option ng-repeat="advertiser in advertisers | orderBy:'name'" value="{{advertiser.id}}">{{advertiser.name}}</option>
+        <option ng-repeat="advertiser in advertisers | orderBy:'name'" value="{{ advertiser.id }}">{{ advertiser.name }}</option>
       </select>
     </div>
   </div>
-  <div class="panel panel-default wp-search" ng-class="isAdvertiser > 0 ? test() : 'disabled'">
+  <div class="panel panel-default wp-search" ng-class="{ 'disabled': !isAdvertiser }">
     <div class="panel-body">
-      <strong> Busca de Ofertas </strong>
+      <strong>Busca de Ofertas</strong>
       <span>Preencha ao menos um dos campos para prosseguir</span>
       <tabset justified="true" class="tabset filter-tab">
         <tab>
           <tab-heading>
             <i class="ficon ficon-bookmarks"></i> categoria
           </tab-heading>
-          <div class="wrps">
-            <div class="clear-filters">
-              <button class="btn" ng-click="clearFilters()">limpar filtros</button>
-            </div>
-            <div class="row whitey">
-              <table>
-                <tr>
-                  <td>
-                    *categoria
-                    <input type="text" placeholder="digite ou selecione">
 
-                        <input type="text" ng-model="selected" typeahead="category.name for category in categories | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="makeFilter($item, $model, $label)">
-
-                  </td>
-                  <td class="filters">
-                    <input type="text" ng-model="selected" class="">
-                    <span class="label label-info">jornal A</span>
-                    <span class="label label-info">jornal B</span>
-                    <span class="label label-info">1/2 pagina</span>
-                    <span class="label label-info">todos os cadernos</span>
-                  </td>
-                </tr>
-              </table>
-            </div>
-
-            <div class="clear-filters">
-              <button class="btn" ng-click="clearFilters()">limpar filtros</button>
-            </div>
-            <div class="row whitey">
-              <table>
-                <tr>
-                  <td>
-                    dia da semana
-                    <input type="text" placeholder="digite ou selecione">
-                  </td>
-                  <td class="filters">
-                    <span class="label label-info">segunda</span>
-                  </td>
-                </tr>
-              </table>
-            </div>
-
-            <div class="row whitey wp-journal">
-              <table class="tb-journal">
-                <tr>
-                  <td>
-                    jornal
-                    <input type="text" placeholder="digite ou selecione">
-                  </td>
-                </tr>
-                <tr>
-                  <td class="bg-white">
-                    <div class="clear-filters">
-                      <button class="btn" ng-click="clearFilters()">limpar filtros</button>
-                    </div>
-                    <div>
-                      <table>
-                        <thead>
-                          <tr>
-                            <td colspan="2" style="background-color: #fff">Jornal A</td>
-                            <td style="width: 2%">X</td>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td>
-                              formato
-                              <input type="text" placeholder="digite ou selecione">
-                            </td>
-                            <td colspan="2"></td>
-                          </tr>
-                          <tr>
-                            <td>
-                              caderno
-                              <input type="text" placeholder="digite ou selecione">
-                            </td>
-                            <td colspan="2"></td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
-
-                    <div>
-                      <table>
-                        <thead>
-                          <tr>
-                            <td colspan="2" style="background-color: #fff">Jornal B</td>
-                            <td style="width: 2%">X</td>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td>
-                              formato
-                              <input type="text" placeholder="digite ou selecione">
-                            </td>
-                            <td colspan="2"></td>
-                          </tr>
-                          <tr>
-                            <td>
-                              caderno
-                              <input type="text" placeholder="digite ou selecione">
-                            </td>
-                            <td colspan="2"></td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
-                  </td>
-                </tr>
-              </table>
+          <div class="row whitey">
+            <div class="col-md-3">* categoria</div>
+            <div class="col-md-9">
+              <div multi-select input-model="categories" button-label="name" item-label="name" tick-property="ticked"></div>
             </div>
           </div>
+
+          <div class="row whitey">
+            <div class="col-md-3">dia da semana</div>
+            <div class="col-md-9">
+              <div multi-select input-model="weekdays" button-label="name" item-label="name" tick-property="ticked"></div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <button type="button" class="btn btn-primary" ng-click="ok()">Buscar</button>
+            </div>
+          </div>
+
         </tab>
 
         <tab>
@@ -137,108 +45,23 @@
             <i class="ficon ficon-login"></i> determinação
           </tab-heading>
 
-          <div class="wrps">
-            <div class="clear-filters">
-              <button class="btn" ng-click="clearFilters()">limpar filtros</button>
+          <div class="row whitey">
+            <div class="col-md-3">* determinação</div>
+            <div class="col-md-9">
+              <div multi-select input-model="determinations" button-label="name" item-label="name" tick-property="ticked"></div>
             </div>
-            <div class="row whitey">
-              <table>
-                <tr>
-                  <td>
-                    *determinação
-                    <input type="text" placeholder="digite ou selecione">
-                  </td>
-                  <td class="filters"><span class="label label-info">capa</span></td>
-                </tr>
-              </table>
-            </div>
+          </div>
 
-            <div class="clear-filters">
-              <button class="btn" ng-click="clearFilters()">limpar filtros</button>
+          <div class="row whitey">
+            <div class="col-md-3">dia da semana</div>
+            <div class="col-md-9">
+              <div multi-select input-model="weekdays" button-label="name" item-label="name" tick-property="ticked"></div>
             </div>
-            <div class="row whitey">
-              <table>
-                <tr>
-                  <td>
-                    dia da semana
-                    <input type="text" placeholder="digite ou selecione">
-                  </td>
-                  <td class="filters">
-                    <span class="label label-info">segunda</span>
-                  </td>
-                </tr>
-              </table>
-            </div>
+          </div>
 
-            <div class="row whitey wp-journal">
-              <table class="tb-journal">
-                <tr>
-                  <td>
-                    jornal
-                    <input type="text" placeholder="digite ou selecione">
-                  </td>
-                </tr>
-                <tr>
-                  <td class="bg-white">
-                    <div class="clear-filters">
-                      <button class="btn" ng-click="clearFilters()">limpar filtros</button>
-                    </div>
-                    <div>
-                      <table>
-                        <thead>
-                          <tr>
-                            <td colspan="2" style="background-color: #fff">Jornal A</td>
-                            <td style="width: 2%">X</td>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td>
-                              formato
-                              <input type="text" placeholder="digite ou selecione">
-                            </td>
-                            <td colspan="2"></td>
-                          </tr>
-                          <tr>
-                            <td>
-                              caderno
-                              <input type="text" placeholder="digite ou selecione">
-                            </td>
-                            <td colspan="2"></td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
-
-                    <div>
-                      <table>
-                        <thead>
-                          <tr>
-                            <td colspan="2" style="background-color: #fff">Jornal B</td>
-                            <td style="width: 2%">X</td>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td>
-                              formato
-                              <input type="text" placeholder="digite ou selecione">
-                            </td>
-                            <td colspan="2"></td>
-                          </tr>
-                          <tr>
-                            <td>
-                              caderno
-                              <input type="text" placeholder="digite ou selecione">
-                            </td>
-                            <td colspan="2"></td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
-                  </td>
-                </tr>
-              </table>
+          <div class="row">
+            <div class="col-md-12">
+              <button type="button" class="btn btn-primary" ng-click="ok()">Buscar</button>
             </div>
           </div>
 
@@ -248,94 +71,16 @@
             <i class="ficon ficon-calendar"></i> dia da semana
           </tab-heading>
 
-          <div class="wrps">
-            <div class="clear-filters">
-              <button class="btn">limpar filtros</button>
+          <div class="row whitey">
+            <div class="col-md-3">* dia da semana</div>
+            <div class="col-md-9">
+              <div multi-select input-model="weekdays" button-label="name" item-label="name" tick-property="ticked"></div>
             </div>
-            <div class="row whitey">
-              <table>
-                <tr>
-                  <td>
-                    *dia da semana
-                    <input type="text" placeholder="digite ou selecione">
-                  </td>
-                  <td class="filters">
-                    <span class="label label-info">sexta</span>
-                    <span class="label label-info">sabado</span>
-                    <span class="label label-info">domingo</span>
-                  </td>
-                </tr>
-              </table>
-            </div>
-            <div class="row whitey wp-journal">
-              <table class="tb-journal">
-                <tr>
-                  <td>
-                    jornal
-                    <input type="text" placeholder="digite ou selecione">
-                  </td>
-                </tr>
-                <tr>
-                  <td class="bg-white">
-                    <div class="clear-filters">
-                      <button class="btn" ng-click="clearFilters()">limpar filtros</button>
-                    </div>
-                    <div>
-                      <table>
-                        <thead>
-                          <tr>
-                            <td colspan="2" style="background-color: #fff">Jornal A</td>
-                            <td style="width: 2%">X</td>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td>
-                              formato
-                              <input type="text" placeholder="digite ou selecione">
-                            </td>
-                            <td colspan="2"></td>
-                          </tr>
-                          <tr>
-                            <td>
-                              caderno
-                              <input type="text" placeholder="digite ou selecione">
-                            </td>
-                            <td colspan="2"></td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
+          </div>
 
-                    <div>
-                      <table>
-                        <thead>
-                          <tr>
-                            <td colspan="2" style="background-color: #fff">Jornal B</td>
-                            <td style="width: 2%">X</td>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td>
-                              formato
-                              <input type="text" placeholder="digite ou selecione">
-                            </td>
-                            <td colspan="2"></td>
-                          </tr>
-                          <tr>
-                            <td>
-                              caderno
-                              <input type="text" placeholder="digite ou selecione">
-                            </td>
-                            <td colspan="2"></td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
-                  </td>
-                </tr>
-              </table>
+          <div class="row">
+            <div class="col-md-12">
+              <button type="button" class="btn btn-primary" ng-click="ok()">Buscar</button>
             </div>
           </div>
         </tab>
@@ -344,90 +89,23 @@
             <i class="ficon ficon-location"></i> região
           </tab-heading>
 
-          <div class="wrps">
-            <div class="clear-filters">
-              <button class="btn">limpar filtros</button>
+          <div class="row whitey">
+            <div class="col-md-3">* região</div>
+            <div class="col-md-9">
+              <div multi-select input-model="regions" button-label="name" item-label="name" tick-property="ticked"></div>
             </div>
-            <div class="row whitey">
-              <table>
-                <tr>
-                  <td>
-                    *região
-                    <input type="text" placeholder="digite ou selecione">
-                  </td>
-                  <td class="filters"></td>
-                </tr>
-              </table>
-            </div>
-            <div class="row whitey wp-journal">
-              <table class="tb-journal">
-                <tr>
-                  <td>
-                    jornal
-                    <input type="text" placeholder="digite ou selecione">
-                  </td>
-                </tr>
-                <tr>
-                  <td class="bg-white">
-                    <div class="clear-filters">
-                      <button class="btn" ng-click="clearFilters()">limpar filtros</button>
-                    </div>
-                    <div>
-                      <table>
-                        <thead>
-                          <tr>
-                            <td colspan="2" style="background-color: #fff">Jornal A</td>
-                            <td style="width: 2%">X</td>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td>
-                              formato
-                              <input type="text" placeholder="digite ou selecione">
-                            </td>
-                            <td colspan="2"></td>
-                          </tr>
-                          <tr>
-                            <td>
-                              caderno
-                              <input type="text" placeholder="digite ou selecione">
-                            </td>
-                            <td colspan="2"></td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
+          </div>
 
-                    <div>
-                      <table>
-                        <thead>
-                          <tr>
-                            <td colspan="2" style="background-color: #fff">Jornal B</td>
-                            <td style="width: 2%">X</td>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td>
-                              formato
-                              <input type="text" placeholder="digite ou selecione">
-                            </td>
-                            <td colspan="2"></td>
-                          </tr>
-                          <tr>
-                            <td>
-                              caderno
-                              <input type="text" placeholder="digite ou selecione">
-                            </td>
-                            <td colspan="2"></td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
-                  </td>
-                </tr>
-              </table>
+          <div class="row whitey">
+            <div class="col-md-3">* dia da semana</div>
+            <div class="col-md-9">
+              <div multi-select input-model="weekdays" button-label="name" item-label="name" tick-property="ticked"></div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <button type="button" class="btn btn-primary" ng-click="ok()">Buscar</button>
             </div>
           </div>
         </tab>
