@@ -7,14 +7,18 @@
       <div class="advertiser-toggle">
         <span class="advertiser-label">Anunciante</span>
         <!-- Single button -->
+        <!--
         <div class="btn-group" dropdown is-open="status.isopen">
           <button type="button" class="btn btn-info dropdown-toggle" dropdown-toggle ng-disabled="disabled">
-            Predicta <span class="caret"></span>
+            {{ advertiser.description }} <span class="caret"></span>
           </button>
           <ul class="dropdown-menu" role="menu">
-            <li ng-repeat="advertiser in advertisers"><a href="#">{{ advertiser.name }}</a></li>
+            <li ng-repeat="advertiser in advertisers"><a href="#" ng-modal="{{ advertiser.description }}">{{ advertiser.description }}</a></li>
           </ul>
         </div>
+        -->
+        <select ng-model="selectedAdvertiser" ng-options="advertiser.description for advertiser in advertisers track by advertiser.id" class="form-control">
+        </select>
       </div>
     </div>
     <div class="col-md-4">

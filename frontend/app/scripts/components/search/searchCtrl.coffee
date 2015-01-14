@@ -88,16 +88,48 @@ app.controller 'SearchCtrl', ($scope, $rootScope, $modal, $modalStack, $timeout,
     # console.log sendingArray
     # console.log data.['category_id[]']
 
+  $scope.willOpenAdvertiserModal = {}
+  # Modal para confirmação de mudança de advertiser
+  $scope.$watch 'selectedAdvertiser', (newValue, oldValue, $event) ->
+    if (newValue != $scope.willOpenAdvertiserModal) and (newValue != oldValue)
+      # A model do advertiser selecionado
+      confirmModal = $modal.open(
+        templateUrl: 'scripts/shared/utils/modalConfirmView.html'
+        controller: 'ModalCtrl'
+        size: 'sm'
+        backdrop: 'static'
+        resolve:
+          theId: ->
+            $scope.selectedAdvertiser
+          title: ->
+            'Mudança de advertiser'
+          message: ->
+            'Ao alterar essa opção o conteúdo do seu carrinho será apagado.'
+          labelOk: ->
+            'Tudo bem!'
+          labelCancel: ->
+            'Cancelar'
+      )
+      confirmModal.result.then ((isConfirmed, id) ->
+        if isConfirmed
+          $scope.eraseCart()
+        else
+          $scope.willOpenAdvertiserModal = oldValue
+          $scope.selectedAdvertiser = oldValue
+      )
+
+  $scope.eraseCart = ->
+    Results.empty().success((data) -> console.log data)
 
   # Abre o modal
   $scope.forceSearch = true if $scope.filterData.length == 0
   $scope.forceSearch = true if $scope.canSearch
-  $timeout (->
-    # Somente se ele já não estiver aberto!!!
-    if typeof $modalStack.getTop() == 'undefined'
-      $scope.newSearch() if $scope.forceSearch
-      return
-  ), 3000
+  # $timeout (->
+  #   # Somente se ele já não estiver aberto!!!
+  #   if typeof $modalStack.getTop() == 'undefined'
+  #     $scope.newSearch() if $scope.forceSearch
+  #     return
+  # ), 3000
 
   # Dados que deveriam vir do servidor (mock)
   $scope.listAllData = []
@@ -115,7 +147,6 @@ app.controller 'SearchCtrl', ($scope, $rootScope, $modal, $modalStack, $timeout,
     determination
     region
   ]).then (data) ->
-    console.log data
     $scope.listAllData = data
     $scope.advertisers = data[0].data
     $scope.categories = data[1].data

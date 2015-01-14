@@ -8,6 +8,7 @@ app.factory 'Results', ($resource, $http, $q) ->
     cart: '/cart'
     filter: '/direct/item'
     list: '/direct/list'
+    empty: '/cart/empty'
 
   cartTotal: (price) ->
     price = price + price
@@ -27,6 +28,9 @@ app.factory 'Results', ($resource, $http, $q) ->
       method: 'POST'
       url: url.remove + bidId
     )
+
+  empty: ->
+    $http.get(url.empty)
 
   cart: ->
     $http.get(url.cart)

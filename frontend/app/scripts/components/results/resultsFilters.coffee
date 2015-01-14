@@ -15,7 +15,7 @@ app.filter 'returnArray', ->
 
 app.filter "priceBetween", ->
   (items, min, max) ->
-    return items if min == 'all'
+    return items if (min is 'all') or (typeof min is 'undefined')
     filtered = []
     type = ''
     if min
@@ -34,16 +34,36 @@ app.filter "priceBetween", ->
 
     if (typeof max isnt 'undefined') or (max is 0)
       angular.forEach items, (item, key) ->
-        filtered.push item  if item.price <= max and item.price >= min
+        filtered.push item  if item.bid.value <= max and item.bid.value >= min
         return
     else
       if type == 'until'
         angular.forEach items, (item, key) ->
-          filtered.push item  if item.price <= min
+          filtered.push item  if item.bid.value <= min
           return
       if type == 'over'
         angular.forEach items, (item, key) ->
-          filtered.push item  if item.price >= min
+          filtered.push item  if item.bid.value >= min
           return
+
+    filtered
+
+app.filter 'filterWeek', ->
+  (items, weekDayId) ->
+    return items if (typeof weekDayId is 'undefined') or (weekDayId is '')
+    filtered = []
+    angular.forEach items, (item, key) ->
+      filtered.push item if parseInt(item.week_day.id) is parseInt(weekDayId)
+      return
+
+    filtered
+
+app.filter 'filterColor', ->
+  (items, colorId) ->
+    return items if (typeof colorId is 'undefined') or (colorId is '')
+    filtered = []
+    angular.forEach items, (item, key) ->
+      filtered.push item if parseInt(item.color.id) is parseInt(colorId)
+      return
 
     filtered

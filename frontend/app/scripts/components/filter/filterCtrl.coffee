@@ -33,7 +33,12 @@ app.controller 'FilterCtrl', (
   $scope.weekdays = weekdays
   $scope.determinations = determinations
   $scope.regions = regions
+
   $scope.ok = ->
     makeFilter()
+    $scope.closeModal()
+    return
+
+  $scope.closeModal = ->
     $modalInstance.dismiss 'saiu'
     return
