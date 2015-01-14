@@ -74,7 +74,7 @@ app.controller 'ResultsCtrl', ($scope, $rootScope, $http, $log, Results) ->
       $scope.isAddedToCart[bid.id] = true
       $scope.isAddingToCart[bid.id] = false
       # 4 - acrescenta quantidade e atualiza valor ao carrinho
-      $rootScope.cartTotal = parseFloat($rootScope.cartTotal) + parseFloat(bid.price)
+      $rootScope.cartTotal = parseFloat($rootScope.cartTotal) + parseFloat(bid.bid.value)
     ).error((data) ->
       # console.log data
     )
