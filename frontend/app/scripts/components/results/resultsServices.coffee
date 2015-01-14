@@ -1,6 +1,6 @@
 'use strict'
 
-app.factory 'Results', ($resource, $http, $q) ->
+app.factory 'Results', ($http) ->
   url =
     get: '/direct/item'
     add: '/cart/add'

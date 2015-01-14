@@ -13,7 +13,7 @@ app.filter 'returnArray', ->
 
     arr
 
-app.filter "priceBetween", ->
+app.filter "filterPriceBetween", ->
   (items, min, max) ->
     return items if (min is 'all') or (typeof min is 'undefined')
     filtered = []

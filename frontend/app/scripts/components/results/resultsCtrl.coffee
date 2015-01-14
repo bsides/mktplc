@@ -1,6 +1,6 @@
 'use strict'
 
-app.controller 'ResultsCtrl', ($scope, $rootScope, $filter, $http, Results) ->
+app.controller 'ResultsCtrl', ($scope, $rootScope, $http, $log, Results) ->
 # rows with ng-repeat
 # http://angularjs4u.com/filters/angularjs-template-divs-row/
 

@@ -6,7 +6,7 @@ app.controller 'ModalCtrl', ($scope, $modalInstance, title, message, labelOk, la
   $scope.labelOk = labelOk
   $scope.labelCancel = labelCancel
   $scope.modalConfirm = ->
-    $modalInstance.close(true, )
+    $modalInstance.close(true)
     return
   $scope.modalCancel = ->
     $modalInstance.close(false)

@@ -90,7 +90,7 @@ app.controller 'SearchCtrl', ($scope, $rootScope, $modal, $modalStack, $timeout,
 
   $scope.willOpenAdvertiserModal = {}
   # Modal para confirmação de mudança de advertiser
-  $scope.$watch 'selectedAdvertiser', (newValue, oldValue, $event) ->
+  $scope.$watch 'selectedAdvertiser', (newValue, oldValue) ->
     if (newValue != $scope.willOpenAdvertiserModal) and (newValue != oldValue)
       # A model do advertiser selecionado
       confirmModal = $modal.open(
@@ -110,11 +110,10 @@ app.controller 'SearchCtrl', ($scope, $rootScope, $modal, $modalStack, $timeout,
           labelCancel: ->
             'Cancelar'
       )
-      confirmModal.result.then ((isConfirmed, id) ->
+      confirmModal.result.then ((isConfirmed) ->
         if isConfirmed
           $scope.eraseCart()
         else
-          $scope.willOpenAdvertiserModal = oldValue
           $scope.selectedAdvertiser = oldValue
       )
 
@@ -123,6 +122,9 @@ app.controller 'SearchCtrl', ($scope, $rootScope, $modal, $modalStack, $timeout,
       data
       $rootScope.cartTotal = 0
     )
+
+  $scope.checkAdvertiser = ->
+    $scope.willOpenAdvertiserModal = $scope.selectedAdvertiser
 
   # Abre o modal
   $scope.forceSearch = true if $scope.filterData.length == 0
