@@ -112,9 +112,9 @@ root.app = angular
       (if query.length then query.substr(0, query.length - 1) else query)
 
     # Override $http service's default transformRequest
-    $httpProvider.defaults.transformRequest = [(data) ->
-      (if angular.isObject(data) and String(data) isnt '[object File]' then param(data) else data)
-    ]
+    # $httpProvider.defaults.transformRequest = [(data) ->
+    #   (if angular.isObject(data) and String(data) isnt '[object File]' then param(data) else data)
+    # ]
     return
     # coffeelint: enable=max_line_length
 

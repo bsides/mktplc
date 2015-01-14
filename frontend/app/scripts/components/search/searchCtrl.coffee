@@ -63,25 +63,29 @@ app.controller 'SearchCtrl', ($scope, $rootScope, $modal, $modalStack, $timeout,
   $scope.makeFilter = ->
     $scope.filterData = []
     angular.forEach $scope.categories, (value, key) ->
-      value['category_id[]'] = value.id
-      consolidateFilterValues(value, key)
+      if value.ticked
+        value['category_id[]'] = value.id
+        $scope.filterData.push(value)
     angular.forEach $scope.weekdays, (value, key) ->
-      value['week_day_id[]'] = value.id
-      consolidateFilterValues(value, key)
+      if value.ticked
+        value['week_day_id[]'] = value.id
+        $scope.filterData.push(value)
     angular.forEach $scope.determinations, (value, key) ->
-      value['determination_id[]'] = value.id
-      consolidateFilterValues(value, key)
+      if value.ticked
+        value['determination_id[]'] = value.id
+        $scope.filterData.push(value)
     angular.forEach $scope.regions, (value, key) ->
-      value['state_id[]'] = value.id
-      consolidateFilterValues(value, key)
+      if value.ticked
+        value['state_id[]'] = value.id
+        $scope.filterData.push(value)
+
     sendFilter($scope.filterData)
 
-  consolidateFilterValues = (value, keys) ->
-    $scope.filterData.push(value) if value.ticked
 
   sendFilter = (data) ->
-    Results.sendFilter(data).success(-> data)
-    return
+    Results.sendFilter(data).success((data) ->
+      console.log data
+    )
     # sendingArray = []
     # angular.forEach data, (value, key) ->
     #   sendingArray.push(value)
@@ -161,77 +165,3 @@ app.controller 'SearchCtrl', ($scope, $rootScope, $modal, $modalStack, $timeout,
     # You can search now
     $scope.canSearch = true
 
-  # $scope.advertisers =  [
-  #   {
-  #     name: 'Cdv'
-  #     id: 1
-  #   }
-  #   {
-  #     name: 'Vdv'
-  #     id: 2
-  #   }
-  #   {
-  #     name: 'Adv'
-  #     id: 3
-  #   }
-  # ]
-
-  # $scope.categories = [
-  #   {
-  #     name: 'Esportes'
-  #     id: 1
-  #   }
-  #   {
-  #     name: 'Classificados'
-  #     id: 2
-  #   }
-  #   {
-  #     name: 'Entretenimento'
-  #     id: 3
-  #   }
-  # ]
-
-  # # $scope.determinations = [
-  # #   {
-  # #     name: 'Meia Página'
-  # #     id: 1
-  # #   }
-  # #   {
-  # #     name: 'Muita Página'
-  # #     id: 2
-  # #   }
-  # #   {
-  # #     name: 'Página demais'
-  # #     id: 3
-  # #   }
-  # # ]
-
-  # $scope.regions = [
-  #   {
-  #     name: 'Madagascar'
-  #     id: 1
-  #   }
-  #   {
-  #     name: 'São Paulo'
-  #     id: 2
-  #   }
-  #   {
-  #     name: 'Plutão'
-  #     id: 3
-  #   }
-  # ]
-
-  # $scope.weekdays = [
-  #   {
-  #     name: 'Segunda'
-  #     id: 1
-  #   }
-  #   {
-  #     name: 'Quarta'
-  #     id: 2
-  #   }
-  #   {
-  #     name: 'Quinta'
-  #     id: 3
-  #   }
-  # ]
