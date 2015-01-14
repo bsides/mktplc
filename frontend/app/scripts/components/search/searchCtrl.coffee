@@ -119,7 +119,10 @@ app.controller 'SearchCtrl', ($scope, $rootScope, $modal, $modalStack, $timeout,
       )
 
   $scope.eraseCart = ->
-    Results.empty().success((data) -> console.log data)
+    Results.empty().success((data) ->
+      data
+      $rootScope.cartTotal = 0
+    )
 
   # Abre o modal
   $scope.forceSearch = true if $scope.filterData.length == 0
