@@ -1,6 +1,6 @@
 'use strict'
 
-app.controller 'ResultsCtrl', ($scope, $rootScope, $filter, $http, Results) ->
+app.controller 'ResultsCtrl', ($scope, $rootScope, $http, $log, Results) ->
 # rows with ng-repeat
 # http://angularjs4u.com/filters/angularjs-template-divs-row/
 
@@ -11,7 +11,7 @@ app.controller 'ResultsCtrl', ($scope, $rootScope, $filter, $http, Results) ->
     if status == 200
       $scope.searchData = data
     else
-      $scope.searchData = 'Erro ao retornar os dados'
+      $scope.searchData = null
 
   # Deal with them
   Results.get().success(handleAllResults)
@@ -26,7 +26,7 @@ app.controller 'ResultsCtrl', ($scope, $rootScope, $filter, $http, Results) ->
     else if counter == 1
       $scope.resultLabel = counter + ' resultado'
     else
-      $scope.resultLabel = 'Sua busca não retornou resultados'
+      $scope.resultLabel = ''
 
   # Ordenação de resultado
 
@@ -76,7 +76,7 @@ app.controller 'ResultsCtrl', ($scope, $rootScope, $filter, $http, Results) ->
       # 4 - acrescenta quantidade e atualiza valor ao carrinho
       $rootScope.cartTotal = parseFloat($rootScope.cartTotal) + parseFloat(bid.price)
     ).error((data) ->
-      console.log data
+      # console.log data
     )
 
   # Remover

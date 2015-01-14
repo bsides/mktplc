@@ -66,7 +66,9 @@ app.controller 'BidsCtrl', ($scope, $rootScope, Results) ->
 
   # Remove this bid
   $scope.removeBid = (id) ->
-    console.log id
+    Results.delete(id).success((data) -> console.log data)
+
+  $rootScope.removeBid = $scope.removeBid
 
   # Data coming from server
   $scope.bidData = [

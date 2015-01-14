@@ -124,6 +124,11 @@ h2 {
 .modal-dialog {
   top: 290px;
 }
+.modal-sm {
+  .modal-content {
+    background: $white;
+  }
+}
 .modal-content {
   box-shadow: none;
   border: 0;
