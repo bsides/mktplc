@@ -6,6 +6,11 @@ class Item
     /**
      * @type string
      */
+    public $hash;
+
+    /**
+     * @type string
+     */
     public $comment;
 
     /**

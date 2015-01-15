@@ -71,7 +71,7 @@ class ShoppingCart
             $this->removeItem( $item );
             return FALSE;
         }
-        $this->items[spl_object_hash($item)] = $item;
+        $this->items[$item->hash] = $item;
         $this->persist();
         return $item;
     }
@@ -85,9 +85,24 @@ class ShoppingCart
             unset($this->items[$item]);
         }
         if ($item instanceof Item) {
-            unset($this->items[spl_object_hash($item)]);
+            unset($this->items[$item->hash]);
         }
         $this->persist();
+    }
+
+    /**
+     * @param Item $item
+     *
+     * @return bool
+     */
+    public function itemExists( $item )
+    {
+        if (is_string( $item )) {
+            return isset($this->items[$item]);
+        }
+        if ($item instanceof Item) {
+            return isset($this->items[$item->hash]);
+        }
     }
 
     /**
