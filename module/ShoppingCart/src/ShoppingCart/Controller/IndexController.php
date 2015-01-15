@@ -50,4 +50,19 @@ class IndexController extends AbstractActionController
         $cart->clear();
         return new JsonModel(['message' => 'success']);
     }
+
+    public function existsAction()
+    {
+        $request = $this->getRequest();
+        if ($request->isXmlHttpRequest() === FALSE)
+            return new JsonModel([]);
+
+        $return = FALSE;
+        if ($request->isPost()) {
+            $cart = $this->getServiceLocator()->get('cart.service');
+            $hash = $request->getPost('hash');
+            $return = $cart->itemExists($hash);
+        }
+        return new JsonModel(['return' => $return]);
+    }
 }

@@ -50,6 +50,17 @@ return [
                     ],
                 ),
             ),
+            'cart-exists' => array(
+                'type'    => 'Segment',
+                'options' => array(
+                    'route'    => '/cart/exists',
+                    'defaults' => [
+                        '__NAMESPACE__' => 'ShoppingCart\Controller',
+                        'controller'    => 'Index',
+                        'action'        => 'exists',
+                    ],
+                ),
+            ),
         ],
     ],
     'service_manager' => [
