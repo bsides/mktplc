@@ -6,7 +6,7 @@ app.factory 'Results', ($http) ->
     add: '/cart/add'
     remove: '/cart/delete/'
     cart: '/cart'
-    filter: '/direct/item'
+    search: '/direct/item'
     list: '/direct/list'
     empty: '/cart/empty'
 
@@ -35,12 +35,12 @@ app.factory 'Results', ($http) ->
   cart: ->
     $http.get(url.cart)
 
-  sendFilter: (filter) ->
+  sendFilter: (theFilter) ->
     $http(
-      method: 'POST'
-      url: url.filter
-      data: filter
+      method: 'GET'
+      url: url.search
+      data: theFilter
     )
 
-  list: (filter) ->
-    $http.get(url.list + filter)
+  list: (theFilter) ->
+    $http.get(url.list + theFilter)
