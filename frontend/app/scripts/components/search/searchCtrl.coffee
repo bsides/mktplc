@@ -211,7 +211,8 @@ app.controller 'SearchCtrl', ($scope, $rootScope, $modal, $modalStack, $timeout,
   #   $scope.cart =
 
   # Adicionar
-  $scope.addToCart = (bid) ->
+  $scope.addToCart = (item, index) ->
+    newItem = {}
     # Ações ao adicionar:
     # 1 - Loading no botão, para preparar para a chamada ajax
     # 2 - envia dados para o carrinho
@@ -219,18 +220,34 @@ app.controller 'SearchCtrl', ($scope, $rootScope, $modal, $modalStack, $timeout,
     # 4 - acrescenta quantidade e atualiza valor ao carrinho
 
     # adicionamos manualmente a quantidade 1 caso quantity não exista
-    bid.quantity = 1 unless bid.quantity
+    if item.quantity
+      newItem.quantity = item.quantity
+    else
+      newItem.quantity = 1
 
     # 1 - Loading no botão, para preparar para a chamada ajax
-    $scope.isAddingToCart[bid.id] = true
+    $scope.isAddingToCart[index] = true
+
+    # Prepara item para envio
+    newItem.comment = ''
+    newItem.price = item.bid.value
+    newItem.ads = []
+    newItem.ads[0] =
+      comment: ''
+      date: ''
+      price: item.bid.value
+
+    newItem.features = item
+
+    $log.info newItem
 
     # 2 - envia dados para o carrinho
-    Results.add(bid).success((data) ->
+    Results.add(newItem).success((data) ->
       # 3 - no sucesso, desabilita o botão de adicionar, adiciona ícone de "adicionado" e desliga loading
-      $scope.isAddedToCart[bid.id] = true
-      $scope.isAddingToCart[bid.id] = false
+      $scope.isAddedToCart[index] = true
+      $scope.isAddingToCart[index] = false
       # 4 - acrescenta quantidade e atualiza valor ao carrinho
-      $rootScope.cartTotal = parseFloat($rootScope.cartTotal) + parseFloat(bid.bid.value)
+      $rootScope.cartTotal = parseFloat($rootScope.cartTotal) + parseFloat(newItem.price)
     ).error((data) ->
       # console.log data
     )

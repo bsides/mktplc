@@ -1,6 +1,6 @@
 'use strict'
 
-app.controller 'BidsCtrl', ($scope, $rootScope, Results) ->
+app.controller 'BidsCtrl', ($scope, $rootScope, $log, Results) ->
 
   # Try to get results
   $scope.getCartData = []
@@ -15,7 +15,11 @@ app.controller 'BidsCtrl', ($scope, $rootScope, Results) ->
   # Carrega os resultados ou retorna erro caso não der
   handleAllResults = (data, status) ->
     if status == 200
+      angular.forEach data, (value, key) ->
+        value.uid = key
+        value.publisher = value.features.publisher.id
       $scope.getCartData = data
+      $log.info data
     else
       $scope.getCartData = 'Erro ao retornar os dados'
 
@@ -65,8 +69,11 @@ app.controller 'BidsCtrl', ($scope, $rootScope, Results) ->
     Array.apply(null, {length: n}).map(Number.call, Number)
 
   # Remove this bid
-  $scope.removeBid = (id) ->
-    Results.delete(id).success((data) -> console.log data)
+  $scope.removeBid = (uid) ->
+    Results.delete(uid).success((data) ->
+      delete $scope.getCartData[uid]
+      $scope.apply()
+    )
 
   $rootScope.removeBid = $scope.removeBid
 

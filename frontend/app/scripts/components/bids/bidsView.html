@@ -20,39 +20,38 @@
   </div>
 </div>
 <div class="container">
-
-  <div class="panel panel-default items-by-newspaper" ng-repeat="bid in bidData">
+  <div class="panel panel-default items-by-newspaper" ng-repeat="bid in getCartData">
     <div class="panel-heading">
       <div class="row">
-        <div class="col-md-8"><i class="ficon ficon-doc-1"></i> Jornal: {{ bid.description }}</div>
+        <div class="col-md-8"><i class="ficon ficon-doc-1"></i> Jornal: {{ bid.features.publisher.description }}</div>
         <div class="col-md-3"><button class="btn btn-info"><i class="ficon ficon-comment"></i>observações gerais</button></div>
-        <div class="col-md-1 text-right"><button class="btn btn-info" ng-click="removeBid(bid.id)"><i class="ficon ficon-trash"></i></button></div>
+        <div class="col-md-1 text-right"><button class="btn btn-info" ng-click="removeBid(bid.uid)"><i class="ficon ficon-trash"></i></button></div>
       </div>
     </div>
-    <div class="panel-body" ng-repeat="item in bid.items">
+    <div class="panel-body">
       <div class="resume">
         <table>
           <tr>
             <td><strong>características</strong></td>
-            <td>caderno<br><span class="label label-info">{{ item.category }}</span></td>
-            <td>formato<br><span class="label label-info">{{ item.format }}</span></td>
-            <td>categoria<br><span class="label label-info">{{ item.category }}</span></td>
-            <td>dia da semana<br><span class="label label-info" ng-repeat="week in item.weekdays">{{ week }}</span></td>
-            <td>determinação<br><span class="label label-info">{{ item.determination }}</span></td>
+            <td>caderno<br><span class="label label-info">{{ bid.features.description }}</span></td>
+            <td>formato<br><span class="label label-info" ng-repeat="format in bid.features.format">{{ format.description }}</span></td>
+            <td>categoria<br><span class="label label-info" ng-repeat="category in bid.features.category">{{ category.description }}</span></td>
+            <td>dia da semana<br><span class="label label-info" ng-repeat="week in bid.features.week_day">{{ week.description }}</span></td>
+            <td>determinação<br><span class="label label-info" ng-repeat="determination in bid.features.determination">{{ determination.description }}</span></td>
             <td>região<br><span class="label label-info"><button>ver regiões</button></span></td>
-            <td ng-if="item.color == 'Cromia'">
+            <td ng-if="bid.features.color.description == 'Cromia'">
               cor<br>
               <div class="polychrome cyan"></div>
               <div class="polychrome yellow"></div>
               <div class="polychrome magenta"></div>
             </td>
-            <td ng-if="item.color == 'PB'">
+            <td ng-if="bid.features.color.description == 'PB'">
               cor<br>
               <div class="polychrome black"></div>
               <div class="polychrome white"></div>
             </td>
             <td>quantidade<br>
-              <select id="{{ item.id }}" ng-model="selectedQuantity" ng-init="selectedQuantity = item.quantity">
+              <select ng-model="selectedQuantity" ng-init="selectedQuantity = bid.ads.length">
                 <option value="1" selected="selected">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -72,15 +71,16 @@
           <div class="col-md-2 text-center">*data de publicação</div>
           <div class="col-md-2 text-center">valor</div>
         </div>
+        <!-- <div class="row body" ng-repeat="sel in range(selectedQuantity) track by $index"> -->
         <div class="row body" ng-repeat="sel in range(selectedQuantity) track by $index">
-          <div class="col-md-7"><button class="btn btn-info" ng-click="removeBid($index)"><i class="ficon ficon-trash"></i></button> Anúncio {{ sel + 1 }}</div>
+          <div class="col-md-7"><button class="btn btn-info" ng-click="removeAd($index)"><i class="ficon ficon-trash"></i></button> Anúncio {{ $index + 1 }}</div>
           <div class="col-md-1 text-center">
-            <button class="btn btn-info" ng-click="toggleComment(item.id)"><i class="ficon ficon-comment"></i></button>
-            <div class="comment" ng-show="isCommenting[item.id]">
+            <button class="btn btn-info" ng-click="toggleComment(bid.uid, $index)"><i class="ficon ficon-comment"></i></button>
+            <div class="comment" ng-show="isCommenting[$index]">
               <form action="">
                 <textarea name="" id="" cols="30" rows="10" class="form-control"></textarea>
-                <button type="button" class="btn btn-default" ng-click="toggleComment(item.id)">cancelar</button>
-                <button type="button" class="btn btn-primary" ng-click="saveComment(item.id)">salvar</button>
+                <button type="button" class="btn btn-default" ng-click="toggleComment($index)">cancelar</button>
+                <button type="button" class="btn btn-primary" ng-click="saveComment($index)">salvar</button>
               </form>
             </div>
           </div>
@@ -93,10 +93,12 @@
             </p> -->
             <i class="ficon ficon-calendar"></i><input type="text" size="8">
           </div>
-          <div class="col-md-2 text-center"><strong>{{ item.price | currency:"" }}</strong></div>
+          <div class="col-md-2 text-center"><strong>{{ bid.price | currency:"R$ " }}</strong></div>
         </div>
         <div class="row foot">
-          <div class="col-md-12 text-right"><strong>Total R$</strong><span class="label"> 20.000,00</span></div>
+          <div class="col-md-12 text-right">
+            <strong>Total R$</strong><span class="label" ng-model="itemSubTotal">{{ bid.price *  selectedQuantity | currency:'' }}</span>
+          </div>
         </div>
       </div>
     </div>
@@ -165,6 +167,7 @@
       <span>{{ cartTotal | currency:"" }}</span>
     </span>
   </div>
+  <pre>{{ itemSubTotal }}</pre>
 
   <div class="actions">
     <button type="button" class="btn btn-default" aria-expanded="false" ng-click="goSearch()">
