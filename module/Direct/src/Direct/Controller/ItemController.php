@@ -24,11 +24,9 @@ class ItemController extends AbstractActionController
      */
     public function indexAction()
     {
-        $post = $this->getRequest()->getPost()->toArray();
         $service = $this->getServiceLocator()->get('direct.newspaper.item');
-
-        return new JsonModel($service->find()['data']);
-
+        $params = $this->getRequest()->getQuery()->toArray();
+        return new JsonModel($service->find($params)['data']);
     }
 
 }

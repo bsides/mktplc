@@ -714,12 +714,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zf2.git",
-                "reference": "70777b5c73a3b4f94aa7b95a9fdec2d2dcd5db51"
+                "reference": "8615f24ebdfa905cc719be3c57649e93ea40ef20"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/zf2/zipball/70777b5c73a3b4f94aa7b95a9fdec2d2dcd5db51",
-                "reference": "70777b5c73a3b4f94aa7b95a9fdec2d2dcd5db51",
+                "url": "https://api.github.com/repos/zendframework/zf2/zipball/8615f24ebdfa905cc719be3c57649e93ea40ef20",
+                "reference": "8615f24ebdfa905cc719be3c57649e93ea40ef20",
                 "shasum": ""
             },
             "require": {
@@ -824,7 +824,7 @@
                 "framework",
                 "zf2"
             ],
-            "time": "2015-01-13 22:22:54"
+            "time": "2015-01-14 16:48:09"
         },
         {
             "name": "zendframework/zendxml",
@@ -955,12 +955,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/squizlabs/PHP_CodeSniffer.git",
-                "reference": "7ba71b47a1f5da02a4b98a7c142e0fbaa0a647e8"
+                "reference": "85267e2b891f541eee6c2330f9cf1cdcb5322176"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/7ba71b47a1f5da02a4b98a7c142e0fbaa0a647e8",
-                "reference": "7ba71b47a1f5da02a4b98a7c142e0fbaa0a647e8",
+                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/85267e2b891f541eee6c2330f9cf1cdcb5322176",
+                "reference": "85267e2b891f541eee6c2330f9cf1cdcb5322176",
                 "shasum": ""
             },
             "require": {
@@ -1015,7 +1015,7 @@
                 "phpcs",
                 "standards"
             ],
-            "time": "2015-01-13 22:28:36"
+            "time": "2015-01-14 03:56:43"
         },
         {
             "name": "symfony/config",

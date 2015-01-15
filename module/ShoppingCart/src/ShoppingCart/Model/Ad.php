@@ -1,7 +1,7 @@
 <?php
 namespace ShoppingCart\Model;
 
-class Item
+class Ad
 {
     /**
      * @type string
@@ -11,18 +11,12 @@ class Item
     /**
      * @type string
      */
-    public $features;
+    public $date;
 
     /**
-     * @type array
-     */
-    public $ads;
-
-    /**
-     * @type array
+     * @type decimal
      */
     public $price;
-
 
     public function __construct(array $options = null)
     {
@@ -47,4 +41,5 @@ class Item
         }
         return $this;
     }
+
 }
