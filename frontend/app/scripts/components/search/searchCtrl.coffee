@@ -134,28 +134,32 @@ app.controller 'SearchCtrl', ($scope, $rootScope, $modal, $modalStack, $timeout,
   ), 3000
 
   # Listagem de dados do servidor
-  # if $rootScope.listAllData
-  $scope.listAllData = []
-  # Results.list('/determination').success (data) -> $scope.determinations = data
-
-  determination = Results.list('/determination')
-  advertiser = Results.list('/advertiser')
-  weekday = Results.list('/weekday')
-  category = Results.list('/category')
-  region = Results.list('/region')
-  $q.all([
-    advertiser
-    category
-    weekday
-    determination
-    region
-  ]).then (data) ->
-    $scope.listAllData = data
-    $scope.advertisers = data[0].data
-    $scope.categories = data[1].data
-    $scope.weekdays = data[2].data
-    $scope.determinations = data[3].data
-    $scope.regions = data[4].data
-    # You can search now
+  if typeof $rootScope.listingAllData is 'undefined'
+    determination = Results.list('/determination')
+    advertiser = Results.list('/advertiser')
+    weekday = Results.list('/weekday')
+    category = Results.list('/category')
+    region = Results.list('/region')
+    $q.all([
+      advertiser
+      category
+      weekday
+      determination
+      region
+    ]).then (data) ->
+      $rootScope.listingAllData = data
+      $scope.advertisers = data[0].data
+      $scope.categories = data[1].data
+      $scope.weekdays = data[2].data
+      $scope.determinations = data[3].data
+      $scope.regions = data[4].data
+      # You can search now
+      $scope.canSearch = true
+  else
+    $scope.advertisers = $rootScope.listingAllData[0].data
+    $scope.categories = $rootScope.listingAllData[1].data
+    $scope.weekdays = $rootScope.listingAllData[2].data
+    $scope.determinations = $rootScope.listingAllData[3].data
+    $scope.regions = $rootScope.listingAllData[4].data
     $scope.canSearch = true
 
