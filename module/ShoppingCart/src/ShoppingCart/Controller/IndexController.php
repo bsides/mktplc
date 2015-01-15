@@ -12,8 +12,13 @@ class IndexController extends AbstractActionController
         $cart = $this->getServiceLocator()->get('cart.service');
         $return = [];
         foreach($cart as $item) {
-            $return[] = get_object_vars($item);
+            $return[$item->id]['id'] = $item->id;
+            $return[$item->id]['name'] = $item->newspaper;
+            $return[$item->id]['comment'] = $item->comment;
+            $return[$item->id]['items'] = array_filter($cart->items, function($it) use($item) { return $item->newspaper = $it->newspaper; });
         }
+
+        $return = array_filter($return, function($it) { return count($it['items']) > 0; });
         return new JsonModel($return);
     }
 
@@ -33,6 +38,10 @@ class IndexController extends AbstractActionController
 
     public function deleteAction()
     {
+        $request = $this->getRequest();
+        if ($request->isXmlHttpRequest() === FALSE)
+            return new JsonModel([]);
+
         $id = (int) $this->params('id');
         if (0 !== ($id = (int) $this->params('id'))) {
             $cart = $this->getServiceLocator()->get('cart.service');
@@ -43,6 +52,10 @@ class IndexController extends AbstractActionController
 
     public function emptyAction()
     {
+        $request = $this->getRequest();
+        if ($request->isXmlHttpRequest() === FALSE)
+            return new JsonModel([]);
+
         $cart = $this->getServiceLocator()->get('cart.service');
         $cart->clear();
         return new JsonModel(['message' => 'success']);
