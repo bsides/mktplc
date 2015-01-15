@@ -81,7 +81,7 @@ class ShoppingCart
      */
     public function removeItem( $item )
     {
-        if (is_int( $item )) {
+        if (is_string( $item )) {
             unset($this->items[$item]);
         }
         if ($item instanceof Item) {
