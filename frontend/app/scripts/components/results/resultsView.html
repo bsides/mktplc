@@ -52,9 +52,9 @@
           <div class="ordering btn-group">
             <select name="" id="" class="form-control whitey-sel" ng-model="selectedOrder">
               <option value="">Ordenar aleatoriamente</option>
-              <option value="newspaper">Ordenar por jornal</option>
+              <option value="publisher.description">Ordenar por jornal</option>
               <option value="bid.value">Ordenar por preço</option>
-              <option value="category">Ordenar por caderno</option>
+              <option value="description">Ordenar por caderno</option>
             </select>
             <!-- <button type="button" class="hide btn btn-default" ng-class="{ 'disabled' : !selectedOrder }" ng-click="toggleOrder()" ng-attr-title="{{ orderTooltip() }}" tooltip="{{ orderTooltip() }}" tooltip-placement="bottom"><i class="ficon" ng-class="isOrderAsc ? 'ficon-sort-alt-up' : 'ficon-sort-alt-down'"></i></button> -->
           </div>
@@ -87,7 +87,7 @@
                         </a>
                       </td>
                       <td colspan="4">
-                        <h4>FALTA JORNAL{{ result.newspaper }}</h4>
+                        <h4>{{ result.publisher.description }}</h4>
                       </td>
                       <td class="added" ng-show="isAddedToCart[result.id]">
                         <div><i class="ficon ficon-basket"></i></div>
@@ -99,7 +99,7 @@
                     </tr>
                     <tr class="info">
                       <td>caderno</td>
-                      <td colspan="2"> <strong ng-repeat="caderno in result.category">{{ caderno.description }}</strong></td>
+                      <td colspan="2"><strong>{{ result.description }}</strong></td>
                     </tr>
                     <tr>
                       <td colspan="3" ng-if="result.color.code == 'CROMIA'">

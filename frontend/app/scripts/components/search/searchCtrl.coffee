@@ -5,8 +5,11 @@ app.controller 'SearchCtrl', ($scope, $rootScope, $modal, $modalStack, $timeout,
 # http://angularjs4u.com/filters/angularjs-template-divs-row/
 
   $scope.results = 'scripts/components/results/resultsView.html'
-
   $scope.canSearch = false
+  if typeof $rootScope.searchData is 'undefined'
+    $scope.searchData = []
+  else
+    $scope.searchData = $rootScope.searchData
 
   # Coloca o total do carrinho numa variável global
   if typeof $rootScope.cartTotal != 'undefined'
@@ -49,15 +52,6 @@ app.controller 'SearchCtrl', ($scope, $rootScope, $modal, $modalStack, $timeout,
         superSearchString: ->
           $scope.superSearchString
     )
-    # modalInstance.result.then ((selectedItem) ->
-    #   $scope.filterData = selectedItem
-    #   return
-    # ), ->
-    #   $log.info "Modal dismissed at: " + new Date()
-    #   return
-
-  # $scope.newSearch = ->
-  #   $scope.showModal = true
 
   $scope.makeFilter = ->
     $scope.superSearchString = ''
@@ -77,11 +71,12 @@ app.controller 'SearchCtrl', ($scope, $rootScope, $modal, $modalStack, $timeout,
         # $scope.filterData.push(value)
 
     sendFilter($scope.superSearchString)
+    return
 
   sendFilter = (data) ->
-    $log.info 'enviando: ' + data
     Results.sendFilter(data).success((data) ->
-      $log.info 'enviado!'
+      $rootScope.searchData = data
+      $scope.searchData = data
     )
 
   $scope.willOpenAdvertiserModal = {}
@@ -133,7 +128,9 @@ app.controller 'SearchCtrl', ($scope, $rootScope, $modal, $modalStack, $timeout,
       return
   ), 3000
 
-  # Listagem de dados do servidor
+  # Listagem de dados do servidor ou local
+  # É local depois da primeira lida.
+  # Considerei que dificilmente o usuário precisará da listagem mais de uma vez por acesso
   if typeof $rootScope.listingAllData is 'undefined'
     determination = Results.list('/determination')
     advertiser = Results.list('/advertiser')
@@ -162,4 +159,73 @@ app.controller 'SearchCtrl', ($scope, $rootScope, $modal, $modalStack, $timeout,
     $scope.determinations = $rootScope.listingAllData[3].data
     $scope.regions = $rootScope.listingAllData[4].data
     $scope.canSearch = true
+
+
+
+  # Ordenação de resultado
+
+  # Modo de Visualização
+  # aceita "view-regular" ou "view-compact"
+  $scope.viewMode = 'view-regular'
+
+  # Ordenação começa de forma ascendente
+  $scope.isOrderAsc = true
+  $scope.toggleOrder = ->
+    $scope.isOrderAsc = not $scope.isOrderAsc
+
+  # Tooltip dinâmica de acordo com a ordenação
+  $scope.orderTooltip = ->
+    if $scope.isOrderAsc then 'Trocar para ordem decrescente' else 'Trocar para ordem crescente'
+
+
+  # Ações do carrinho
+
+  # Utilitários
+  $scope.isAddedToCart = {}
+  $scope.isAddingToCart = {}
+
+  # Adicionados
+  # $scope.addedToCart = ->
+  #   $scope.cart =
+
+  # Adicionar
+  $scope.addToCart = (bid) ->
+    # Ações ao adicionar:
+    # 1 - Loading no botão, para preparar para a chamada ajax
+    # 2 - envia dados para o carrinho
+    # 3 - no sucesso, desabilita o botão de adicionar, adiciona ícone de "adicionado" e desliga loading
+    # 4 - acrescenta quantidade e atualiza valor ao carrinho
+
+    # adicionamos manualmente a quantidade 1 caso quantity não exista
+    bid.quantity = 1 unless bid.quantity
+
+    # 1 - Loading no botão, para preparar para a chamada ajax
+    $scope.isAddingToCart[bid.id] = true
+
+    # 2 - envia dados para o carrinho
+    Results.add(bid).success((data) ->
+      # 3 - no sucesso, desabilita o botão de adicionar, adiciona ícone de "adicionado" e desliga loading
+      $scope.isAddedToCart[bid.id] = true
+      $scope.isAddingToCart[bid.id] = false
+      # 4 - acrescenta quantidade e atualiza valor ao carrinho
+      $rootScope.cartTotal = parseFloat($rootScope.cartTotal) + parseFloat(bid.bid.value)
+    ).error((data) ->
+      # console.log data
+    )
+
+  # Remover
+  $scope.removeFromCart = (bidId) ->
+    Results.delete(bidId).success((data) ->
+      data
+    )
+
+  # $scope.cart =
+  #   add: (id) ->
+  #     found = $filter('filter')($scope.searchData, {id: id}, true)
+  #     if found.length
+  #       console.log JSON.stringify(found[0])
+
+  # $scope.testando = (item) ->
+  #   console.log item
+
 
