@@ -6,10 +6,18 @@ app.controller 'SearchCtrl', ($scope, $rootScope, $modal, $modalStack, $timeout,
 
   $scope.results = 'scripts/components/results/resultsView.html'
   $scope.canSearch = false
+
+  # Pega os dados de busca mesmo se o usuário mudar de página
   if typeof $rootScope.searchData is 'undefined'
     $scope.searchData = []
   else
     $scope.searchData = $rootScope.searchData
+
+  # Pega os parâmetros de busca mesmo se o usuário mudar de página
+  if typeof $rootScope.filterData is 'undefined'
+    $scope.filterData = []
+  else
+    $scope.filterData = $rootScope.filterData
 
   # Coloca o total do carrinho numa variável global
   if typeof $rootScope.cartTotal != 'undefined'
@@ -25,6 +33,16 @@ app.controller 'SearchCtrl', ($scope, $rootScope, $modal, $modalStack, $timeout,
       $scope.cartResults = 'Erro ao retornar os dados'
 
   Results.cart().success(handleCartResults)
+
+  # Formatador de resultado
+  $scope.formatResults = (counter) ->
+    if counter > 1
+      $scope.resultLabel = counter + ' resultados'
+    else if counter == 1
+      $scope.resultLabel = counter + ' resultado'
+    else
+      $scope.resultLabel = 'Sem resultados'
+
 
   $scope.goCart = ->
     window.location.href='/bids'
@@ -55,21 +73,25 @@ app.controller 'SearchCtrl', ($scope, $rootScope, $modal, $modalStack, $timeout,
 
   $scope.makeFilter = ->
     $scope.superSearchString = ''
+    $scope.filterData = []
     angular.forEach $scope.categories, (value, key) ->
       if value.ticked
         $scope.superSearchString += '&category_id[]=' + value.id
+        $scope.filterData.push(value)
     angular.forEach $scope.weekdays, (value, key) ->
       if value.ticked
         $scope.superSearchString += '&week_day_id[]=' + value.id
+        $scope.filterData.push(value)
     angular.forEach $scope.determinations, (value, key) ->
       if value.ticked
         $scope.superSearchString += '&determination_id[]=' + value.id
+        $scope.filterData.push(value)
     angular.forEach $scope.regions, (value, key) ->
       if value.ticked
         $scope.superSearchString += '&state_id[]=' + value.id
-        # value['state_id[]'] = value.id
-        # $scope.filterData.push(value)
+        $scope.filterData.push(value)
 
+    $rootScope.filterData = $scope.filterData
     sendFilter($scope.superSearchString)
     return
 
@@ -79,8 +101,8 @@ app.controller 'SearchCtrl', ($scope, $rootScope, $modal, $modalStack, $timeout,
       $scope.searchData = data
     )
 
-  $scope.willOpenAdvertiserModal = {}
   # Modal para confirmação de mudança de advertiser
+  $scope.willOpenAdvertiserModal = {}
   $scope.$watch 'selectedAdvertiser', (newValue, oldValue) ->
     if (newValue != $scope.willOpenAdvertiserModal) and (newValue != oldValue)
       # A model do advertiser selecionado
@@ -115,7 +137,7 @@ app.controller 'SearchCtrl', ($scope, $rootScope, $modal, $modalStack, $timeout,
       $rootScope.cartTotal = 0
     )
 
-  # Fix para selectbox
+  # Fix para selectbox de advertiser
   $scope.checkAdvertiser = ->
     $scope.willOpenAdvertiserModal = $scope.selectedAdvertiser
 
