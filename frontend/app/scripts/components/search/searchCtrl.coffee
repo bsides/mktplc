@@ -62,35 +62,30 @@ app.controller 'SearchCtrl', ($scope, $rootScope, $modal, $modalStack, $timeout,
 
   $scope.makeFilter = ->
     $scope.filterData = []
+    $scope.superSearchString = ''
     angular.forEach $scope.categories, (value, key) ->
       if value.ticked
-        value['category_id[]'] = value.id
-        $scope.filterData.push(value)
+        $scope.superSearchString += '&category_id[]=' + value.id
     angular.forEach $scope.weekdays, (value, key) ->
       if value.ticked
-        value['week_day_id[]'] = value.id
-        $scope.filterData.push(value)
+        $scope.superSearchString += '&week_day_id[]=' + value.id
     angular.forEach $scope.determinations, (value, key) ->
       if value.ticked
-        value['determination_id[]'] = value.id
-        $scope.filterData.push(value)
+        $scope.superSearchString += '&determination_id[]=' + value.id
     angular.forEach $scope.regions, (value, key) ->
       if value.ticked
-        value['state_id[]'] = value.id
-        $scope.filterData.push(value)
+        $scope.superSearchString += '&state_id[]=' + value.id
+        # value['state_id[]'] = value.id
+        # $scope.filterData.push(value)
 
-    sendFilter($scope.filterData)
-
+    sendFilter($scope.superSearchString)
 
   sendFilter = (data) ->
+    $log.info 'enviando: ' + data
     Results.sendFilter(data).success((data) ->
-      console.log data
+      $log.info 'enviado!'
+      $log.info data
     )
-    # sendingArray = []
-    # angular.forEach data, (value, key) ->
-    #   sendingArray.push(value)
-    # console.log sendingArray
-    # console.log data.['category_id[]']
 
   $scope.willOpenAdvertiserModal = {}
   # Modal para confirmação de mudança de advertiser
