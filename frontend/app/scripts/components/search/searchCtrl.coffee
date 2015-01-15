@@ -6,7 +6,6 @@ app.controller 'SearchCtrl', ($scope, $rootScope, $modal, $modalStack, $timeout,
 
   $scope.results = 'scripts/components/results/resultsView.html'
 
-  $scope.filterData = []
   $scope.canSearch = false
 
   # Coloca o total do carrinho numa variável global
@@ -47,8 +46,8 @@ app.controller 'SearchCtrl', ($scope, $rootScope, $modal, $modalStack, $timeout,
           $scope.regions
         makeFilter: ->
           $scope.makeFilter
-        filterData: ->
-          $scope.filterData
+        superSearchString: ->
+          $scope.superSearchString
     )
     # modalInstance.result.then ((selectedItem) ->
     #   $scope.filterData = selectedItem
@@ -61,7 +60,6 @@ app.controller 'SearchCtrl', ($scope, $rootScope, $modal, $modalStack, $timeout,
   #   $scope.showModal = true
 
   $scope.makeFilter = ->
-    $scope.filterData = []
     $scope.superSearchString = ''
     angular.forEach $scope.categories, (value, key) ->
       if value.ticked
@@ -84,7 +82,6 @@ app.controller 'SearchCtrl', ($scope, $rootScope, $modal, $modalStack, $timeout,
     $log.info 'enviando: ' + data
     Results.sendFilter(data).success((data) ->
       $log.info 'enviado!'
-      $log.info data
     )
 
   $scope.willOpenAdvertiserModal = {}
@@ -116,26 +113,28 @@ app.controller 'SearchCtrl', ($scope, $rootScope, $modal, $modalStack, $timeout,
           $scope.selectedAdvertiser = oldValue
       )
 
+  # Apaga o conteúdo do carrinho
   $scope.eraseCart = ->
     Results.empty().success((data) ->
       data
       $rootScope.cartTotal = 0
     )
 
+  # Fix para selectbox
   $scope.checkAdvertiser = ->
     $scope.willOpenAdvertiserModal = $scope.selectedAdvertiser
 
-  # Abre o modal
-  $scope.forceSearch = true if $scope.filterData.length == 0
+  # Abre o modal em first load
   $scope.forceSearch = true if $scope.canSearch
-  # $timeout (->
-  #   # Somente se ele já não estiver aberto!!!
-  #   if typeof $modalStack.getTop() == 'undefined'
-  #     $scope.newSearch() if $scope.forceSearch
-  #     return
-  # ), 3000
+  $timeout (->
+    # Somente se ele já não estiver aberto!!!
+    if typeof $modalStack.getTop() == 'undefined'
+      $scope.newSearch() if $scope.forceSearch
+      return
+  ), 3000
 
-  # Dados que deveriam vir do servidor (mock)
+  # Listagem de dados do servidor
+  # if $rootScope.listAllData
   $scope.listAllData = []
   # Results.list('/determination').success (data) -> $scope.determinations = data
 

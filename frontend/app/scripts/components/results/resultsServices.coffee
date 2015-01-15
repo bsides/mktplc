@@ -36,11 +36,12 @@ app.factory 'Results', ($http) ->
     $http.get(url.cart)
 
   sendFilter: (theFilter) ->
-    $http(
-      method: 'GET'
-      url: url.search
-      data: theFilter
-    )
+    # $http(
+    #   method: 'GET'
+    #   url: url.search
+    #   data: theFilter
+    # )
+    $http.get(url.search + '?' + theFilter)
 
   list: (theFilter) ->
     $http.get(url.list + theFilter)
