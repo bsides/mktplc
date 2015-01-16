@@ -20,12 +20,12 @@
   </div>
 </div>
 <div class="container">
-  <div class="panel panel-default items-by-newspaper" ng-repeat="bid in getCartData track by bid.items.hash">
+  <div class="panel panel-default items-by-newspaper" ng-repeat="bid in getCartData">
     <div class="panel-heading">
       <div class="row">
         <div class="col-md-8"><i class="ficon ficon-doc-1"></i> Jornal: {{ bid.description }}</div>
         <div class="col-md-3"><button class="btn btn-info"><i class="ficon ficon-comment"></i>observações gerais</button></div>
-        <div class="col-md-1 text-right"><button class="btn btn-info" ng-click="removeBid(bid.items.hash)"><i class="ficon ficon-trash"></i></button></div>
+        <div class="col-md-1 text-right"><button class="btn btn-info" ng-click="removeBid(bid.itemsfront)"><i class="ficon ficon-trash"></i></button></div>
       </div>
     </div>
     <div class="panel-body" ng-repeat="item in bid.items track by item.features.hash">
@@ -118,7 +118,8 @@
                 <button type="button" class="btn btn-default" ng-click="openDate($event)"><i class="ficon ficon-calendar"></i></button>
               </span>
             </p> -->
-            <i class="ficon ficon-calendar"></i><input type="text" size="8">
+            <i class="ficon ficon-calendar"></i><input type="text" pick-a-date="date" pick-a-date-options="dateOptions" size="8" /><!-- <input type="text" size="8"> -->
+
           </div>
           <div class="col-md-2 text-center"><strong>{{ item.features.bid.value | currency:"R$ " }}</strong></div>
         </div>

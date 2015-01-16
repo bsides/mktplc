@@ -28,6 +28,7 @@ root.app = angular
     'ngRoute'
     'ngSanitize'
     'ngTouch'
+    'angular-datepicker'
   ])
   .config ($routeProvider) ->
     $routeProvider

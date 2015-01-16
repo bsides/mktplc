@@ -666,6 +666,7 @@ module.exports = (grunt) ->
           'moment/moment.js': 'moment/moment.js'
           'angular-bootstrap/ui-bootstrap-tpls.js': 'angular-bootstrap/ui-bootstrap-tpls.js'
           'angular-i18n/angular-locale_pt-br.js': 'angular-i18n/angular-locale_pt-br.js'
+          'angular-native-picker/build/angular-datepicker.js' : 'angular-native-picker/build/angular-datepicker.js'
 
     # Run some tasks in parallel to speed up the build process
     concurrent:

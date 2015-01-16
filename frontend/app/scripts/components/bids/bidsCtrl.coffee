@@ -1,6 +1,6 @@
 'use strict'
 
-app.controller 'BidsCtrl', ($scope, $rootScope, $log, Results) ->
+app.controller 'BidsCtrl', ($scope, $rootScope, $log, $filter, Results) ->
 
   # Try to get results
   $scope.getCartData = []
@@ -15,10 +15,14 @@ app.controller 'BidsCtrl', ($scope, $rootScope, $log, Results) ->
   # Carrega os resultados ou retorna erro caso não der
   handleAllResults = (data, status) ->
     if status == 200
-      # angular.forEach data, (value, key) ->
-      #   value.uid = key
+      angular.forEach data, (value, key) ->
+        value.itemsfront = []
+        angular.forEach value.items, (val, k) ->
+          value.itemsfront.push(val)
+
       #   value.publisher = value.features.publisher.id
       $scope.getCartData = data
+      $log.info $scope.getCartData
     else
       $scope.getCartData = 'Erro ao retornar os dados'
 
@@ -57,8 +61,9 @@ app.controller 'BidsCtrl', ($scope, $rootScope, $log, Results) ->
     $scope.dateOpened = true
 
   $scope.dateOptions =
-    formatYear: 'yy'
-    startingDay: 1
+    format: 'yyyy-mm-dd'
+    onClose: (e) ->
+      $log.info e
 
   $scope.dateFormats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate']
   $scope.dateFormat = $scope.dateFormats[0]
@@ -69,11 +74,10 @@ app.controller 'BidsCtrl', ($scope, $rootScope, $log, Results) ->
 
   # Remove this bid
   $scope.removeBid = (hash) ->
-    $log.info hash
-    Results.delete(hash).success((data) ->
-      delete $scope.getCartData[hash]
-      $scope.apply()
-    )
+    angular.forEach hash, (value, key) ->
+      Results.delete(value.hash).success((data) ->
+        Results.cart().success(handleAllResults)
+      )
 
   $rootScope.removeBid = $scope.removeBid
 
