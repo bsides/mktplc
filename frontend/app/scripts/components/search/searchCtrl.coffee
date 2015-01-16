@@ -1,3 +1,14 @@
+###*
+ # @ngdoc function
+ # @name marketplaceApp.controller:SearchCtrl
+ # @description
+ # # SearchCtrl
+ # Controller principal do marketplace.
+ # Retorna buscas, refaz modais de busca, usa serviços de resultados e listagens
+ # Em um refactor, imagino retirar do $rootScope e colocar em serviços
+ # as variáveis usadas globalmente
+###
+
 'use strict'
 
 app.controller 'SearchCtrl', ($scope, $rootScope, $modal, $modalStack, $timeout, $q, $log, Results) ->
@@ -6,6 +17,8 @@ app.controller 'SearchCtrl', ($scope, $rootScope, $modal, $modalStack, $timeout,
 
   $scope.results = 'scripts/components/results/resultsView.html'
   $scope.canSearch = false
+
+  # Variáveis de dados globais (dados persistentes entre páginas)
 
   # Pega os dados de busca mesmo se o usuário mudar de página
   if typeof $rootScope.searchData is 'undefined'
@@ -141,15 +154,6 @@ app.controller 'SearchCtrl', ($scope, $rootScope, $modal, $modalStack, $timeout,
   $scope.checkAdvertiser = ->
     $scope.willOpenAdvertiserModal = $scope.selectedAdvertiser
 
-  # Abre o modal em first load
-  $scope.forceSearch = true if $scope.canSearch
-  $timeout (->
-    # Somente se ele já não estiver aberto!!!
-    if typeof $modalStack.getTop() == 'undefined'
-      $scope.newSearch() if $scope.forceSearch
-      return
-  ), 3000
-
   # Listagem de dados do servidor ou local
   # É local depois da primeira lida.
   # Considerei que dificilmente o usuário precisará da listagem mais de uma vez por acesso
@@ -182,7 +186,15 @@ app.controller 'SearchCtrl', ($scope, $rootScope, $modal, $modalStack, $timeout,
     $scope.regions = $rootScope.listingAllData[4].data
     $scope.canSearch = true
 
-
+  # Abre o modal em first load
+  $scope.forceSearch = true if $scope.canSearch
+  $timeout (->
+    # Somente se ele já não estiver aberto!!!
+    if typeof $modalStack.getTop() == 'undefined'
+      if $scope.canSearch
+        $scope.newSearch()
+      return
+  ), 3000
 
   # Ordenação de resultado
 
@@ -203,12 +215,14 @@ app.controller 'SearchCtrl', ($scope, $rootScope, $modal, $modalStack, $timeout,
   # Ações do carrinho
 
   # Utilitários
-  $scope.isAddedToCart = {}
-  $scope.isAddingToCart = {}
+  # Verifica se já foi adicionado
+  if typeof $rootScope.isAddedToCart is 'undefined'
+    $scope.isAddedToCart = {}
+    $rootScope.isAddedToCart = {}
+  else
+    $scope.isAddedToCart = $rootScope.isAddedToCart
 
-  # Adicionados
-  # $scope.addedToCart = ->
-  #   $scope.cart =
+  $scope.isAddingToCart = {}
 
   # Adicionar
   $scope.addToCart = (item, index) ->
@@ -239,11 +253,10 @@ app.controller 'SearchCtrl', ($scope, $rootScope, $modal, $modalStack, $timeout,
 
     newItem.features = item
 
-    $log.info newItem
-
     # 2 - envia dados para o carrinho
     Results.add(newItem).success((data) ->
       # 3 - no sucesso, desabilita o botão de adicionar, adiciona ícone de "adicionado" e desliga loading
+      $rootScope.isAddedToCart[index] = true
       $scope.isAddedToCart[index] = true
       $scope.isAddingToCart[index] = false
       # 4 - acrescenta quantidade e atualiza valor ao carrinho

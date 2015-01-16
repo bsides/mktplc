@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "d46f42160bb4749c9af16c4e93907e2e",
+    "hash": "4e48d92340f31293900bd28dfe810d0a",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -670,7 +670,7 @@
             "source": {
                 "type": "git",
                 "url": "git@gitlab.corp.predicta.com.br:infra/direct_api_sdk_php.git",
-                "reference": "3aa95e6d5762a22159896ed02d17ad994e6ca41c"
+                "reference": "58b0b79fd7dcc4e1fd2766ee79ee29a2a4141c27"
             },
             "require": {
                 "guilhermewop/apigility-client": "v0.1.0",
@@ -706,7 +706,7 @@
                 "zend framework 2",
                 "zend module"
             ],
-            "time": "2015-01-13 22:33:43"
+            "time": "2015-01-15 21:20:29"
         },
         {
             "name": "zendframework/zendframework",
@@ -714,12 +714,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zf2.git",
-                "reference": "8615f24ebdfa905cc719be3c57649e93ea40ef20"
+                "reference": "70777b5c73a3b4f94aa7b95a9fdec2d2dcd5db51"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/zf2/zipball/8615f24ebdfa905cc719be3c57649e93ea40ef20",
-                "reference": "8615f24ebdfa905cc719be3c57649e93ea40ef20",
+                "url": "https://api.github.com/repos/zendframework/zf2/zipball/70777b5c73a3b4f94aa7b95a9fdec2d2dcd5db51",
+                "reference": "70777b5c73a3b4f94aa7b95a9fdec2d2dcd5db51",
                 "shasum": ""
             },
             "require": {
@@ -824,7 +824,7 @@
                 "framework",
                 "zf2"
             ],
-            "time": "2015-01-14 16:48:09"
+            "time": "2015-01-13 22:22:54"
         },
         {
             "name": "zendframework/zendxml",
@@ -955,12 +955,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/squizlabs/PHP_CodeSniffer.git",
-                "reference": "85267e2b891f541eee6c2330f9cf1cdcb5322176"
+                "reference": "7ba71b47a1f5da02a4b98a7c142e0fbaa0a647e8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/85267e2b891f541eee6c2330f9cf1cdcb5322176",
-                "reference": "85267e2b891f541eee6c2330f9cf1cdcb5322176",
+                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/7ba71b47a1f5da02a4b98a7c142e0fbaa0a647e8",
+                "reference": "7ba71b47a1f5da02a4b98a7c142e0fbaa0a647e8",
                 "shasum": ""
             },
             "require": {
@@ -1015,7 +1015,7 @@
                 "phpcs",
                 "standards"
             ],
-            "time": "2015-01-14 03:56:43"
+            "time": "2015-01-13 22:28:36"
         },
         {
             "name": "symfony/config",
