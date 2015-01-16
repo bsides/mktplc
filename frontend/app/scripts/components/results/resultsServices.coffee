@@ -3,7 +3,7 @@
 app.factory 'Results', ($http) ->
   url =
     get: '/direct/item'
-    add: '/cart/add'
+    add: '/cart/add/'
     remove: '/cart/delete/'
     cart: '/cart'
     search: '/direct/item'
@@ -17,17 +17,19 @@ app.factory 'Results', ($http) ->
     $http.get(url.get)
 
   add: (bid) ->
-    $http(
-      method: 'POST'
-      url: url.add
-      data: bid
-    )
+    # $http(
+    #   method: 'POST'
+    #   url: url.add
+    #   data: bid
+    # )
+    $http.get(url.add + bid)
 
   delete: (bidId) ->
-    $http(
-      method: 'POST'
-      url: url.remove + bidId
-    )
+    # $http(
+    #   method: 'POST'
+    #   url: url.remove + bidId
+    # )
+    $http.get(url.remove + bidId)
 
   empty: ->
     $http.get(url.empty)

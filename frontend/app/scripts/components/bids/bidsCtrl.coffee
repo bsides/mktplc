@@ -15,9 +15,9 @@ app.controller 'BidsCtrl', ($scope, $rootScope, $log, Results) ->
   # Carrega os resultados ou retorna erro caso não der
   handleAllResults = (data, status) ->
     if status == 200
-      angular.forEach data, (value, key) ->
-        value.uid = key
-        value.publisher = value.features.publisher.id
+      # angular.forEach data, (value, key) ->
+      #   value.uid = key
+      #   value.publisher = value.features.publisher.id
       $scope.getCartData = data
     else
       $scope.getCartData = 'Erro ao retornar os dados'
@@ -68,9 +68,10 @@ app.controller 'BidsCtrl', ($scope, $rootScope, $log, Results) ->
     Array.apply(null, {length: n}).map(Number.call, Number)
 
   # Remove this bid
-  $scope.removeBid = (uid) ->
-    Results.delete(uid).success((data) ->
-      delete $scope.getCartData[uid]
+  $scope.removeBid = (hash) ->
+    $log.info hash
+    Results.delete(hash).success((data) ->
+      delete $scope.getCartData[hash]
       $scope.apply()
     )
 
