@@ -19,7 +19,6 @@ app.controller 'BidsCtrl', ($scope, $rootScope, $log, Results) ->
         value.uid = key
         value.publisher = value.features.publisher.id
       $scope.getCartData = data
-      $log.info data
     else
       $scope.getCartData = 'Erro ao retornar os dados'
 

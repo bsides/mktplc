@@ -187,12 +187,10 @@ app.controller 'SearchCtrl', ($scope, $rootScope, $modal, $modalStack, $timeout,
     $scope.canSearch = true
 
   # Abre o modal em first load
-  $scope.forceSearch = true if $scope.canSearch
   $timeout (->
     # Somente se ele já não estiver aberto!!!
     if typeof $modalStack.getTop() == 'undefined'
-      if $scope.canSearch
-        $scope.newSearch()
+        # $scope.newSearch()
       return
   ), 3000
 

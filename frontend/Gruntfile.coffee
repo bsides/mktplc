@@ -683,6 +683,12 @@ module.exports = (grunt) ->
         'imagemin'
         'svgmin'
       ]
+      build: [
+        'coffee:dist'
+        'compass:dist'
+        'imagemin'
+        'svgmin'
+      ]
       dev: [
         'coffee:dev'
         'compass:dev'
