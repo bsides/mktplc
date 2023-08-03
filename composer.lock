@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "hash": "bd2d0a1d062c0dfbbcd21785cdb737af",
+    "content-hash": "238dce3bb74dbb4ef268afde5efde3e0",
     "packages": [
         {
             "name": "zendframework/zendframework",
@@ -122,28 +122,28 @@
                 "framework",
                 "zf2"
             ],
-            "time": "2014-09-16 22:58:11"
+            "time": "2014-09-16T22:58:11+00:00"
         },
         {
             "name": "zendframework/zendxml",
-            "version": "1.0.0",
+            "version": "1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/ZendXml.git",
-                "reference": "559b34f426d33a11c3db118e00ce14bb8dc64e5f"
+                "reference": "7b64507bc35d841c9c5802d67f6f87ef8e1a58c9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/ZendXml/zipball/559b34f426d33a11c3db118e00ce14bb8dc64e5f",
-                "reference": "559b34f426d33a11c3db118e00ce14bb8dc64e5f",
+                "url": "https://api.github.com/repos/zendframework/ZendXml/zipball/7b64507bc35d841c9c5802d67f6f87ef8e1a58c9",
+                "reference": "7b64507bc35d841c9c5802d67f6f87ef8e1a58c9",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.3"
+                "php": "^5.3.3 || ^7.0"
             },
             "require-dev": {
-                "fabpot/php-cs-fixer": "*@dev",
-                "phpunit/phpunit": "~3.7"
+                "phpunit/phpunit": "^3.7 || ^4.0",
+                "squizlabs/php_codesniffer": "^1.5"
             },
             "type": "library",
             "extra": {
@@ -153,7 +153,7 @@
             },
             "autoload": {
                 "psr-0": {
-                    "ZendXml": "library/"
+                    "ZendXml\\": "library/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -167,7 +167,12 @@
                 "xml",
                 "zf2"
             ],
-            "time": "2014-03-05 22:25:44"
+            "support": {
+                "issues": "https://github.com/zendframework/ZendXml/issues",
+                "source": "https://github.com/zendframework/ZendXml/tree/master"
+            },
+            "abandoned": "laminas/laminas-xml",
+            "time": "2016-02-04T21:02:08+00:00"
         }
     ],
     "packages-dev": [
@@ -208,7 +213,7 @@
                 "BSD-3-Clause"
             ],
             "description": "Official version of pdepend to be handled with Composer",
-            "time": "2014-10-08 06:54:50"
+            "time": "2014-10-08T06:54:50+00:00"
         },
         {
             "name": "phpmd/phpmd",
@@ -245,7 +250,7 @@
                 "BSD-3-Clause"
             ],
             "description": "Official version of PHPMD handled with Composer.",
-            "time": "2014-09-25 15:56:22"
+            "time": "2014-09-25T15:56:22+00:00"
         },
         {
             "name": "squizlabs/php_codesniffer",
@@ -320,7 +325,7 @@
                 "phpcs",
                 "standards"
             ],
-            "time": "2014-12-01 22:06:45"
+            "time": "2014-12-01T22:06:45+00:00"
         },
         {
             "name": "symfony/config",
@@ -368,7 +373,7 @@
             ],
             "description": "Symfony Config Component",
             "homepage": "http://symfony.com",
-            "time": "2014-12-02 20:15:53"
+            "time": "2014-12-02T20:15:53+00:00"
         },
         {
             "name": "symfony/dependency-injection",
@@ -425,7 +430,7 @@
             ],
             "description": "Symfony DependencyInjection Component",
             "homepage": "http://symfony.com",
-            "time": "2014-12-02 21:48:32"
+            "time": "2014-12-02T21:48:32+00:00"
         },
         {
             "name": "symfony/filesystem",
@@ -472,7 +477,7 @@
             ],
             "description": "Symfony Filesystem Component",
             "homepage": "http://symfony.com",
-            "time": "2014-12-02 20:15:53"
+            "time": "2014-12-02T20:15:53+00:00"
         },
         {
             "name": "zendframework/zend-developer-tools",
@@ -533,7 +538,7 @@
                 "module",
                 "zf2"
             ],
-            "time": "2014-10-23 18:27:03"
+            "time": "2014-10-23T18:27:03+00:00"
         },
         {
             "name": "zendframework/zenddiagnostics",
@@ -592,7 +597,7 @@
                 "php",
                 "test"
             ],
-            "time": "2014-08-11 16:12:58"
+            "time": "2014-08-11T16:12:58+00:00"
         },
         {
             "name": "zendframework/zftool",
@@ -646,7 +651,7 @@
                 "tool",
                 "zf2"
             ],
-            "time": "2014-04-22 18:35:37"
+            "time": "2014-04-22T18:35:37+00:00"
         }
     ],
     "aliases": [],
@@ -658,8 +663,10 @@
         "zendframework/zend-developer-tools": 20
     },
     "prefer-stable": false,
+    "prefer-lowest": false,
     "platform": {
         "php": ">=5.3.3"
     },
-    "platform-dev": []
+    "platform-dev": [],
+    "plugin-api-version": "2.3.0"
 }
